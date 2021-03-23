@@ -4,3 +4,4 @@ librosa
 numpy
 versioned-hdf5
 keras
+tensorflow

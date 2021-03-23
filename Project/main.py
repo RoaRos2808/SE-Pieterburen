@@ -1,5 +1,5 @@
 import PyQt5.QtWidgets as qtw
-from GUI import ViewHandler
+from Project.View import ViewHandler
 
 app = qtw.QApplication([])
 #get screen resolution of system used

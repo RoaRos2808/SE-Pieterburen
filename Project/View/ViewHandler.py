@@ -1,8 +1,6 @@
 import PyQt5.QtWidgets as qtw
-import PyQt5.QtGui as qtg
-import PyQt5.QtCore as qtc
-import Project.GUI.HomeView as hv
-import Project.GUI.TableView as tv
+import Project.View.HomeView as hv
+import Project.View.TableView as tv
 
 #represents main app window and acts as canvas on which the different views are painted
 class MainWindow(qtw.QMainWindow):

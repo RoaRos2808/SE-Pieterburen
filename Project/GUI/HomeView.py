@@ -39,7 +39,7 @@ class HomeView(qtw.QFrame):
         self.uploadButton.setFont(qtg.QFont('Times', 20))
         self.uploadButton.setText("Upload Sound\n File(s)")
         self.uploadButton.setFixedHeight(160)
-        self.uploadButton.clicked.connect(self.getFilesmp3)
+        self.uploadButton.clicked.connect(self.getFileswav)
         self.uploadButton.clicked.connect(lambda: parent.switchViews("table"))
 
         # create a new frame to set the padding for bottom row (done per button), otherwise buttons will be stuck to
@@ -81,6 +81,12 @@ class HomeView(qtw.QFrame):
     def getFilesmp3(self):
         options = qtw.QFileDialog.Options()
         files, _ = qtw.QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileNames()", "","Sound files (*.mp3)", options=options)
+        if files:
+            print(files)
+
+    def getFileswav(self):
+        options = qtw.QFileDialog.Options()
+        files, _ = qtw.QFileDialog.getOpenFileNames(self,"QFileDialog.getOpenFileNames()", "","Sound files (*.wav)", options=options)
         if files:
             print(files)
 

@@ -1,8 +1,16 @@
 import PyQt5.QtWidgets as qtw
 import Project.View.HomeView as hv
 import Project.View.TableView as tv
-
+from Project.Controller import editActionAdd
+from Project.Controller import fileActionUpload
+from Project.Controller import fileActionExport
+from Project.Controller import navigateActionHome
+from Project.Controller import navigateActionTable
+from Project.Controller import infoAction
 #represents main app window and acts as canvas on which the different views are painted
+
+
+
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height):
         super().__init__()
@@ -36,47 +44,38 @@ class MainWindow(qtw.QMainWindow):
             self.editActionAdd.setEnabled(True)
             self.mainWidget.layout().setCurrentIndex(1)
 
-    def showInfoDialog(self):
-        infoMessage = qtw.QMessageBox(self)
-        infoMessage.setIcon(qtw.QMessageBox.Information)
-        infoMessage.setText("How the system works")
-        infoMessage.setInformativeText("Something understandable for vets about how the system analyses the sounds and "
-                                       "produces the health score.")
-        infoMessage.setWindowTitle("Info about software")
-        infoMessage.exec_()
-
     def menuBarSetup(self):
+        self.initializeActions()
+        menuBar = self.initializeMenuBar()
+        return menuBar
+
+    # add actions to buttons
+    def initializeActions(self):
+
+        # initialize actions
+        fileActionUpload.fileActionUpload(self, qtw)
+        fileActionExport.fileActionExport(self, qtw)
+        editActionAdd.editActionAdd(self, self.tableView, qtw)
+        navigateActionHome.navigateActionHome(self, qtw)
+        navigateActionTable.navigateActionTable(self, qtw)
+        infoAction.infoAction(self, qtw)
+
+        # in for now to show how it was before
+        self.editActionElse = qtw.QAction('Something else', self, checkable=False)
+
+    def initializeMenuBar(self):
         menuBar = qtw.QMenuBar(self)
 
         fileMenu = menuBar.addMenu('File')
         editMenu = menuBar.addMenu('Edit')
         navigateMenu = menuBar.addMenu('Navigate')
 
-        self.fileActionUpload = qtw.QAction('Upload sound file(s)', self, checkable=False)
-        self.fileActionExport = qtw.QAction('Export to .csv', self, checkable=False)
-        # k.triggered.connect(lambda : print("doe even iets"))
-
-        self.editActionAdd = qtw.QAction('Add column', self, checkable=False)
-        self.editActionElse = qtw.QAction('Something else', self, checkable=False)
-        self.editActionAdd.triggered.connect(lambda: self.tableView.addColumn())
-
-        self.navigateActionHome = qtw.QAction('Go home page', self, checkable=False)
-        self.navigateActionTable = qtw.QAction('Go table page', self, checkable=False)
-        self.navigateActionHome.triggered.connect(lambda: self.switchViews("home"))
-        self.navigateActionTable.triggered.connect(lambda: self.switchViews("table"))
-
-        #info action is in menubar and should perform action without displaying submenu:
-        #to achieve this, directly add a QAction to menubar instead of a menu
-        self.infoAction = qtw.QAction('Info', self, checkable=False)
-        self.infoAction.triggered.connect(lambda: self.showInfoDialog())
-        menuBar.addAction(self.infoAction)
-
-        #add actions to submenu's
         fileMenu.addAction(self.fileActionUpload)
         fileMenu.addAction(self.fileActionExport)
         editMenu.addAction(self.editActionAdd)
         editMenu.addAction(self.editActionElse)
         navigateMenu.addAction(self.navigateActionHome)
         navigateMenu.addAction(self.navigateActionTable)
+        menuBar.addAction(self.infoAction)
 
         return menuBar

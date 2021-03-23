@@ -19,17 +19,6 @@ class TableView(qtw.QFrame):
 
         self.layout().addWidget(self.table,1,0,1,1)
 
-    def addColumn(self):
-        dialogColumnName = qtw.QInputDialog()
-        dialogColumnName.setStyleSheet("color:white")
-        columnName, ok = dialogColumnName.getText(self, "Enter column name", "Enter a column header:")
-        if ok:
-            self.columnHeaders.append(columnName)
-            columnCount = self.table.columnCount()
-            self.table.insertColumn(columnCount)
-            print(self.columnHeaders)
-            self.table.setHorizontalHeaderLabels(self.columnHeaders)
-
     def createTableData(self):
         data = {"File Name": ["12345.wav", "22345.wav", "54321.wav", "77890.wav"],
          "Health Score": ["2", "3", "1", "2"],

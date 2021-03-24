@@ -1,6 +1,8 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
+from Project.Controller.Buttons.FileUploadButtonHome import fileUploadButtonHome
+
 
 class HomeView(qtw.QFrame):
     def __init__(self, parent):
@@ -24,23 +26,25 @@ class HomeView(qtw.QFrame):
         # get 1/3 window height and 1/5 window width
         self.layout().addWidget(self.labelLogo, 0, 0, 2, 5)
 
-        self.uploadButton = qtw.QPushButton(self)
+        self.uploadButton = fileUploadButtonHome(self, qtw, qtg, parent)
 
-        self.uploadButton.setStyleSheet("QPushButton{"
-                                        "background-color:lightblue; "
-                                        "border:4px solid white; "
-                                        "color:white; "
-                                        "padding:0px"
-                                        "} "
-                                        "QPushButton::pressed{"
-                                        "border: 4px solid gray; "
-                                        "color: gray"
-                                        "}")
-        self.uploadButton.setFont(qtg.QFont('Times', 20))
-        self.uploadButton.setText("Upload Sound\n File(s)")
-        self.uploadButton.setFixedHeight(160)
-        self.uploadButton.clicked.connect(self.getFileswav)
-        self.uploadButton.clicked.connect(lambda: parent.switchViews("table"))
+        # qtw.QPushButton(self)
+        #
+        # self.uploadButton.setStyleSheet("QPushButton{"
+        #                                 "background-color:lightblue; "
+        #                                 "border:4px solid white; "
+        #                                 "color:white; "
+        #                                 "padding:0px"
+        #                                 "} "
+        #                                 "QPushButton::pressed{"
+        #                                 "border: 4px solid gray; "
+        #                                 "color: gray"
+        #                                 "}")
+        # self.uploadButton.setFont(qtg.QFont('Times', 20))
+        # self.uploadButton.setText("Upload Sound\n File(s)")
+        # self.uploadButton.setFixedHeight(160)
+        # self.uploadButton.clicked.connect(self.getFileswav)
+        # self.uploadButton.clicked.connect(lambda: parent.switchViews("table"))
 
         # create a new frame to set the padding for bottom row (done per button), otherwise buttons will be stuck to
         #bottom of screen

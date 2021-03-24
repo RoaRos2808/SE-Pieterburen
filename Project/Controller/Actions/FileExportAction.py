@@ -1,8 +1,8 @@
 
 def uponActionPerformed(mainWindow, qtw):
-    fileActionExport(mainWindow)
+    fileExportAction(mainWindow)
 
-def fileActionExport(mainWindow, qtw):
+def fileExportAction(mainWindow, qtw):
     print("doe even iets")
 
 

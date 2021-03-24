@@ -4,5 +4,6 @@ from Project.Model.CNN import feature_extractor2
 def parseWavFiles(files):
     for file in files:
         audio_path = file
+        print('Works up until here')
         result = feature_extractor2.weight_results(file)
         # TODO: InputHandler to Backend as dictionary(?)

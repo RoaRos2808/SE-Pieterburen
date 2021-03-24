@@ -11,6 +11,8 @@ class BackEnd:
                     self.data[key].append(newData[newKey])
                 else:
                     self.data[key].append("")
+
+        # auto update table view after updating backend
         self.tableView.populateTable()
 
     def getData(self):

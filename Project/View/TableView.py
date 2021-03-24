@@ -48,5 +48,4 @@ class TableView(qtw.QFrame):
         self.table.show()
 
     def getBackEnd(self):
-        print("here2")
         return self.backEnd

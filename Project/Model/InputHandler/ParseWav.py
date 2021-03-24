@@ -10,6 +10,9 @@ def parseWavFiles(files, mainWindow):
         #TODO apply model
         #result = feature_extractor2.weight_results(file)
 
+        #TODO set results in dictionary format
         data = {"File Name": fileName}
+
+        # update backend with new data
         be = mainWindow.getBackEnd()
         be.update(data)

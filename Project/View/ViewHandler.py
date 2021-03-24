@@ -77,5 +77,4 @@ class MainWindow(qtw.QMainWindow):
         return self.tableView
 
     def getBackEnd(self):
-        print("here1")
         return self.tableView.getBackEnd()

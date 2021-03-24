@@ -2,6 +2,7 @@ import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
 from Project.Controller.Buttons.FileUploadButtonHome import fileUploadButtonHome
+from Project.Controller.Buttons.spreadSheetButtonHome import spreadSheetButtonHome
 
 
 class HomeView(qtw.QFrame):
@@ -28,24 +29,6 @@ class HomeView(qtw.QFrame):
 
         self.uploadButton = fileUploadButtonHome(self, qtw, qtg, parent)
 
-        # qtw.QPushButton(self)
-        #
-        # self.uploadButton.setStyleSheet("QPushButton{"
-        #                                 "background-color:lightblue; "
-        #                                 "border:4px solid white; "
-        #                                 "color:white; "
-        #                                 "padding:0px"
-        #                                 "} "
-        #                                 "QPushButton::pressed{"
-        #                                 "border: 4px solid gray; "
-        #                                 "color: gray"
-        #                                 "}")
-        # self.uploadButton.setFont(qtg.QFont('Times', 20))
-        # self.uploadButton.setText("Upload Sound\n File(s)")
-        # self.uploadButton.setFixedHeight(160)
-        # self.uploadButton.clicked.connect(self.getFileswav)
-        # self.uploadButton.clicked.connect(lambda: parent.switchViews("table"))
-
         # create a new frame to set the padding for bottom row (done per button), otherwise buttons will be stuck to
         #bottom of screen
         containerSoundButton = qtw.QFrame(self)
@@ -56,23 +39,7 @@ class HomeView(qtw.QFrame):
         self.layout().addWidget(containerSoundButton, 2, 1, 1, 1)
 
 
-        self.spreadsheetButton = qtw.QPushButton(self)
-
-        self.spreadsheetButton.setStyleSheet("QPushButton{"
-                                             "background-color:lightblue; "
-                                             "border:4px solid white; "
-                                             "color:white; "
-                                             "padding:0px"
-                                             "} "
-                                             "QPushButton::pressed{"
-                                             "border: 4px solid gray; "
-                                             "color: gray"
-                                             "}")
-        self.spreadsheetButton.setFont(qtg.QFont('Times', 20))
-        self.spreadsheetButton.setText("Upload\n Spreadsheet")
-        self.spreadsheetButton.setFixedHeight(160)
-        self.spreadsheetButton.clicked.connect(self.getFilescsv)
-        self.spreadsheetButton.clicked.connect(lambda: parent.switchViews("table"))
+        self.spreadsheetButton = spreadSheetButtonHome(self, qtw, qtg, parent)
 
         containerSheetButton = qtw.QFrame(self)
         containerSheetButton.setLayout(qtw.QGridLayout())

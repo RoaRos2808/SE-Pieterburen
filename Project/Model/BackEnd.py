@@ -1,8 +1,11 @@
+import json
+
 class BackEnd:
     def __init__(self):
-        self.data = {"File Name": ["12345.wav", "22345.wav", "54321.wav", "77890.wav"],
-         "Health Score": ["2", "3", "1", "2"],
-         "Notes": ["", "", "", ""]}
+        with open('LastSession/LastSession.json') as json_data:
+            data = json.load(json_data)
+
+        self.data = data
 
     def update(self, newData):
         for key in self.data:

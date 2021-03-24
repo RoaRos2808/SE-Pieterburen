@@ -85,9 +85,10 @@ def get_prediction(file_path, model, n_mfcc, sampling_rate=None):
     return predicted_class[0]
 
 
-if __name__ == '__main__':
+def weight_results():
     # Load model using weights
     model = load_model("weights.best.basic_cnn.hdf5")
+    print('hello')
 
     # Uncomment this only if you are interested in the in-depth info about the model
     # model.summary()

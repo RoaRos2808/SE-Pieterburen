@@ -1,12 +1,7 @@
 
 
-def infoAction(mainWindow, qtw):
-    mainWindow.infoAction = qtw.QAction('Info', mainWindow, checkable=False)
-    uponActionPerformed(mainWindow, qtw)
-
-
 def uponActionPerformed(mainWindow, qtw):
-    mainWindow.infoAction.triggered.connect(lambda: showInfoDialog(mainWindow, qtw))
+    showInfoDialog(mainWindow, qtw)
 
 def showInfoDialog(mainWindow, qtw):
     infoMessage = qtw.QMessageBox(mainWindow)

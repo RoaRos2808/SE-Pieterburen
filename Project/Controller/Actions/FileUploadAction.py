@@ -1,11 +1,6 @@
 
-
-def fileActionUpload(mainWindow, qtw):
-    mainWindow.fileActionUpload = qtw.QAction('Upload sound file(s)', mainWindow, checkable=False)
-    uponActionPerformed(mainWindow, qtw)
-
 def uponActionPerformed(mainWindow, qtw):
-    mainWindow.fileActionUpload.triggered.connect(lambda : getFiles(mainWindow, qtw))
+    getFiles(mainWindow, qtw)
 
 def getFileswav(mainWindow, qtw):
     options = qtw.QFileDialog.Options()

@@ -1,13 +1,11 @@
 import PyQt5.QtWidgets as qtw
 import Project.View.HomeView as hv
 import Project.View.TableView as tv
-from Project.Controller.Actions import navigateActionHome, fileActionUpload, infoAction, AddColumnAction, \
-    fileActionExport, navigateActionTable
+from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, InfoButton, AddColumnButton, \
+    FileExportButton, NavigateTableButton
 
 
 #represents main app window and acts as canvas on which the different views are painted
-
-
 
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height):
@@ -36,10 +34,10 @@ class MainWindow(qtw.QMainWindow):
     #switch views based on viewname
     def switchViews(self, viewName):
         if viewName == "home":
-            self.editActionAdd.setEnabled(False)
+            self.AddColumnButton.setEnabled(False)
             self.mainWidget.layout().setCurrentIndex(0)
         elif viewName == "table":
-            self.editActionAdd.setEnabled(True)
+            self.AddColumnButton.setEnabled(True)
             self.mainWidget.layout().setCurrentIndex(1)
 
     def menuBarSetup(self):
@@ -51,15 +49,12 @@ class MainWindow(qtw.QMainWindow):
     def initializeActions(self):
 
         # initialize actions
-        fileActionUpload.fileActionUpload(self, qtw)
-        fileActionExport.fileActionExport(self, qtw)
-        AddColumnAction.editActionAdd(self, self.tableView, qtw)
-        navigateActionHome.navigateActionHome(self, qtw)
-        navigateActionTable.navigateActionTable(self, qtw)
-        infoAction.infoAction(self, qtw)
-
-        # in for now to show how it was before
-        self.editActionElse = qtw.QAction('Something else', self, checkable=False)
+        FileUploadButton.fileUploadButton(self, qtw)
+        FileExportButton.fileExportButton(self, qtw)
+        AddColumnButton.addColumnButton(self, self.tableView, qtw)
+        NavigateHomeButton.navigateHomeButton(self, qtw)
+        NavigateTableButton.navigateTableButton(self, qtw)
+        InfoButton.infoButton(self, qtw)
 
     def initializeMenuBar(self):
         menuBar = qtw.QMenuBar(self)
@@ -68,12 +63,11 @@ class MainWindow(qtw.QMainWindow):
         editMenu = menuBar.addMenu('Edit')
         navigateMenu = menuBar.addMenu('Navigate')
 
-        fileMenu.addAction(self.fileActionUpload)
-        fileMenu.addAction(self.fileActionExport)
-        editMenu.addAction(self.editActionAdd)
-        editMenu.addAction(self.editActionElse)
-        navigateMenu.addAction(self.navigateActionHome)
-        navigateMenu.addAction(self.navigateActionTable)
-        menuBar.addAction(self.infoAction)
+        fileMenu.addAction(self.FileUploadButton)
+        fileMenu.addAction(self.FileExportButton)
+        editMenu.addAction(self.AddColumnButton)
+        navigateMenu.addAction(self.NavigateHomeButton)
+        navigateMenu.addAction(self.NavigateTableButton)
+        menuBar.addAction(self.InfoButton)
 
         return menuBar

@@ -1,4 +1,5 @@
-
+def uponActionPerformed(tableWindow, qtw):
+    addColumn(tableWindow, qtw)
 
 def addColumn(tableWindow, qtw):
     dialogColumnName = qtw.QInputDialog()

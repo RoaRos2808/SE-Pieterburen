@@ -1,12 +1,10 @@
 import PyQt5.QtWidgets as qtw
 import Project.View.HomeView as hv
 import Project.View.TableView as tv
-from Project.Controller import editActionAdd
-from Project.Controller import fileActionUpload
-from Project.Controller import fileActionExport
-from Project.Controller import navigateActionHome
-from Project.Controller import navigateActionTable
-from Project.Controller import infoAction
+from Project.Controller.Actions import navigateActionHome, fileActionUpload, infoAction, AddColumnAction, \
+    fileActionExport, navigateActionTable
+
+
 #represents main app window and acts as canvas on which the different views are painted
 
 
@@ -55,7 +53,7 @@ class MainWindow(qtw.QMainWindow):
         # initialize actions
         fileActionUpload.fileActionUpload(self, qtw)
         fileActionExport.fileActionExport(self, qtw)
-        editActionAdd.editActionAdd(self, self.tableView, qtw)
+        AddColumnAction.editActionAdd(self, self.tableView, qtw)
         navigateActionHome.navigateActionHome(self, qtw)
         navigateActionTable.navigateActionTable(self, qtw)
         infoAction.infoAction(self, qtw)

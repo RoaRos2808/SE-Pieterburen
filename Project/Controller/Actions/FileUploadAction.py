@@ -8,4 +8,4 @@ def getFileswav(mainWindow, qtw):
     files, _ = qtw.QFileDialog.getOpenFileNames(mainWindow,"QFileDialog.getOpenFileNames()", "","Sound files (*.wav)", options=options)
     # If files are selected, send  these to the InputHandler
     if files:
-        parseWavFiles(files)
+        parseWavFiles(files, mainWindow)

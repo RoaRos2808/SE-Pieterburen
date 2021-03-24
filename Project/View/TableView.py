@@ -3,7 +3,7 @@ import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
 
 class TableView(qtw.QFrame):
-    def __init__(self, parent):
+    def __init__(self, parent, backEnd):
         super().__init__(parent)
         self.setLayout(qtw.QGridLayout())
         self.setStyleSheet("background-color:lightblue")
@@ -11,23 +11,18 @@ class TableView(qtw.QFrame):
         self.table = qtw.QTableWidget(self)
 
         self.columnHeaders = []
-        self.tableData = self.createTableData()
-        self.populateTable(self.tableData)
+        self.backEnd = backEnd
+        self.populateTable()
 
 
         self.table.setStyleSheet("background-color:white")
 
         self.layout().addWidget(self.table,1,0,1,1)
 
-    def createTableData(self):
-        data = {"File Name": ["12345.wav", "22345.wav", "54321.wav", "77890.wav"],
-         "Health Score": ["2", "3", "1", "2"],
-         "Notes": ["", "", "", ""]}
-        return data
-
     #This function takes the table data in the form of a dictionary.
     #Keys act as column headers, the values are lists of strings which populate all rows under that column
-    def populateTable(self, tableData):
+    def populateTable(self):
+        tableData = self.backEnd.getData()
         columnCount = len(tableData.keys())
         if columnCount != 0:
             rowCount = len(tableData[list(tableData.keys())[0]])
@@ -51,3 +46,7 @@ class TableView(qtw.QFrame):
 
         self.table.setHorizontalHeaderLabels(self.columnHeaders)
         self.table.show()
+
+    def getBackEnd(self):
+        print("here2")
+        return self.backEnd

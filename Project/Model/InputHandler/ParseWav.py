@@ -1,9 +1,15 @@
 from Project.Model.CNN import feature_extractor2
-
+import os
 # save the audio path and get the CNN results
-def parseWavFiles(files):
+def parseWavFiles(files, mainWindow):
     for file in files:
         audio_path = file
+        fileName = os.path.basename(audio_path)
         print('Works up until here')
-        result = feature_extractor2.weight_results(file)
-        # TODO: InputHandler to Backend as dictionary(?)
+
+        #TODO apply model
+        #result = feature_extractor2.weight_results(file)
+
+        data = {"File Name": fileName}
+        be = mainWindow.getBackEnd()
+        be.update(data)

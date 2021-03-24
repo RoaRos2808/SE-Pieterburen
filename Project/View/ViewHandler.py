@@ -8,8 +8,9 @@ from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, Inf
 #represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
-    def __init__(self, width, height):
+    def __init__(self, width, height, backEnd):
         super().__init__()
+
         self.setWindowTitle('Pieterburen ZeehondenCentrum')
         self.setGeometry(0, 0, width, height)
         self.mainWidget = qtw.QWidget(self)
@@ -19,7 +20,7 @@ class MainWindow(qtw.QMainWindow):
         self.mainWidget.layout().setContentsMargins(0, 0, 0, 0)
 
         self.homeView = hv.HomeView(self)
-        self.tableView = tv.TableView(self)
+        self.tableView = tv.TableView(self, backEnd)
 
         self.mainWidget.layout().addWidget(self.homeView)
         self.mainWidget.layout().addWidget(self.tableView)
@@ -71,3 +72,10 @@ class MainWindow(qtw.QMainWindow):
         menuBar.addAction(self.InfoButton)
 
         return menuBar
+
+    def getTableView(self):
+        return self.tableView
+
+    def getBackEnd(self):
+        print("here1")
+        return self.tableView.getBackEnd()

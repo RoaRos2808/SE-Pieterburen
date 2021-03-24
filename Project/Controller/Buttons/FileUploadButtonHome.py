@@ -1,6 +1,6 @@
 from Project.Controller.Actions import FileUploadAction
 
-def fileUploadButtonHome(homeView, qtw, qtg, parent):
+def fileUploadButtonHome(homeView, qtw, qtg, mainWindow):
     uploadButton = qtw.QPushButton(homeView)
 
     uploadButton.setStyleSheet("QPushButton{"
@@ -16,6 +16,6 @@ def fileUploadButtonHome(homeView, qtw, qtg, parent):
     uploadButton.setFont(qtg.QFont('Times', 20))
     uploadButton.setText("Upload Sound\n File(s)")
     uploadButton.setFixedHeight(160)
-    uploadButton.clicked.connect(lambda: FileUploadAction.uponActionPerformed(homeView, qtw))
-    uploadButton.clicked.connect(lambda: parent.switchViews("table"))
+    uploadButton.clicked.connect(lambda: FileUploadAction.uponActionPerformed(mainWindow, qtw))
+    uploadButton.clicked.connect(lambda: mainWindow.switchViews("table"))
     return uploadButton

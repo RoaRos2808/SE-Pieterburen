@@ -5,14 +5,12 @@ def parseWavFiles(files, mainWindow):
     for file in files:
         audio_path = file
         fileName = os.path.basename(audio_path)
-        print('Works up until here')
 
         #TODO apply model
         #result = feature_extractor2.weight_results(file)
 
-        #TODO set results in dictionary format
+        #TODO set results in dictionary
         data = {"File Name": fileName}
 
-        # update backend with new data
         be = mainWindow.getBackEnd()
         be.update(data)

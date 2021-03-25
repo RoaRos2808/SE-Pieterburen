@@ -30,13 +30,10 @@ class BackEnd:
         self.isRunning = isRunning
 
     def autosave(self):
-        while True:
-            if self.isRunning is True:
-                time.sleep(5)
-                data = self.tableView.getDataInTable()
-                #write the data to the LastSession.json file
-                with open("LastSession/LastSession.json", "w") as file:
-                    json.dump(data, file, indent=4, separators=(',', ': '))
-                print("Performed autosave")
-            else:
-                break
+        while self.isRunning:
+            time.sleep(5)
+            self.data = self.tableView.getDataInTable()
+            #write the data to the LastSession.json file
+            with open("LastSession/LastSession.json", "w") as file:
+                json.dump(self.data, file, indent=4, separators=(',', ': '))
+            print("Performed autosave")

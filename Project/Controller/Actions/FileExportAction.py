@@ -12,10 +12,19 @@ def fileExportAction(mainWindow, qtw):
         file = fileName+".csv"
         dict_data = mainWindow.getBackEnd().getData()
 
-        with open(file, 'a') as csv_file:
+        with open(file, 'w', newline='') as csv_file:
             writer = csv.writer(csv_file)
-            for key, value in dict_data.items():
-                writer.writerow([key, ','.join(value)])
+            row = []
+            for index, key in enumerate(dict_data.keys()):
+                row.append(key)
+            writer.writerow(row)
+
+            for index in range(len(dict_data.keys())):
+                row = []
+                for value in dict_data.values():
+                    row.append(value[index])
+                writer.writerow(row)
+
         csv_file.close()
         print('saving is complete')
 

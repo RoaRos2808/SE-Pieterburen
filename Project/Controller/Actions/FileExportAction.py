@@ -19,7 +19,8 @@ def fileExportAction(mainWindow, qtw):
                 row.append(key)
             writer.writerow(row)
 
-            for index in range(len(dict_data.keys())):
+            #this can be written a lot better, but works for now. Get amount of rows under a column as index
+            for index in range(len(list(dict_data.values())[0])):
                 row = []
                 for value in dict_data.values():
                     row.append(value[index])

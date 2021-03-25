@@ -26,7 +26,7 @@ def fileExportAction(mainWindow, qtw):
                 writer.writerow(row)
 
         csv_file.close()
-        print('saving is complete')
+        print('saving is completed')
 
 
 

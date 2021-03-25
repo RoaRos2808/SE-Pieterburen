@@ -8,6 +8,7 @@ def addColumn(tableWindow, qtw):
     if ok:
         tableWindow.columnHeaders.append(columnName)
         columnCount = tableWindow.table.columnCount()
+        rowCount = tableWindow.table.rowCount()
         tableWindow.table.insertColumn(columnCount)
         print(tableWindow.columnHeaders)
         tableWindow.table.setHorizontalHeaderLabels(tableWindow.columnHeaders)

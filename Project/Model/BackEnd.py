@@ -1,4 +1,5 @@
 import json
+import time
 
 class BackEnd:
     def __init__(self):
@@ -6,6 +7,7 @@ class BackEnd:
             data = json.load(json_data)
 
         self.data = data
+        self.isRunning = True
 
     def update(self, newData):
         for key in self.data:
@@ -23,3 +25,18 @@ class BackEnd:
 
     def addTableView(self, tableView):
         self.tableView = tableView
+
+    def setRunningFlag(self, isRunning):
+        self.isRunning = isRunning
+
+    def autosave(self):
+        while True:
+            if self.isRunning is True:
+                time.sleep(5)
+                data = self.tableView.getDataInTable()
+                #write the data to the LastSession.json file
+                with open("LastSession/LastSession.json", "w") as file:
+                    json.dump(data, file, indent=4, separators=(',', ': '))
+                print("Performed autosave")
+            else:
+                break

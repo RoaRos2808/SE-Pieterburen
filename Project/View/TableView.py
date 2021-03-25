@@ -35,6 +35,7 @@ class TableView(qtw.QFrame):
 
         for columnIndex, column in enumerate(tableData.keys()):
             for rowIndex in range(rowCount):
+                #print(str(rowIndex))
                 cellValue = tableData[column][rowIndex]
                 cell = qtw.QTableWidgetItem(cellValue)
                 #The following lines makes values for first two columns read only: we have to discuss this choice.
@@ -46,6 +47,29 @@ class TableView(qtw.QFrame):
 
         self.table.setHorizontalHeaderLabels(self.columnHeaders)
         self.table.show()
+
+    #function returns a dictionary with the data currently in table
+    def getDataInTable(self):
+        numberRows = self.table.rowCount()
+        data = {}
+        for columnIndex, header in enumerate(self.columnHeaders):
+            rowValues = []
+            for rowIndex in range(numberRows):
+                cell = self.table.item(rowIndex, columnIndex)
+                if cell is not None:
+                    value = cell.text()
+                    if value is not None:
+                        #print("row: " + str(rowIndex) + ", column: " + str(columnIndex) + ", value: " + value)
+                        rowValues.append(cell.text())
+                    else:
+                        #if a cell has no text (so not even an empty string), we add empty string to data
+                        rowValues.append("")
+                else:
+                    #if due to concurrency issues, the cell is not yet made, we add an empty string
+                    rowValues.append("")
+            data.update({header : rowValues})
+        return data
+
 
     def getBackEnd(self):
         return self.backEnd

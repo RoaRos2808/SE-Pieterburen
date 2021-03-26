@@ -14,8 +14,11 @@ class BackEnd:
             for newKey in newData:
                 if key == newKey:
                     self.data[key].append(newData[newKey])
-                else:
-                    self.data[key].append("")
+        print(self.data)
+        for key in self.data.keys():
+            if not key in newData.keys():
+                self.data[key].append("")
+        print(self.data)
 
         # auto update table view after updating backend
         self.tableView.populateTable()

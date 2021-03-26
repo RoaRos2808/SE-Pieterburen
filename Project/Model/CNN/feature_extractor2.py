@@ -85,14 +85,17 @@ def get_prediction(file_path, model, n_mfcc, sampling_rate=None):
     return predicted_class[0]
 
 
-def weight_results():
+def weight_results(file):
     # Load model using weights
-    model = load_model("weights.best.basic_cnn.hdf5")
+    print("hoi1")
+    model = load_model("Model/CNN/weights.best.basic_cnn.hdf5")
+    print("hoi2")
     # TODO: load_model crashes the program, fix this
 
     # Uncomment this only if you are interested in the in-depth info about the model
     # model.summary()
 
-    audio_path = "../Recordings/auscultation-recordings/PV18256/PV18256_291218_L.wav"
+    #audio_path = "Recordings/auscultation-recordings/PV18256/PV18256_291218_L.wav"
+    audio_path = file
 
     return get_prediction(audio_path, model, 20, 8000)

@@ -23,6 +23,7 @@ class TableView(qtw.QFrame):
     #Keys act as column headers, the values are lists of strings which populate all rows under that column
     def populateTable(self):
         tableData = self.backEnd.getData()
+        self.columnHeaders = []
         columnCount = len(tableData.keys())
         if columnCount != 0:
             rowCount = len(tableData[list(tableData.keys())[0]])

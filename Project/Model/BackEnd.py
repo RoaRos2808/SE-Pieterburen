@@ -1,5 +1,6 @@
 import json
 import time
+import threading
 
 class BackEnd:
     def __init__(self):
@@ -8,17 +9,16 @@ class BackEnd:
 
         self.data = data
         self.isRunning = True
+        self._lock = threading.Lock()
 
     def update(self, newData):
         for key in self.data:
             for newKey in newData:
                 if key == newKey:
                     self.data[key].append(newData[newKey])
-        print(self.data)
         for key in self.data.keys():
             if not key in newData.keys():
                 self.data[key].append("")
-        print(self.data)
 
         # auto update table view after updating backend
         self.tableView.populateTable()
@@ -34,9 +34,10 @@ class BackEnd:
 
     def autosave(self):
         while self.isRunning:
-            time.sleep(5)
-            self.data = self.tableView.getDataInTable()
-            #write the data to the LastSession.json file
-            with open("LastSession/LastSession.json", "w") as file:
-                json.dump(self.data, file, indent=4, separators=(',', ': '))
-            print("Performed autosave")
+            with self._lock:
+                time.sleep(5)
+                self.data = self.tableView.getDataInTable()
+                #write the data to the LastSession.json file
+                with open("LastSession/LastSession.json", "w") as file:
+                    json.dump(self.data, file, indent=4, separators=(',', ': '))
+                print("Performed autosave")

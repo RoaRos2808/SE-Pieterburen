@@ -19,13 +19,13 @@ tableView = mw.getTableView()
 backEnd.addTableView(tableView)
 
 #Thread is not working fully properly yet. When program is closed while writing to session file, can cause problems
-#thread = threading.Thread(target=backEnd.autosave, daemon=False)
-#thread.start()
+thread = threading.Thread(target=backEnd.autosave, daemon=False)
+thread.start()
 
 #Running is set in backend to make sure that the thread for autosaving can finish when app is closed
-#backEnd.setRunningFlag(True)
+backEnd.setRunningFlag(True)
 app.exec_()
 
 #Running flag is checked by autosave thread
-#backEnd.setRunningFlag(False)
+backEnd.setRunningFlag(False)
 

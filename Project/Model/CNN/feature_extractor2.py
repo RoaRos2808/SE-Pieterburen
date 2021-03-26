@@ -87,9 +87,7 @@ def get_prediction(file_path, model, n_mfcc, sampling_rate=None):
 
 def weight_results(file):
     # Load model using weights
-    print("hoi1")
     model = load_model("Model/CNN/weights.best.basic_cnn.hdf5")
-    print("hoi2")
     # TODO: load_model crashes the program, fix this
 
     # Uncomment this only if you are interested in the in-depth info about the model

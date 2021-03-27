@@ -80,3 +80,6 @@ class MainWindow(qtw.QMainWindow):
 
     def getBackEnd(self):
         return self.tableView.getBackEnd()
+
+    def activateDeleteRowButton(self, boolean):
+        self.DeleteRowButton.setEnabled(boolean)

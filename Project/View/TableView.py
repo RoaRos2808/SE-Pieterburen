@@ -1,14 +1,19 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
+from PyQt5.QtCore import pyqtSlot
 
 class TableView(qtw.QFrame):
     def __init__(self, parent, backEnd):
         super().__init__(parent)
+        self.parent = parent
         self.setLayout(qtw.QGridLayout())
         self.setStyleSheet("background-color:lightblue")
         self.layout().setContentsMargins(20,20,20,20)
         self.table = qtw.QTableWidget(self)
+
+        #self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
+        self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda : self.activateDeleteRowButton())
 
         self.columnHeaders = []
         self.backEnd = backEnd
@@ -74,3 +79,9 @@ class TableView(qtw.QFrame):
 
     def getBackEnd(self):
         return self.backEnd
+
+    def activateDeleteRowButton(self):
+        if len(self.table.selectionModel().selectedRows()) == 0:
+            self.parent.activateDeleteRowButton(False)
+        else:
+            self.parent.activateDeleteRowButton(True)

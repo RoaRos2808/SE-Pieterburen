@@ -12,17 +12,16 @@ class BackEnd:
         self._lock = threading.Lock()
 
     def update(self, newData):
-        with self._lock:
-            for key in self.data:
-                for newKey in newData:
-                    if key == newKey:
-                        self.data[key].append(newData[newKey])
-            for key in self.data.keys():
-                if not key in newData.keys():
-                    self.data[key].append("")
+        for key in self.data:
+            for newKey in newData:
+                if key == newKey:
+                    self.data[key].append(newData[newKey])
+        for key in self.data.keys():
+            if not key in newData.keys():
+                self.data[key].append("")
 
-            # auto update table view after updating backend
-            self.tableView.populateTable()
+        # auto update table view after updating backend
+        self.tableView.populateTable()
 
     def getData(self):
         return self.data

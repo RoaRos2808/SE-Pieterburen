@@ -16,7 +16,7 @@ class HomeView(qtw.QFrame):
         self.labelLogo = qtw.QLabel(self)
 
         self.labelLogo.setStyleSheet('background-color: lightblue')
-        self.pixmapLogo = qtg.QPixmap('../Project/img/logosmall.png')
+        self.pixmapLogo = qtg.QPixmap('../Project/img/logo-small.png')
         self.labelLogo.setPixmap(self.pixmapLogo)
         self.labelLogo.setAlignment(qtc.Qt.AlignCenter)
 

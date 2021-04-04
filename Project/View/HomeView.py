@@ -11,11 +11,11 @@ class HomeView(qtw.QFrame):
         self.setLayout(qtw.QGridLayout())
         self.layout().setContentsMargins(0,0,0,0)
 
-        self.setStyleSheet('background-color: lightblue')
+        self.setStyleSheet('background-color: #070540')
 
         self.labelLogo = qtw.QLabel(self)
 
-        self.labelLogo.setStyleSheet('background-color: lightblue')
+        self.labelLogo.setStyleSheet('background-color: #070540')
         self.pixmapLogo = qtg.QPixmap('../Project/img/logo-small.png')
         self.labelLogo.setPixmap(self.pixmapLogo)
         self.labelLogo.setAlignment(qtc.Qt.AlignCenter)
@@ -35,7 +35,7 @@ class HomeView(qtw.QFrame):
         containerSoundButton.setLayout(qtw.QGridLayout())
         containerSoundButton.setContentsMargins(0, 0, 0, 0)
         containerSoundButton.layout().addWidget(self.uploadButton, 0, 0, 1, 1)
-        containerSoundButton.setStyleSheet("padding-bottom:30px; background:lightblue")
+        containerSoundButton.setStyleSheet("padding-bottom:30px; background:#070540")
         self.layout().addWidget(containerSoundButton, 2, 1, 1, 1)
 
 
@@ -45,7 +45,7 @@ class HomeView(qtw.QFrame):
         containerSheetButton.setLayout(qtw.QGridLayout())
         containerSheetButton.setContentsMargins(0, 0, 0, 0)
         containerSheetButton.layout().addWidget(self.spreadsheetButton, 0, 0, 1, 1)
-        containerSheetButton.setStyleSheet("padding-bottom:30px; background:lightblue")
+        containerSheetButton.setStyleSheet("padding-bottom:30px; background:#070540")
         self.layout().addWidget(containerSheetButton, 2, 3, 1, 1)
 
 

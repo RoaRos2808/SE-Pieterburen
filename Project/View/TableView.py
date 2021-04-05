@@ -13,12 +13,12 @@ class TableView(qtw.QFrame):
         self.table = qtw.QTableWidget(self)
 
         #self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
-        self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda : self.activateDeleteRowButton())
+        self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteRowButton())
+        self.table.horizontalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteColumnButton())
 
         self.columnHeaders = []
         self.backEnd = backEnd
         self.populateTable()
-
 
         self.table.setStyleSheet("background-color:white")
 
@@ -85,3 +85,9 @@ class TableView(qtw.QFrame):
             self.parent.activateDeleteRowButton(False)
         else:
             self.parent.activateDeleteRowButton(True)
+
+    def activateDeleteColumnButton(self):
+        if len(self.table.selectionModel().selectedColumns()) == 0:
+            self.parent.activateDeleteColumnButton(False)
+        else:
+            self.parent.activateDeleteColumnButton(True)

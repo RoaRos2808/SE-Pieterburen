@@ -1,16 +1,9 @@
+def uponActionPerformed(tableWindow):
+    deleteColumn(tableWindow)
 
-
-def uponActionPerformed(mainWindow, qtw):
-    mainWindow.deleteColumn("table")
-
-def deleteColumn(tableWindow, qtw):
-    dialogColumnName = qtw.QInputDialog()
-    dialogColumnName.setStyleSheet("color:white")
-    columnName, ok = dialogColumnName.getText(tableWindow, "Enter column name", "Enter a column header:")
-    if ok:
-        tableWindow.columnHeaders.append(columnName)
-        columnCount = tableWindow.table.columnCount()
-        rowCount = tableWindow.table.rowCount()
-        tableWindow.table.insertColumn(columnCount)
-        print(tableWindow.columnHeaders)
-        tableWindow.table.setHorizontalHeaderLabels(tableWindow.columnHeaders)
+def deleteColumn(tableWindow):
+    indexes = tableWindow.table.selectionModel().selectedColumns()
+    for index in sorted(indexes):
+        idx = index.column()
+    tableWindow.table.removeColumn(idx)
+    del tableWindow.columnHeaders[idx]

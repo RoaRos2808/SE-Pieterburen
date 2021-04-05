@@ -4,7 +4,6 @@ import Project.View.TableView as tv
 from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton
 
-
 #represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
@@ -85,3 +84,6 @@ class MainWindow(qtw.QMainWindow):
 
     def activateDeleteRowButton(self, boolean):
         self.DeleteRowButton.setEnabled(boolean)
+
+    def activateDeleteColumnButton(self, boolean):
+        self.DeleteColumnButton.setEnabled(boolean)

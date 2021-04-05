@@ -1,9 +1,11 @@
-from Project.Controller.Actions import CSVFileUploadAction
+from Project.Controller.Actions import DeleteColumnAction
+
 
 def deleteColumnButton(mainWindow, tableWindow, qtw):
     mainWindow.DeleteColumnButton = qtw.QAction('Delete column', mainWindow, checkable=False)
     mainWindow.DeleteColumnButton.setEnabled(False)
-    mainWindow.DeleteColumnButton.triggered.connect(lambda: test(tableWindow))
+    mainWindow.DeleteColumnButton.triggered.connect(lambda: DeleteColumnAction.uponActionPerformed(tableWindow))
 
 def test(tableWindow):
-    print("row: " + str(tableWindow.table.selectionModel().selectedRows()))
+    tableWindow.table.removeColumn(3)
+

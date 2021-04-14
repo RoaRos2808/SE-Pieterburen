@@ -4,12 +4,14 @@ def uponActionPerformed(mainWindow, qtw):
     fileExportAction(mainWindow, qtw)
 
 def fileExportAction(mainWindow, qtw):
-    dialogFileName = qtw.QInputDialog()
-    dialogFileName.setStyleSheet("color:white")
-    fileName, ok = dialogFileName.getText(mainWindow, "Enter file name", "Enter file name:")
+    options = qtw.QFileDialog.Options()
+    dialogFileName, ok = qtw.QFileDialog.getSaveFileName(mainWindow, "Select File Save Location",
+                                                     "default", "CSV file (*.csv)", options=options)
 
     if ok:
-        file = fileName+".csv"
+        fileName = dialogFileName
+        print(fileName)
+        file = fileName
         dict_data = mainWindow.getBackEnd().getData()
 
         with open(file, 'w', newline='') as csv_file:

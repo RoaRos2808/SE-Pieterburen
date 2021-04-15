@@ -11,6 +11,10 @@ class BackEnd:
         self.isRunning = True
         self._lock = threading.Lock()
 
+    def printCurrentData(self):
+        for row in self.data:
+            print(row)
+
     def update(self, newData):
         for key in self.data:
             for newKey in newData:
@@ -21,6 +25,11 @@ class BackEnd:
                 self.data[key].append("")
 
         # auto update table view after updating backend
+        self.tableView.populateTable()
+
+    # function for opening a previously saved table
+    def openTable(self, newData):
+        self.data = newData
         self.tableView.populateTable()
 
     def getData(self):

@@ -1,12 +1,16 @@
 import csv
-#TODO it is bugged atm, does not work
-def parseCSVFiles(filePath, mainWindow):
-    print(filePath)
-    with open(filePath, 'r') as csv_file:
-        reader = csv.reader(csv_file)
-        for row in reader:
-            print(row)
-    csv_file.close()
+from collections import defaultdict
 
+def parseCSVFiles(filePath, mainWindow):
+    # place csv file in dictionary for TableView's use
+    data = defaultdict(list)
+    with open(filePath) as csv_file:
+        csvReader = csv.DictReader(csv_file)
+        for row in csvReader:
+            for key in row:
+                data[key].append(row[key])
+
+    print(data)
     be = mainWindow.getBackEnd()
-    #be.update(data)
+    be.openTable(data)
+

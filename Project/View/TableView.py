@@ -3,18 +3,20 @@ import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
 from PyQt5.QtCore import pyqtSlot
 
+
 class TableView(qtw.QFrame):
     def __init__(self, parent, backEnd):
         super().__init__(parent)
         self.parent = parent
         self.setLayout(qtw.QGridLayout())
         self.setStyleSheet("background-color:lightblue")
-        self.layout().setContentsMargins(20,20,20,20)
+        self.layout().setContentsMargins(20, 20, 20, 20)
         self.table = qtw.QTableWidget(self)
 
-        #self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
+        # self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
         self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteRowButton())
-        self.table.horizontalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteColumnButton())
+        self.table.horizontalHeader().selectionModel().selectionChanged.connect(
+            lambda: self.activateDeleteColumnButton())
 
         self.columnHeaders = []
         self.backEnd = backEnd
@@ -22,10 +24,10 @@ class TableView(qtw.QFrame):
 
         self.table.setStyleSheet("background-color:white")
 
-        self.layout().addWidget(self.table,1,0,1,1)
+        self.layout().addWidget(self.table, 1, 0, 1, 1)
 
-    #This function takes the table data in the form of a dictionary.
-    #Keys act as column headers, the values are lists of strings which populate all rows under that column
+    # This function takes the table data in the form of a dictionary.
+    # Keys act as column headers, the values are lists of strings which populate all rows under that column
     def populateTable(self):
         tableData = self.backEnd.getData()
         self.columnHeaders = []
@@ -41,11 +43,11 @@ class TableView(qtw.QFrame):
 
         for columnIndex, column in enumerate(tableData.keys()):
             for rowIndex in range(rowCount):
-                #print(str(rowIndex))
+                # print(str(rowIndex))
                 cellValue = tableData[column][rowIndex]
                 cell = qtw.QTableWidgetItem(cellValue)
-                #The following lines makes values for first two columns read only: we have to discuss this choice.
-                #Should the user be allowed to change the file name value and health score value?
+                # The following lines makes values for first two columns read only: we have to discuss this choice.
+                # Should the user be allowed to change the file name value and health score value?
                 if columnIndex == 0 or columnIndex == 1:
                     cell.setFlags(qtc.Qt.ItemIsSelectable | qtc.Qt.ItemIsEnabled)
 
@@ -54,7 +56,7 @@ class TableView(qtw.QFrame):
         self.table.setHorizontalHeaderLabels(self.columnHeaders)
         self.table.show()
 
-    #function returns a dictionary with the data currently in table
+    # function returns a dictionary with the data currently in table
     def getDataInTable(self):
         numberRows = self.table.rowCount()
         data = {}
@@ -65,19 +67,19 @@ class TableView(qtw.QFrame):
                 if cell is not None:
                     value = cell.text()
                     if value is not None:
-                        #print("row: " + str(rowIndex) + ", column: " + str(columnIndex) + ", value: " + value)
+                        # print("row: " + str(rowIndex) + ", column: " + str(columnIndex) + ", value: " + value)
                         rowValues.append(cell.text())
                     else:
-                        #if a cell has no text (so not even an empty string), we add empty string to data
+                        # if a cell has no text (so not even an empty string), we add empty string to data
                         rowValues.append("")
                 else:
-                    #if due to concurrency issues, the cell is not yet made, we add an empty string
+                    # if due to concurrency issues, the cell is not yet made, we add an empty string
                     rowValues.append("")
-            data.update({header : rowValues})
+            data.update({header: rowValues})
         return data
 
-
     def getBackEnd(self):
+        print("hello")
         return self.backEnd
 
     def activateDeleteRowButton(self):

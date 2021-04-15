@@ -4,7 +4,8 @@ import Project.View.TableView as tv
 from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton
 
-#represents main app window and acts as canvas on which the different views are painted
+
+# represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height, backEnd):
@@ -13,9 +14,9 @@ class MainWindow(qtw.QMainWindow):
         self.setWindowTitle('Pieterburen ZeehondenCentrum')
         self.setGeometry(0, 0, width, height)
         self.mainWidget = qtw.QWidget(self)
-        #create stack layout to get ability to switch between views
+        # create stack layout to get ability to switch between views
         self.mainWidget.setLayout(qtw.QStackedLayout())
-        #layouts in pyqt have margins by default, so we turn these off
+        # layouts in pyqt have margins by default, so we turn these off
         self.mainWidget.layout().setContentsMargins(0, 0, 0, 0)
 
         self.homeView = hv.HomeView(self)
@@ -31,7 +32,7 @@ class MainWindow(qtw.QMainWindow):
         self.switchViews("home")
         self.show()
 
-    #switch views based on viewname
+    # switch views based on viewname
     def switchViews(self, viewName):
         if viewName == "home":
             self.AddColumnButton.setEnabled(False)
@@ -80,6 +81,7 @@ class MainWindow(qtw.QMainWindow):
         return self.tableView
 
     def getBackEnd(self):
+        print("getBackEnd")
         return self.tableView.getBackEnd()
 
     def activateDeleteRowButton(self, boolean):
@@ -87,3 +89,6 @@ class MainWindow(qtw.QMainWindow):
 
     def activateDeleteColumnButton(self, boolean):
         self.DeleteColumnButton.setEnabled(boolean)
+
+    def check(self):
+        print("pls")

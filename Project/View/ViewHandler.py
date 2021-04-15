@@ -81,7 +81,6 @@ class MainWindow(qtw.QMainWindow):
         return self.tableView
 
     def getBackEnd(self):
-        print("getBackEnd")
         return self.tableView.getBackEnd()
 
     def activateDeleteRowButton(self, boolean):
@@ -89,6 +88,3 @@ class MainWindow(qtw.QMainWindow):
 
     def activateDeleteColumnButton(self, boolean):
         self.DeleteColumnButton.setEnabled(boolean)
-
-    def check(self):
-        print("pls")

@@ -79,7 +79,6 @@ class TableView(qtw.QFrame):
         return data
 
     def getBackEnd(self):
-        print("hello")
         return self.backEnd
 
     def activateDeleteRowButton(self):

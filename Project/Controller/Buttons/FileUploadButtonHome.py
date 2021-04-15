@@ -18,5 +18,5 @@ def fileUploadButtonHome(homeView, qtw, qtg, mainWindow):
     uploadButton.setText("Upload Sound\n File(s)")
     uploadButton.setFixedHeight(160)
     uploadButton.clicked.connect(lambda: FileUploadAction.uponActionPerformed(mainWindow, qtw))
-    uploadButton.clicked.connect(lambda: mainWindow.switchViews("table"))
+    #uploadButton.clicked.connect(lambda: mainWindow.switchViews("table"))
     return uploadButton

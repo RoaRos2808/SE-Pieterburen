@@ -14,3 +14,5 @@ def getFilesWav(mainWindow, qtw):
     # If files are selected, send  these to the InputHandler
     if files:
         parseWavFiles(files, mainWindow)
+        mainWindow.switchViews("table")
+

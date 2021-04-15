@@ -21,5 +21,5 @@ def spreadSheetButtonHome(homeView, qtw, qtg, mainWindow):
     spreadsheetButton.setText("Upload\n Spreadsheet")
     spreadsheetButton.setFixedHeight(160)
     spreadsheetButton.clicked.connect(lambda: CSVFileUploadAction.uponActionPerformed(mainWindow, qtw))
-    spreadsheetButton.clicked.connect(lambda: mainWindow.switchViews("table"))
+    #spreadsheetButton.clicked.connect(lambda: mainWindow.switchViews("table"))
     return spreadsheetButton

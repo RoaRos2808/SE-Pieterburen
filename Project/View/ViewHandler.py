@@ -2,7 +2,7 @@ import PyQt5.QtWidgets as qtw
 import Project.View.HomeView as hv
 import Project.View.TableView as tv
 from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, InfoButton, AddColumnButton, \
-    FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton
+    FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton
 
 
 # represents main app window and acts as canvas on which the different views are painted
@@ -52,6 +52,7 @@ class MainWindow(qtw.QMainWindow):
         # initialize actions
         FileUploadButton.fileUploadButton(self, qtw)
         FileExportButton.fileExportButton(self, qtw)
+        CSVFileUploadButton.csvFileUploadButton(self, qtw)
         AddColumnButton.addColumnButton(self, self.tableView, qtw)
         DeleteRowButton.deleteRowButton(self, self.tableView, qtw)
         DeleteColumnButton.deleteColumnButton(self, self.tableView, qtw)
@@ -68,6 +69,7 @@ class MainWindow(qtw.QMainWindow):
 
         fileMenu.addAction(self.FileUploadButton)
         fileMenu.addAction(self.FileExportButton)
+        fileMenu.addAction(self.CSVFileUploadButton)
         editMenu.addAction(self.AddColumnButton)
         editMenu.addAction(self.DeleteRowButton)
         editMenu.addAction(self.DeleteColumnButton)

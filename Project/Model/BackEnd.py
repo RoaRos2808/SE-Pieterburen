@@ -11,9 +11,11 @@ class BackEnd:
         self.isRunning = True
         self._lock = threading.Lock()
 
-    def printCurrentData(self):
-        for row in self.data:
-            print(row)
+    def clear(self):
+        for key in self.data:
+            self.data[key] = []
+            print(self.data)
+            self.tableView.populateTable()
 
     def update(self, newData):
         for key in self.data:

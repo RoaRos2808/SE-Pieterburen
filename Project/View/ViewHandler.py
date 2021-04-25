@@ -74,8 +74,8 @@ class MainWindow(qtw.QMainWindow):
         fileMenu.addAction(self.FileExportButton)
         fileMenu.addAction(self.CSVFileUploadButton)
         fileMenu.addAction(self.OpenButton)
-        fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.OpenRecentButton)
+        fileMenu.addAction(self.OpenNewButton)
 
         editMenu.addAction(self.AddColumnButton)
         editMenu.addAction(self.DeleteRowButton)

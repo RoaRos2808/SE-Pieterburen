@@ -14,7 +14,6 @@ class BackEnd:
     def clear(self):
         for key in self.data:
             self.data[key] = []
-            print(self.data)
             self.tableView.populateTable()
 
     def update(self, newData):

@@ -11,5 +11,6 @@ def getFilesCSV(mainWindow, qtw):
                                                   "", "Table files (*.csv)", options=options)
     # If files are selected, send  these to the InputHandler
     if filePath:
+        mainWindow.setWindowTitle(filePath)
         parseCSVFiles(filePath, mainWindow)
         mainWindow.switchViews("table")

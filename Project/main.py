@@ -1,11 +1,16 @@
 import PyQt5.QtWidgets as qtw
-from Project.View import ViewHandler
+from Project.View import ViewHandler, SplashScreen
 from Project.Model import BackEnd as be
 import threading
 
 runningFlag = True
 
 app = qtw.QApplication([])
+
+splash = SplashScreen.SplashScreen(app)
+splash.showSplashScreen()
+
+
 #get screen resolution of system used
 screenResolution = app.desktop().screenGeometry()
 #fractions of the screen dimensions to use as dimensions for app
@@ -25,6 +30,7 @@ thread.start()
 #Running is set in backend to make sure that the thread for autosaving can finish when app is closed
 backEnd.setRunningFlag(True)
 app.exec_()
+
 
 #Running flag is checked by autosave thread
 backEnd.setRunningFlag(False)

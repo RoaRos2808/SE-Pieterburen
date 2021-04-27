@@ -1,4 +1,5 @@
 import PyQt5.QtWidgets as qtw
+import PyQt5.QtGui as qtg
 import Project.View.HomeView as hv
 import Project.View.TableView as tv
 from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, InfoButton, AddColumnButton, \
@@ -10,6 +11,8 @@ from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, Inf
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height, backEnd):
         super().__init__()
+
+        self.setWindowIcon(qtg.QIcon(qtg.QPixmap('../img/windowiconsmall.png')))
 
         self.setWindowTitle('Pieterburen ZeehondenCentrum')
         self.setGeometry(0, 0, width, height)

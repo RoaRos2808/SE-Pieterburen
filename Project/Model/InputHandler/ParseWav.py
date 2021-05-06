@@ -1,10 +1,7 @@
 from Project.Model.CNN import feature_extractor2
 import os
-import PyQt5.QtWidgets as qtw
-import PyQt5.QtGui as qtg
-import PyQt5.QtCore as qtc
 import math
-from Project.View.ProgressBar import ProgressBar
+from Project.View.Miscellaneous.ProgressBar import ProgressBar
 
 
 # save the audio path and get the CNN results

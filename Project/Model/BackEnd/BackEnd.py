@@ -4,7 +4,7 @@ import threading
 
 class BackEnd:
     def __init__(self):
-        with open('LastSession/LastSession.json') as json_data:
+        with open('Model/BackEnd/LastSession.json') as json_data:
             data = json.load(json_data)
 
         self.data = data
@@ -48,6 +48,6 @@ class BackEnd:
                 time.sleep(5)
                 self.data = self.tableView.getDataInTable()
                 #write the data to the LastSession.json file
-                with open("LastSession/LastSession.json", "w") as file:
+                with open("Model/BackEnd/LastSession.json", "w") as file:
                     json.dump(self.data, file, indent=4, separators=(',', ': '))
                 print("Performed autosave")

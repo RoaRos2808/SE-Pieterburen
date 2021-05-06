@@ -1,6 +1,6 @@
 import PyQt5.QtWidgets as qtw
 from Project.View import ViewHandler, SplashScreen
-from Project.Model import BackEnd as be
+from Project.Model.BackEnd import BackEnd as be
 import threading
 
 runningFlag = True

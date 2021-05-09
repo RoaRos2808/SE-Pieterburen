@@ -24,6 +24,7 @@ class TableView(qtw.QFrame):
 
         self.table.setStyleSheet("background-color:white")
 
+
         self.layout().addWidget(self.table, 1, 0, 1, 1)
 
     # This function takes the table data in the form of a dictionary.
@@ -34,6 +35,8 @@ class TableView(qtw.QFrame):
         columnCount = len(tableData.keys())
         if columnCount != 0:
             rowCount = len(tableData[list(tableData.keys())[0]])
+        else:
+            rowCount = 0
 
         self.table.setRowCount(rowCount)
         self.table.setColumnCount(columnCount)

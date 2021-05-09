@@ -11,16 +11,29 @@ class BackEnd:
         self.isRunning = True
         self._lock = threading.Lock()
 
+        #standard column names (have to discuss this)
+        self.standardColumns = ['File Name', 'Left Lung Health', 'Right Lung Health']
+
     def clear(self):
         for key in self.data:
             self.data[key] = []
             self.tableView.populateTable()
 
     def update(self, newData):
+        #if current spreadsheet does not contain standard column name, add this
+        for standardColumn in self.standardColumns:
+            if not standardColumn in self.data.keys():
+                self.data.update({standardColumn: []})
+
+        #if a column is in spreadsheet and new data, add the row entries
         for key in self.data:
             for newKey in newData:
                 if key == newKey:
                     self.data[key].append(newData[newKey])
+
+        print(self.data)
+
+        #this accounts for columns that are in spreadsheet but not present in new data, it adds "" as an empty entry
         for key in self.data.keys():
             if not key in newData.keys():
                 self.data[key].append("")

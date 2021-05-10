@@ -5,8 +5,7 @@ import pandas as pd
 
 class BackEnd:
     def __init__(self):
-        data = pd.read_csv('default.csv')
-        print(data)
+        data = pd.read_csv('Model/BackEnd/LastSession.csv')
 
         self.data = data
         self.isRunning = True
@@ -31,8 +30,6 @@ class BackEnd:
             for newKey in newData:
                 if key == newKey:
                     self.data[key].append(newData[newKey])
-
-        print(self.data)
 
         #this accounts for columns that are in spreadsheet but not present in new data, it adds "" as an empty entry
         for key in self.data.keys():
@@ -61,7 +58,5 @@ class BackEnd:
             with self._lock:
                 time.sleep(5)
                 self.data = self.tableView.getDataInTable()
-                #write the data to the LastSession.json file
-                with open("Model/BackEnd/LastSession.json", "w") as file:
-                    json.dump(self.data, file, indent=4, separators=(',', ': '))
+                self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
                 print("Performed autosave")

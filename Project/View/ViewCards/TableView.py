@@ -2,6 +2,7 @@ import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
 from PyQt5.QtCore import pyqtSlot
+import pandas as pd
 
 
 class TableView(qtw.QFrame):
@@ -31,18 +32,13 @@ class TableView(qtw.QFrame):
     # Keys act as column headers, the values are lists of strings which populate all rows under that column
     def populateTable(self):
         tableData = self.backEnd.getData()
-        self.columnHeaders = []
-        columnCount = len(tableData.keys())
-        if columnCount != 0:
-            rowCount = len(tableData[list(tableData.keys())[0]])
-        else:
-            rowCount = 0
+        for col in tableData.columns:
+            self.columnHeaders.append(col)
+        columnCount = len(tableData.columns)
+        rowCount = tableData.shape[0]
 
         self.table.setRowCount(rowCount)
         self.table.setColumnCount(columnCount)
-
-        for key in tableData:
-            self.columnHeaders.append(key)
 
         for columnIndex, column in enumerate(tableData.keys()):
             for rowIndex in range(rowCount):
@@ -62,23 +58,23 @@ class TableView(qtw.QFrame):
     # function returns a dictionary with the data currently in table
     def getDataInTable(self):
         numberRows = self.table.rowCount()
-        data = {}
+        data = pd.DataFrame(columns=self.columnHeaders)
+
         for columnIndex, header in enumerate(self.columnHeaders):
-            rowValues = []
             for rowIndex in range(numberRows):
                 cell = self.table.item(rowIndex, columnIndex)
                 if cell is not None:
                     value = cell.text()
                     if value is not None:
                         # print("row: " + str(rowIndex) + ", column: " + str(columnIndex) + ", value: " + value)
-                        rowValues.append(cell.text())
+                        data.loc[rowIndex, header] = cell.text()
                     else:
                         # if a cell has no text (so not even an empty string), we add empty string to data
-                        rowValues.append("")
+                        data.loc[rowIndex, header] = ""
                 else:
                     # if due to concurrency issues, the cell is not yet made, we add an empty string
-                    rowValues.append("")
-            data.update({header: rowValues})
+                    data.loc[rowIndex, header] = ""
+        print(data)
         return data
 
     def getBackEnd(self):

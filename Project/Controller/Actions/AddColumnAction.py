@@ -10,5 +10,4 @@ def addColumn(tableWindow, qtw):
         columnCount = tableWindow.table.columnCount()
         rowCount = tableWindow.table.rowCount()
         tableWindow.table.insertColumn(columnCount)
-        print(tableWindow.columnHeaders)
         tableWindow.table.setHorizontalHeaderLabels(tableWindow.columnHeaders)

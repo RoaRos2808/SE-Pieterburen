@@ -25,12 +25,12 @@ class TableView(qtw.QFrame):
 
         self.table.setStyleSheet("background-color:white")
 
-
         self.layout().addWidget(self.table, 1, 0, 1, 1)
 
     # This function takes the table data in the form of a dictionary.
     # Keys act as column headers, the values are lists of strings which populate all rows under that column
     def populateTable(self):
+        self.columnHeaders.clear()
         tableData = self.backEnd.getData()
         for col in tableData.columns:
             self.columnHeaders.append(col)

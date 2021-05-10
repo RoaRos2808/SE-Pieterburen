@@ -1,14 +1,9 @@
 import csv
-from collections import defaultdict
+import pandas as pd
 
 def parseCSVFiles(filePath, mainWindow):
     # place csv file in dictionary for TableView's use
-    data = defaultdict(list)
-    with open(filePath) as csv_file:
-        csvReader = csv.DictReader(csv_file)
-        for row in csvReader:
-            for key in row:
-                data[key].append(row[key])
+    data = pd.read_csv(filePath)
 
     print(data)
     be = mainWindow.getBackEnd()

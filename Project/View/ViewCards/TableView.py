@@ -42,9 +42,9 @@ class TableView(qtw.QFrame):
 
         for columnIndex, column in enumerate(tableData.keys()):
             for rowIndex in range(rowCount):
-                # print(str(rowIndex))
                 cellValue = tableData[column][rowIndex]
-                cell = qtw.QTableWidgetItem(cellValue)
+                cell = qtw.QTableWidgetItem(str(cellValue))
+                #print(cellValue)
                 # The following lines makes values for first two columns read only: we have to discuss this choice.
                 # Should the user be allowed to change the file name value and health score value?
                 if columnIndex == 0 or columnIndex == 1:
@@ -74,7 +74,7 @@ class TableView(qtw.QFrame):
                 else:
                     # if due to concurrency issues, the cell is not yet made, we add an empty string
                     data.loc[rowIndex, header] = ""
-        print(data)
+        #print(data)
         return data
 
     def getBackEnd(self):

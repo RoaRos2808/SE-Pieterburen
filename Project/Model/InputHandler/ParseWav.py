@@ -3,6 +3,7 @@ import os
 import math
 from Project.View.Miscellaneous.ProgressBar import ProgressBar
 from PyQt5.QtWidgets import QMessageBox
+import pandas as pd
 
 
 # save the audio path and get the CNN results
@@ -14,29 +15,19 @@ def parseWavFiles(files, mainWindow):
     progressPercentage = 0
 
     for file in files:
-        data = {}
+        data = pd.DataFrame
         audio_path = file
         fileName = os.path.basename(audio_path)
         leftOrRight = fileName[-5]
-        print(leftOrRight)
 
         #check if filename has convention of ending in either L or R (have to discuss this), otherwise show error
         if leftOrRight in ['L', 'R']:
-
+            fileName = fileName[:-5]
             # TODO apply model
             result = feature_extractor2.weight_results(file)
-            if leftOrRight == 'L':
-                data.update({"Left Lung Health": str(result)})
-            else:
-                data.update({"Right Lung Health": str(result)})
-
-            # TODO set results in dictionary
             #give name without the 'L.wav' or 'R.wav' of string
-            fileName = fileName[:-5]
-            data.update({"File Name": fileName})
-
             be = mainWindow.getBackEnd()
-            be.update(data)
+            be.update(fileName, leftOrRight, result)
             progressPercentage = progressPercentage + math.floor((1 / len(files)) * 100)
             progressBar.updateProgressDialog(progressPercentage)
         else:

@@ -19,22 +19,30 @@ class BackEnd:
             self.data[key] = []
             self.tableView.populateTable()
 
-    def update(self, newData):
-        #if current spreadsheet does not contain standard column name, add this
-        for standardColumn in self.standardColumns:
-            if not standardColumn in self.data.keys():
-                self.data.update({standardColumn: []})
+    def update(self, fileName, leftOrRight, result):
+        if leftOrRight == 'L':
+            df = pd.DataFrame({"File Name": [fileName], "Left Lung Health": [result]})
+        else:
+            df = pd.DataFrame({"File Name": [fileName], "Right Lung Health": [result]})
+        frames = [self.data, df]
+        self.data = pd.concat(frames, ignore_index=True)
+        self.data = self.data.fillna("")
+
+        # #if current spreadsheet does not contain standard column name, add this
+        # for standardColumn in self.standardColumns:
+        #     if not standardColumn in self.data.keys():
+        #         self.data.update({standardColumn: []})
 
         #if a column is in spreadsheet and new data, add the row entries
-        for key in self.data:
-            for newKey in newData:
-                if key == newKey:
-                    self.data[key].append(newData[newKey])
+        # for col in self.data.columns:
+        #     for newCol in newData.columns:
+        #         if col == newCol:
+        #             print("columns match")
 
-        #this accounts for columns that are in spreadsheet but not present in new data, it adds "" as an empty entry
-        for key in self.data.keys():
-            if not key in newData.keys():
-                self.data[key].append("")
+        # #this accounts for columns that are in spreadsheet but not present in new data, it adds "" as an empty entry
+        # for key in self.data.keys():
+        #     if not key in newData.keys():
+        #         self.data[key].append("")
 
         # auto update table view after updating backend
         self.tableView.populateTable()

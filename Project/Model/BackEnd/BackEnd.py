@@ -1,11 +1,12 @@
 import json
 import time
 import threading
+import pandas as pd
 
 class BackEnd:
     def __init__(self):
-        with open('Model/BackEnd/LastSession.json') as json_data:
-            data = json.load(json_data)
+        data = pd.read_csv('default.csv')
+        print(data)
 
         self.data = data
         self.isRunning = True

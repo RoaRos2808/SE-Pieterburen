@@ -13,5 +13,3 @@ def parseCSVFiles(filePath, mainWindow):
     print(data)
     be = mainWindow.getBackEnd()
     be.openTable(data)
-
-

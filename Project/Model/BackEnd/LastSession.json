@@ -1,14 +1,10 @@
 {
     "File Name": [
-        "PV18212_061118_",
-        "PV18214_151118_"
+        "PV18212_061218_L.wav",
+        "PV18212_061118_L.wav"
     ],
-    "Left Lung Health": [
-        "0",
+    "hello": [
+        "world",
         ""
-    ],
-    "Right Lung Health": [
-        "",
-        "1"
     ]
 }

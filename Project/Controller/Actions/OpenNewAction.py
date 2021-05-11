@@ -23,11 +23,7 @@ def openNewAction(mainWindow, qtw):
             mainWindow.setWindowTitle(filePath)
             parseCSVFiles(filePath, mainWindow)
             mainWindow.tableView.backEnd.clear()
-            mainWindow.setWindowTitle("Untitled")
 
     elif saveOption == qtw.QMessageBox.No:
-        print("hoi")
         mainWindow.tableView.backEnd.clear()
-        print("joe")
-        mainWindow.setWindowTitle("Untitled")
 

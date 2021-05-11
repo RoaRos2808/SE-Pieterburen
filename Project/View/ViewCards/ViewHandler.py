@@ -1,17 +1,18 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
+import Project.img.resources as resources
 import Project.View.ViewCards.TableView as tv
+
 from Project.Controller.Buttons import  FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
     OpenRecentButton, OpenButton
 # represents main app window and acts as canvas on which the different views are painted
 
-
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height, backEnd):
         super().__init__()
 
-        self.setWindowIcon(qtg.QIcon(qtg.QPixmap('../../img/windowiconsmall.png')))
+        self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
 
         self.setWindowTitle('Pieterburen ZeehondenCentrum')
         self.setGeometry(0, 0, width, height)

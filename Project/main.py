@@ -1,4 +1,5 @@
 import PyQt5.QtWidgets as qtw
+import PyQt5.QtGui as qtg
 from Project.View.Miscellaneous import SplashScreen
 from Project.View.ViewCards import ViewHandler
 from Project.Model.BackEnd import BackEnd as be
@@ -7,6 +8,7 @@ import threading
 runningFlag = True
 
 app = qtw.QApplication([])
+#app.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
 
 splash = SplashScreen.SplashScreen(app)
 splash.showSplashScreen()

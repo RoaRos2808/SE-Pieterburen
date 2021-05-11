@@ -12,7 +12,7 @@ def uponActionPerformed(mainWindow, qtw):
 def openNewAction(mainWindow, qtw):
     print("hey")
     saveOption = qtw.QMessageBox.question(mainWindow, 'Save',
-                                          'Would you like to save before opening another file?',
+                                          'Would you like to save before creating a new spreadsheet?',
                                           qtw.QMessageBox.Yes, qtw.QMessageBox.No)
     if saveOption == qtw.QMessageBox.Yes:
         options = qtw.QFileDialog.Options()

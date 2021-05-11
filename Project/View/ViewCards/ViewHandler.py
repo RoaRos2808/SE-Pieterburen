@@ -73,13 +73,29 @@ class MainWindow(qtw.QMainWindow):
         editMenu = menuBar.addMenu('Edit')
         navigateMenu = menuBar.addMenu('Navigate')
 
-        fileMenu.addAction(self.FileUploadButton)
-        fileMenu.addAction(self.FileExportButton)
-        fileMenu.addAction(self.CSVFileUploadButton)
-        fileMenu.addAction(self.OpenButton)
-        fileMenu.addAction(self.OpenRecentButton)
-        fileMenu.addAction(self.OpenNewButton)
+        # before
+        # fileMenu.addAction(self.FileUploadButton) v
+        # fileMenu.addAction(self.FileExportButton) v
+        # fileMenu.addAction(self.CSVFileUploadButton) x
+        # fileMenu.addAction(self.OpenButton) v
+        # fileMenu.addAction(self.OpenRecentButton) v
+        # fileMenu.addAction(self.OpenNewButton) v
 
+        # editMenu.addAction(self.AddColumnButton)
+        # editMenu.addAction(self.DeleteRowButton)
+        # editMenu.addAction(self.DeleteColumnButton)
+        #
+        # navigateMenu.addAction(self.NavigateHomeButton)
+        # navigateMenu.addAction(self.NavigateTableButton)
+        # menuBar.addAction(self.InfoButton)
+
+        # after
+        fileMenu.addAction(self.OpenButton)
+        fileMenu.addAction(self.OpenRecentButton)  # TODO needs implementation
+        fileMenu.addAction(self.OpenNewButton)
+        fileMenu.addAction(self.FileExportButton)
+
+        editMenu.addAction(self.FileUploadButton)
         editMenu.addAction(self.AddColumnButton)
         editMenu.addAction(self.DeleteRowButton)
         editMenu.addAction(self.DeleteColumnButton)
@@ -87,7 +103,6 @@ class MainWindow(qtw.QMainWindow):
         navigateMenu.addAction(self.NavigateHomeButton)
         navigateMenu.addAction(self.NavigateTableButton)
         menuBar.addAction(self.InfoButton)
-
         return menuBar
 
     def getTableView(self):

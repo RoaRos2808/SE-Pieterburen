@@ -21,18 +21,17 @@ class BackEnd:
         return df
 
     def clear(self):
-        print("a")
         self.data = self.makeEmptyDataFrame()
-        print("b")
         self.tableView.populateTable()
-        print("c")
 
     def update(self, type, fileName, leftOrRight, result):
-        print("hoiA")
-        print(self.data["File Name"])
-        print(fileName)
+        #when you update, check if the standard column headers are present in data. If not, add them at correct position
+        standard = self.standardColumns.keys()
+        for i in range(0, len(standard)):
+            if not standard[i] in self.data.keys():
+                self.data.insert(i, standard[i], "")
+
         if fileName in self.data["File Name"].tolist():
-            print("hoiB")
             #index = self.data[self.data["File Name"] == fileName].index
             index = self.data.index[self.data["File Name"] == fileName]
             if leftOrRight == 'L':
@@ -41,7 +40,6 @@ class BackEnd:
                 self.data.loc[index, ["Right Lung Health"]] = result
             self.data = self.data.fillna("")
         else:
-            print("hoiC")
             if leftOrRight == 'L':
                 df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})
             else:

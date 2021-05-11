@@ -47,8 +47,9 @@ class TableView(qtw.QFrame):
                 #print(cellValue)
                 # The following lines makes values for first two columns read only: we have to discuss this choice.
                 # Should the user be allowed to change the file name value and health score value?
-                if columnIndex == 0 or columnIndex == 1:
-                    cell.setFlags(qtc.Qt.ItemIsSelectable | qtc.Qt.ItemIsEnabled)
+                # Removed for now, based on advice of client
+                #if columnIndex == 0 or columnIndex == 1:
+                #    cell.setFlags(qtc.Qt.ItemIsSelectable | qtc.Qt.ItemIsEnabled)
 
                 self.table.setItem(rowIndex, columnIndex, cell)
 

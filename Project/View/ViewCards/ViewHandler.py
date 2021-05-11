@@ -90,9 +90,9 @@ class MainWindow(qtw.QMainWindow):
         # menuBar.addAction(self.InfoButton)
 
         # after
+        fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.OpenButton)
         fileMenu.addAction(self.OpenRecentButton)  # TODO needs implementation
-        fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.FileExportButton)
 
         editMenu.addAction(self.FileUploadButton)

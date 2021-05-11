@@ -27,7 +27,11 @@ def parseWavFiles(files, mainWindow):
             result = feature_extractor2.weight_results(file)
             #give name without the 'L.wav' or 'R.wav' of string
             be = mainWindow.getBackEnd()
-            be.update(fileName, leftOrRight, result)
+
+            #not yet implemented, need Cristians model
+            type = ""
+
+            be.update(type, fileName, leftOrRight, result)
             progressPercentage = progressPercentage + math.floor((1 / len(files)) * 100)
             progressBar.updateProgressDialog(progressPercentage)
         else:

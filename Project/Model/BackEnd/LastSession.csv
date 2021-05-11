@@ -1,3 +1,5 @@
-File Name,Left Lung Health,Right Lung Health
-PV18217_201118_,nan,1.0
-PV18217_171218_,1.0,nan
+File Name,Left Lung Health,Right Lung Health,Type
+PV18217_201118_,nan,1.0,
+PV18217_171218_,1.0,nan,
+PV18212_061118_,0.0,nan,
+PV18212_061118_,0,,

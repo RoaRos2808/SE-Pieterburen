@@ -10,6 +10,7 @@ def uponActionPerformed(mainWindow, qtw):
 # opens a dialog with option to save, then clears the table window
 
 def openNewAction(mainWindow, qtw):
+    print("hey")
     saveOption = qtw.QMessageBox.question(mainWindow, 'Save',
                                           'Would you like to save before opening another file?',
                                           qtw.QMessageBox.Yes, qtw.QMessageBox.No)
@@ -25,6 +26,8 @@ def openNewAction(mainWindow, qtw):
             mainWindow.setWindowTitle("Untitled")
 
     elif saveOption == qtw.QMessageBox.No:
+        print("hoi")
         mainWindow.tableView.backEnd.clear()
+        print("joe")
         mainWindow.setWindowTitle("Untitled")
 

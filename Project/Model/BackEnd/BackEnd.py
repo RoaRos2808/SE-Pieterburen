@@ -6,24 +6,31 @@ import pandas as pd
 class BackEnd:
     def __init__(self):
         data = pd.read_csv('Model/BackEnd/LastSession.csv')
+        #TODO does not work when the file is empty
 
         self.data = data
         self.isRunning = True
         self._lock = threading.Lock()
 
         #standard column names (have to discuss this)
-        self.standardColumns = ['File Name', 'Left Lung Health', 'Right Lung Health']
+        self.standardColumns = self.makeEmptyDataFrame()
+
+    def makeEmptyDataFrame(self):
+        df = pd.DataFrame(columns=['File Name', 'Type', 'Left Lung Health', 'Right Lung Health'])
+        return df
 
     def clear(self):
-        for key in self.data:
-            self.data[key] = []
-            self.tableView.populateTable()
+        print("a")
+        self.data = self.makeEmptyDataFrame()
+        print("b")
+        self.tableView.populateTable()
+        print("c")
 
-    def update(self, fileName, leftOrRight, result):
+    def update(self, type, fileName, leftOrRight, result):
         if leftOrRight == 'L':
-            df = pd.DataFrame({"File Name": [fileName], "Left Lung Health": [result]})
+            df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})
         else:
-            df = pd.DataFrame({"File Name": [fileName], "Right Lung Health": [result]})
+            df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Health": [result]})
         frames = [self.data, df]
         self.data = pd.concat(frames, ignore_index=True)
         self.data = self.data.fillna("")

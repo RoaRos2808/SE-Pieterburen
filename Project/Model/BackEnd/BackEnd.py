@@ -9,6 +9,7 @@ class BackEnd:
         #TODO does not work when the file is empty
 
         self.data = data
+        self.data = self.data.fillna("")
         self.isRunning = True
         self._lock = threading.Lock()
 
@@ -27,13 +28,27 @@ class BackEnd:
         print("c")
 
     def update(self, type, fileName, leftOrRight, result):
-        if leftOrRight == 'L':
-            df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})
+        print("hoiA")
+        print(self.data["File Name"])
+        print(fileName)
+        if fileName in self.data["File Name"].tolist():
+            print("hoiB")
+            #index = self.data[self.data["File Name"] == fileName].index
+            index = self.data.index[self.data["File Name"] == fileName]
+            if leftOrRight == 'L':
+                self.data.loc[index, ["Left Lung Health"]] = result
+            else:
+                self.data.loc[index, ["Right Lung Health"]] = result
+            self.data = self.data.fillna("")
         else:
-            df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Health": [result]})
-        frames = [self.data, df]
-        self.data = pd.concat(frames, ignore_index=True)
-        self.data = self.data.fillna("")
+            print("hoiC")
+            if leftOrRight == 'L':
+                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})
+            else:
+                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Health": [result]})
+            frames = [self.data, df]
+            self.data = pd.concat(frames, ignore_index=True)
+            self.data = self.data.fillna("")
 
         # #if current spreadsheet does not contain standard column name, add this
         # for standardColumn in self.standardColumns:

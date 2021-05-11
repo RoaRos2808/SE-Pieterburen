@@ -1,8 +1,7 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
-import Project.View.ViewCards.HomeView as hv
 import Project.View.ViewCards.TableView as tv
-from Project.Controller.Buttons import NavigateHomeButton, FileUploadButton, InfoButton, AddColumnButton, \
+from Project.Controller.Buttons import  FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
     OpenRecentButton, OpenButton
 # represents main app window and acts as canvas on which the different views are painted
@@ -22,27 +21,28 @@ class MainWindow(qtw.QMainWindow):
         # layouts in pyqt have margins by default, so we turn these off
         self.mainWidget.layout().setContentsMargins(0, 0, 0, 0)
 
-        self.homeView = hv.HomeView(self)
         self.tableView = tv.TableView(self, backEnd)
 
-        self.mainWidget.layout().addWidget(self.homeView)
         self.mainWidget.layout().addWidget(self.tableView)
+        # self.mainWidget.layout().addWidget(self.statisticsView)
+
         self.setCentralWidget(self.mainWidget)
 
         self.menuBar = self.menuBarSetup()
 
         self.setMenuBar(self.menuBar)
-        self.switchViews("home")
+        self.switchViews("table")
         self.show()
 
     # switch views based on viewname
     def switchViews(self, viewName):
-        if viewName == "home":
-            self.AddColumnButton.setEnabled(False)
-            self.mainWidget.layout().setCurrentIndex(0)
-        elif viewName == "table":
+        if viewName == "table":
             self.AddColumnButton.setEnabled(True)
+            self.mainWidget.layout().setCurrentIndex(0)
+        elif viewName == "statistics":
+            self.AddColumnButton.setEnabled(False)
             self.mainWidget.layout().setCurrentIndex(1)
+
 
     def menuBarSetup(self):
         self.initializeActions()
@@ -62,7 +62,7 @@ class MainWindow(qtw.QMainWindow):
         AddColumnButton.addColumnButton(self, self.tableView, qtw)
         DeleteRowButton.deleteRowButton(self, self.tableView, qtw)
         DeleteColumnButton.deleteColumnButton(self, self.tableView, qtw)
-        NavigateHomeButton.navigateHomeButton(self, qtw)
+        # NavigateHomeButton.navigateHomeButton(self, qtw) -- deprecated
         NavigateTableButton.navigateTableButton(self, qtw)
         InfoButton.infoButton(self, qtw)
 
@@ -100,7 +100,7 @@ class MainWindow(qtw.QMainWindow):
         editMenu.addAction(self.DeleteRowButton)
         editMenu.addAction(self.DeleteColumnButton)
 
-        navigateMenu.addAction(self.NavigateHomeButton)
+        # navigateMenu.addAction(self.NavigateHomeButton) -- deprecated
         navigateMenu.addAction(self.NavigateTableButton)
         menuBar.addAction(self.InfoButton)
         return menuBar

@@ -2,9 +2,10 @@ import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import Project.img.resources as resources
 import Project.View.ViewCards.TableView as tv
+import Project.View.ViewCards.StatisticsView as sv
 
 from Project.Controller.Buttons import  FileUploadButton, InfoButton, AddColumnButton, \
-    FileExportButton, NavigateTableButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
+    FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
     OpenRecentButton, OpenButton
 # represents main app window and acts as canvas on which the different views are painted
 
@@ -23,9 +24,10 @@ class MainWindow(qtw.QMainWindow):
         self.mainWidget.layout().setContentsMargins(0, 0, 0, 0)
 
         self.tableView = tv.TableView(self, backEnd)
+        self.statisticsView = sv.StatisticsView(self, backEnd)
 
         self.mainWidget.layout().addWidget(self.tableView)
-        # self.mainWidget.layout().addWidget(self.statisticsView)
+        self.mainWidget.layout().addWidget(self.statisticsView)
 
         self.setCentralWidget(self.mainWidget)
 
@@ -65,6 +67,7 @@ class MainWindow(qtw.QMainWindow):
         DeleteColumnButton.deleteColumnButton(self, self.tableView, qtw)
         # NavigateHomeButton.navigateHomeButton(self, qtw) -- deprecated
         NavigateTableButton.navigateTableButton(self, qtw)
+        NavigateStatisticsButton.navigateStatisticsButton(self, qtw)
         InfoButton.infoButton(self, qtw)
 
     def initializeMenuBar(self):
@@ -103,6 +106,7 @@ class MainWindow(qtw.QMainWindow):
 
         # navigateMenu.addAction(self.NavigateHomeButton) -- deprecated
         navigateMenu.addAction(self.NavigateTableButton)
+        navigateMenu.addAction(self.NavigateStatisticsButton)
         menuBar.addAction(self.InfoButton)
         return menuBar
 

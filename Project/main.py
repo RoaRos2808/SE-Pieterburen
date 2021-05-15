@@ -1,5 +1,4 @@
 import PyQt5.QtWidgets as qtw
-import PyQt5.QtGui as qtg
 from Project.View.Miscellaneous import SplashScreen
 from Project.View.ViewCards import ViewHandler
 from Project.Model.BackEnd import BackEnd as be
@@ -37,4 +36,3 @@ app.exec_()
 
 #Running flag is checked by autosave thread
 backEnd.setRunningFlag(False)
-

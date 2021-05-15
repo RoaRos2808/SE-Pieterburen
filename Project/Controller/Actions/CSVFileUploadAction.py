@@ -12,7 +12,9 @@ def getFilesCSV(mainWindow, qtw):
     if filePath:
         mainWindow.setWindowTitle(filePath)
         parseCSVFiles(filePath, mainWindow)
-        mainWindow.switchViews("table")
-        mainWindow.recentFiles.append(filePath)
-        mainWindow.recentFiles = mainWindow.recentFiles[-4:]
+
+        if filePath not in mainWindow.recentFiles:
+            mainWindow.recentFiles.append(filePath)
+            mainWindow.recentFiles = mainWindow.recentFiles[-4:]
+
         print(mainWindow.recentFiles)

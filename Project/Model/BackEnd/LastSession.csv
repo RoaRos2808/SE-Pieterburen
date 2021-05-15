@@ -1,21 +1,2 @@
-File Name,Health Score,Notes
-12345.wav,2,nan
-54321.wav,1,nan
-77890.wav,2,nan
-PV18212_061118_L.wav,0,nan
-PV18212_061118_R.wav,0,nan
-PV18212_061218_L.wav,1,nan
-PV18212_061218_R.wav,1,nan
-PV18212_081118_L.wav,1,nan
-PV18212_081118_R.wav,1,nan
-PV18212_131118_L.wav,1,nan
-PV18212_131118_R.wav,1,nan
-PV18212_201118_L.wav,1,nan
-PV18212_201118_R.wav,1,nan
-PV18212_211118_L.wav,1,nan
-PV18212_211118_R.wav,1,nan
-PV18249_020119_L.wav,1,nan
-PV18249_020119_R.wav,1,nan
-PV18249_040119_L.wav,0,nan
-PV18249_040119_R.wav,1,nan
-PV18249_251218_R.wav,0,nan
+File Name,Type,Left Lung Health,Right Lung Health
+PV18212_061218_,,1,

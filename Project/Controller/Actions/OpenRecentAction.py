@@ -9,3 +9,4 @@ def uponActionPerformed(mainWindow, qtw):
 #  can select recently worked on files (maybe also the untitled autosave)
 def openRecentAction(mainWindow, qtw):
     print("something")
+    print(mainWindow.recentFiles)

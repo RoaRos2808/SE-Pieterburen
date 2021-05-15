@@ -1,6 +1,5 @@
 from Project.Model.InputHandler.ParseCSV import parseCSVFiles
 
-
 def uponActionPerformed(mainWindow, qtw):
     getFilesCSV(mainWindow, qtw)
 
@@ -14,3 +13,6 @@ def getFilesCSV(mainWindow, qtw):
         mainWindow.setWindowTitle(filePath)
         parseCSVFiles(filePath, mainWindow)
         mainWindow.switchViews("table")
+        mainWindow.recentFiles.append(filePath)
+        mainWindow.recentFiles = mainWindow.recentFiles[-4:]
+        print(mainWindow.recentFiles)

@@ -3,19 +3,20 @@ import PyQt5.QtGui as qtg
 import Project.img.resources as resources
 import Project.View.ViewCards.TableView as tv
 import Project.View.ViewCards.StatisticsView as sv
+import os
 
-from Project.Controller.Buttons import  FileUploadButton, InfoButton, AddColumnButton, \
+from Project.Controller.Buttons import FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
     OpenRecentMenu, OpenButton
+
+from Project.Model.InputHandler.ParseCSV import parseCSVFiles
 # represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height, backEnd):
         super().__init__()
 
-        self.maxFileNr = 4
         self.recentFiles = []
-
         self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
 
         self.setWindowTitle('Pieterburen ZeehondenCentrum')
@@ -62,9 +63,9 @@ class MainWindow(qtw.QMainWindow):
         FileUploadButton.fileUploadButton(self, qtw)
         FileExportButton.fileExportButton(self, qtw)
         CSVFileUploadButton.csvFileUploadButton(self, qtw)
-        OpenButton.openButton(self,qtw)
+        OpenButton.openButton(self, qtw)
         OpenNewButton.openNewButton(self, qtw)
-        OpenRecentMenu.openRecentMenu(self, qtw)
+        # OpenRecentMenu.openRecentMenu(self, qtw)
         AddColumnButton.addColumnButton(self, self.tableView, qtw)
         DeleteRowButton.deleteRowButton(self, self.tableView, qtw)
         DeleteColumnButton.deleteColumnButton(self, self.tableView, qtw)
@@ -80,26 +81,11 @@ class MainWindow(qtw.QMainWindow):
         editMenu = menuBar.addMenu('Edit')
         navigateMenu = menuBar.addMenu('Navigate')
 
-        # before
-        # fileMenu.addAction(self.FileUploadButton) v
-        # fileMenu.addAction(self.FileExportButton) v
-        # fileMenu.addAction(self.CSVFileUploadButton) x
-        # fileMenu.addAction(self.OpenButton) v
-        # fileMenu.addAction(self.OpenRecentButton) v
-        # fileMenu.addAction(self.OpenNewButton) v
-
-        # editMenu.addAction(self.AddColumnButton)
-        # editMenu.addAction(self.DeleteRowButton)
-        # editMenu.addAction(self.DeleteColumnButton)
-        #
-        # navigateMenu.addAction(self.NavigateHomeButton)
-        # navigateMenu.addAction(self.NavigateTableButton)
-        # menuBar.addAction(self.InfoButton)
-
-        # after
         fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.OpenButton)
-        fileMenu.addMenu(self.OpenRecentMenu)  # TODO needs implementation
+        self.recentMenu = fileMenu.addMenu("Open Recent")
+        self.recentMenu.aboutToShow.connect(self.updateRecentMenu)
+        self.recentMenu.triggered.connect(self.openFileFromRecent)
         fileMenu.addAction(self.FileExportButton)
 
         editMenu.addAction(self.FileUploadButton)
@@ -112,6 +98,19 @@ class MainWindow(qtw.QMainWindow):
         navigateMenu.addAction(self.NavigateStatisticsButton)
         menuBar.addAction(self.InfoButton)
         return menuBar
+
+    def updateRecentMenu(self):
+        self.recentMenu.clear()
+        for file in self.recentFiles:
+            recentAction = self.recentMenu.addAction(os.path.basename(file))
+            recentAction.setData(file)
+
+    def openFileFromRecent(self, action):
+        self.setWindowTitle(action.data())
+        parseCSVFiles(action.data(), self)
+        self.recentFiles.append(action.data())
+        self.recentFiles = self.recentFiles[-4:]
+        print(self.recentFiles)
 
     def getTableView(self):
         return self.tableView

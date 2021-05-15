@@ -10,7 +10,6 @@ def uponActionPerformed(mainWindow, qtw):
 # opens a dialog with option to save, then clears the table window
 
 def openNewAction(mainWindow, qtw):
-    print("hey")
     saveOption = qtw.QMessageBox.question(mainWindow, 'Save',
                                           'Would you like to save before creating a new spreadsheet?',
                                           qtw.QMessageBox.Yes, qtw.QMessageBox.No)
@@ -25,5 +24,6 @@ def openNewAction(mainWindow, qtw):
             mainWindow.tableView.backEnd.clear()
 
     elif saveOption == qtw.QMessageBox.No:
+        mainWindow.setWindowTitle("Untitled")
         mainWindow.tableView.backEnd.clear()
 

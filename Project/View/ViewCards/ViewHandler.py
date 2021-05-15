@@ -6,12 +6,15 @@ import Project.View.ViewCards.StatisticsView as sv
 
 from Project.Controller.Buttons import  FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
-    OpenRecentButton, OpenButton
+    OpenRecentMenu, OpenButton
 # represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height, backEnd):
         super().__init__()
+
+        self.maxFileNr = 4
+        self.recentFiles = []
 
         self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
 
@@ -61,7 +64,7 @@ class MainWindow(qtw.QMainWindow):
         CSVFileUploadButton.csvFileUploadButton(self, qtw)
         OpenButton.openButton(self,qtw)
         OpenNewButton.openNewButton(self, qtw)
-        OpenRecentButton.openRecentButton(self, qtw)
+        OpenRecentMenu.openRecentMenu(self, qtw)
         AddColumnButton.addColumnButton(self, self.tableView, qtw)
         DeleteRowButton.deleteRowButton(self, self.tableView, qtw)
         DeleteColumnButton.deleteColumnButton(self, self.tableView, qtw)
@@ -96,7 +99,7 @@ class MainWindow(qtw.QMainWindow):
         # after
         fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.OpenButton)
-        fileMenu.addAction(self.OpenRecentButton)  # TODO needs implementation
+        fileMenu.addMenu(self.OpenRecentMenu)  # TODO needs implementation
         fileMenu.addAction(self.FileExportButton)
 
         editMenu.addAction(self.FileUploadButton)

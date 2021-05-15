@@ -8,5 +8,4 @@ def uponActionPerformed(mainWindow, qtw):
 # TODO: should be another drop down menu where the user
 #  can select recently worked on files (maybe also the untitled autosave)
 def openRecentAction(mainWindow, qtw):
-    print("something")
     print(mainWindow.recentFiles)

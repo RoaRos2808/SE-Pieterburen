@@ -12,7 +12,6 @@ app = qtw.QApplication([])
 splash = SplashScreen.SplashScreen(app)
 splash.showSplashScreen()
 
-
 #get screen resolution of system used
 screenResolution = app.desktop().screenGeometry()
 #fractions of the screen dimensions to use as dimensions for app

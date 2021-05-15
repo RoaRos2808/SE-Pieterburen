@@ -5,10 +5,9 @@ def uponActionPerformed(mainWindow, qtw):
     dialogFileName, ok = qtw.QFileDialog.getSaveFileName(mainWindow, "Select File Save Location",
                                                          "default", "CSV file (*.csv)", options=options)
     if ok:
+        mainWindow.setWindowTitle(dialogFileName)
+        be = mainWindow.getBackEnd()
+        be.setLastFileName(dialogFileName)
         exportCSV(mainWindow, dialogFileName)
-
-
-
-
 
 

@@ -9,10 +9,11 @@ class BackEnd:
         #TODO does not work when the file is empty
 
         self.data = data
+        self.recentFiles = self.readRecentFiles()
+        self.lastFileName = self.readLastFileName()
         self.data = self.data.fillna("")
         self.isRunning = True
         self._lock = threading.Lock()
-        self.recentFiles = self.readRecentFiles()
 
         #standard column names (have to discuss this)
         self.standardColumns = self.makeEmptyDataFrame()
@@ -70,6 +71,12 @@ class BackEnd:
     def getRecentFiles(self):
         return self.recentFiles
 
+    def getLastFileName(self):
+        return self.lastFileName
+
+    def setLastFileName(self, name):
+        self.lastFileName = name
+
     def setRunningFlag(self, isRunning):
         self.isRunning = isRunning
 
@@ -90,3 +97,12 @@ class BackEnd:
         with open('Model/BackEnd/RecentFilesList.txt', 'r') as f:
             recentFileList = [line.rstrip('\n') for line in f]
         return recentFileList
+
+    def writeLastFileName(self):
+        with open('Model/BackEnd/LastFileName.txt', 'w') as f:
+            f.write(self.lastFileName)
+
+    def readLastFileName(self):
+        with open('Model/BackEnd/LastFileName.txt', 'r') as f:
+            lastFileName = f.read()
+        return lastFileName

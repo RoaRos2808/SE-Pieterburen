@@ -16,7 +16,6 @@ class MainWindow(qtw.QMainWindow):
         self.recentFiles = []
         self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
 
-        self.setWindowTitle('Pieterburen ZeehondenCentrum')
         self.setGeometry(0, 0, width, height)
         self.mainWidget = qtw.QWidget(self)
         # create stack layout to get ability to switch between views
@@ -26,6 +25,8 @@ class MainWindow(qtw.QMainWindow):
 
         self.tableView = tv.TableView(self, backEnd)
         self.statisticsView = sv.StatisticsView(self, backEnd)
+
+        self.setWindowTitle(self.getBackEnd().getLastFileName())
 
         self.mainWidget.layout().addWidget(self.tableView)
         self.mainWidget.layout().addWidget(self.statisticsView)
@@ -121,3 +122,4 @@ class MainWindow(qtw.QMainWindow):
         super(qtw.QMainWindow, self).closeEvent(*args, **kwargs)
         be = self.getBackEnd()
         be.writeRecentFiles()
+        be.writeLastFileName()

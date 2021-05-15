@@ -13,6 +13,7 @@ def openAction(mainWindow, filePath):
     be = mainWindow.getBackEnd()
     mainWindow.setWindowTitle(filePath)
     parseCSVFiles(filePath, mainWindow)
+    be.setLastFileName(filePath)
 
     if filePath not in be.getRecentFiles():
         be.updateRecentFiles(filePath)

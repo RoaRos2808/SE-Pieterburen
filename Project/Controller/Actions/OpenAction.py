@@ -1,7 +1,18 @@
-import PyQt5.QtWidgets as qtw
-import PyQt5.QtCore as qtc
-from Project.Controller.Actions import CSVFileUploadAction
+from Project.Model.InputHandler.ParseCSV import parseCSVFiles
 
 #action for opening a .csv file in the table viewer
-def uponActionPerformed(mainWindow, qtw):
-    CSVFileUploadAction.getFilesCSV(mainWindow, qtw)
+def CSVUpload(mainWindow, qtw):
+    options = qtw.QFileDialog.Options()
+    filePath, _ = qtw.QFileDialog.getOpenFileName(mainWindow, "QFileDialog.getOpenFileNames()",
+                                                  "", "Table files (*.csv)", options=options)
+    # If files are selected, send  these to the InputHandler
+    if filePath:
+       openAction(mainWindow, filePath)
+
+def openAction(mainWindow, filePath):
+    be = mainWindow.getBackEnd()
+    mainWindow.setWindowTitle(filePath)
+    parseCSVFiles(filePath, mainWindow)
+
+    if filePath not in be.getRecentFiles():
+        be.updateRecentFiles(filePath)

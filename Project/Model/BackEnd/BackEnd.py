@@ -12,6 +12,7 @@ class BackEnd:
         self.data = self.data.fillna("")
         self.isRunning = True
         self._lock = threading.Lock()
+        self.recentFiles = self.readRecentFiles()
 
         #standard column names (have to discuss this)
         self.standardColumns = self.makeEmptyDataFrame()
@@ -48,22 +49,6 @@ class BackEnd:
             self.data = pd.concat(frames, ignore_index=True)
             self.data = self.data.fillna("")
 
-        # #if current spreadsheet does not contain standard column name, add this
-        # for standardColumn in self.standardColumns:
-        #     if not standardColumn in self.data.keys():
-        #         self.data.update({standardColumn: []})
-
-        #if a column is in spreadsheet and new data, add the row entries
-        # for col in self.data.columns:
-        #     for newCol in newData.columns:
-        #         if col == newCol:
-        #             print("columns match")
-
-        # #this accounts for columns that are in spreadsheet but not present in new data, it adds "" as an empty entry
-        # for key in self.data.keys():
-        #     if not key in newData.keys():
-        #         self.data[key].append("")
-
         # auto update table view after updating backend
         self.tableView.populateTable()
 
@@ -78,6 +63,13 @@ class BackEnd:
     def addTableView(self, tableView):
         self.tableView = tableView
 
+    def updateRecentFiles(self, filePath):
+        self.recentFiles.append(filePath)
+        self.recentFiles = self.recentFiles[-4:]
+
+    def getRecentFiles(self):
+        return self.recentFiles
+
     def setRunningFlag(self, isRunning):
         self.isRunning = isRunning
 
@@ -88,3 +80,13 @@ class BackEnd:
                 self.data = self.tableView.getDataInTable()
                 self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
                 print("Performed autosave")
+
+    def writeRecentFiles(self):
+        with open('Model/BackEnd/RecentFilesList.txt', 'w') as f:
+            for file in self.recentFiles:
+                f.write(file + '\n')
+
+    def readRecentFiles(self):
+        with open('Model/BackEnd/RecentFilesList.txt', 'r') as f:
+            recentFileList = [line.rstrip('\n') for line in f]
+        return recentFileList

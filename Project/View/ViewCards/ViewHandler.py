@@ -1,15 +1,12 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
-import Project.img.resources as resources
 import Project.View.ViewCards.TableView as tv
 import Project.View.ViewCards.StatisticsView as sv
 import os
-
+from Project.Controller.Actions.OpenAction import openAction
 from Project.Controller.Buttons import FileUploadButton, InfoButton, AddColumnButton, \
-    FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, CSVFileUploadButton, OpenNewButton, \
-    OpenRecentMenu, OpenButton
-
-from Project.Model.InputHandler.ParseCSV import parseCSVFiles
+    FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, OpenNewButton, \
+    OpenButton
 # represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
@@ -62,7 +59,6 @@ class MainWindow(qtw.QMainWindow):
         # initialize actions
         FileUploadButton.fileUploadButton(self, qtw)
         FileExportButton.fileExportButton(self, qtw)
-        CSVFileUploadButton.csvFileUploadButton(self, qtw)
         OpenButton.openButton(self, qtw)
         OpenNewButton.openNewButton(self, qtw)
         # OpenRecentMenu.openRecentMenu(self, qtw)
@@ -101,16 +97,13 @@ class MainWindow(qtw.QMainWindow):
 
     def updateRecentMenu(self):
         self.recentMenu.clear()
-        for file in self.recentFiles:
+        be = self.getBackEnd()
+        for file in be.getRecentFiles():
             recentAction = self.recentMenu.addAction(os.path.basename(file))
             recentAction.setData(file)
 
     def openFileFromRecent(self, action):
-        self.setWindowTitle(action.data())
-        parseCSVFiles(action.data(), self)
-        self.recentFiles.append(action.data())
-        self.recentFiles = self.recentFiles[-4:]
-        print(self.recentFiles)
+        openAction(self, action.data())
 
     def getTableView(self):
         return self.tableView
@@ -123,3 +116,8 @@ class MainWindow(qtw.QMainWindow):
 
     def activateDeleteColumnButton(self, boolean):
         self.DeleteColumnButton.setEnabled(boolean)
+
+    def closeEvent(self, *args, **kwargs):
+        super(qtw.QMainWindow, self).closeEvent(*args, **kwargs)
+        be = self.getBackEnd()
+        be.writeRecentFiles()

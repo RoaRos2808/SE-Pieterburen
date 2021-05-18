@@ -6,7 +6,7 @@ import os
 from Project.Controller.Actions.OpenAction import openAction
 from Project.Controller.Buttons import FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, OpenNewButton, \
-    OpenButton
+    OpenButton, SaveButton
 # represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
@@ -60,13 +60,12 @@ class MainWindow(qtw.QMainWindow):
         # initialize actions
         FileUploadButton.fileUploadButton(self, qtw)
         FileExportButton.fileExportButton(self, qtw)
+        SaveButton.saveButton(self, qtw)
         OpenButton.openButton(self, qtw)
         OpenNewButton.openNewButton(self, qtw)
-        # OpenRecentMenu.openRecentMenu(self, qtw)
         AddColumnButton.addColumnButton(self, self.tableView, qtw)
         DeleteRowButton.deleteRowButton(self, self.tableView, qtw)
         DeleteColumnButton.deleteColumnButton(self, self.tableView, qtw)
-        # NavigateHomeButton.navigateHomeButton(self, qtw) -- deprecated
         NavigateTableButton.navigateTableButton(self, qtw)
         NavigateStatisticsButton.navigateStatisticsButton(self, qtw)
         InfoButton.infoButton(self, qtw)
@@ -83,6 +82,7 @@ class MainWindow(qtw.QMainWindow):
         self.recentMenu = fileMenu.addMenu("Open Recent")
         self.recentMenu.aboutToShow.connect(self.updateRecentMenu)
         self.recentMenu.triggered.connect(self.openFileFromRecent)
+        fileMenu.addAction(self.SaveButton)
         fileMenu.addAction(self.FileExportButton)
 
         editMenu.addAction(self.FileUploadButton)

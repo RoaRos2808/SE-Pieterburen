@@ -31,4 +31,6 @@ def openNewAction(mainWindow, qtw):
 
         elif saveOption == qtw.QMessageBox.Discard:
             mainWindow.setWindowTitle("Untitled")
+            be = mainWindow.getBackEnd()
+            be.setLastFileName("Untitled")
             mainWindow.tableView.backEnd.clear()

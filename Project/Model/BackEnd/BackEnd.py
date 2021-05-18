@@ -1,12 +1,15 @@
-import json
+import os
 import time
 import threading
 import pandas as pd
-# hi
+
 class BackEnd:
     def __init__(self):
-        data = pd.read_csv('Model/BackEnd/LastSession.csv')
-        #TODO does not work when the file is empty
+        #print(os.stat('Model/BackEnd/LastSession.csv').st_size)
+        if os.stat('Model/BackEnd/LastSession.csv').st_size == 0:
+            data = self.makeEmptyDataFrame()
+        else:
+            data = pd.read_csv('Model/BackEnd/LastSession.csv')
 
         self.data = data
         self.recentFiles = self.readRecentFiles()

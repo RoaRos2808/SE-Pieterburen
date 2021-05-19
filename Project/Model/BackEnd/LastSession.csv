@@ -1,5 +1,6 @@
-File Name, Health Score, Notes
-12345.wav,2.0," """""
-54321.wav,1.0," """""
-77890.wav,2.0," """""
-PV18214_141118_L.wav,,
+File Name,Type,Left Lung Health,Right Lung Health, Health Score, Notes
+12345.wav,,,,2.0," """""
+54321.wav,,,,1.0," """""
+77890.wav,,,,2.0," """""
+PV18214_141118_L.wav,,,,,
+PV18214_191118_,,0.0,,,

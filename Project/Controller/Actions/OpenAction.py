@@ -1,4 +1,6 @@
 from Project.Model.InputHandler.ParseCSV import parseCSVFiles
+from os import path
+from PyQt5.QtWidgets import QMessageBox
 
 def uponActionPerformed(mainWindow, qtw):
     CSVUpload(mainWindow, qtw)
@@ -14,9 +16,16 @@ def CSVUpload(mainWindow, qtw):
 
 def openAction(mainWindow, filePath):
     be = mainWindow.getBackEnd()
-    mainWindow.setWindowTitle(filePath)
-    parseCSVFiles(filePath, mainWindow)
-    be.setLastFileName(filePath)
+    if path.exists(filePath):
+        mainWindow.setWindowTitle(filePath)
+        parseCSVFiles(filePath, mainWindow)
+        be.setLastFileName(filePath)
 
-    if filePath not in be.getRecentFiles():
-        be.updateRecentFiles(filePath)
+        if filePath not in be.getRecentFiles():
+            be.updateRecentFiles(filePath)
+    else:
+        print("file doesn't exist anymore")
+        msg = QMessageBox()
+        msg.setWindowTitle("Error")
+        msg.setText("File path does not exist.")
+        msg.exec()

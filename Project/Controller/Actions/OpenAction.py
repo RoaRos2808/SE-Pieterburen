@@ -1,5 +1,8 @@
 from Project.Model.InputHandler.ParseCSV import parseCSVFiles
 
+def uponActionPerformed(mainWindow, qtw):
+    CSVUpload(mainWindow, qtw)
+
 #action for opening a .csv file in the table viewer
 def CSVUpload(mainWindow, qtw):
     options = qtw.QFileDialog.Options()

@@ -4,7 +4,6 @@ def uponActionPerformed(mainWindow, qtw):
     openNewAction(mainWindow, qtw)
 
 # opens a dialog with option to save, then clears the table window
-
 def openNewAction(mainWindow, qtw):
 
     #check if data is empty before we give the option to save

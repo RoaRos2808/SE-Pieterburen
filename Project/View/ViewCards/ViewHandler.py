@@ -83,9 +83,12 @@ class MainWindow(qtw.QMainWindow):
 
         fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.OpenButton)
+
+        #TODO migrate to right place
         self.recentMenu = fileMenu.addMenu("Open Recent")
         self.recentMenu.aboutToShow.connect(self.updateRecentMenu)
         self.recentMenu.triggered.connect(self.openFileFromRecent)
+
         fileMenu.addAction(self.SaveButton)
         fileMenu.addAction(self.FileExportButton)
 

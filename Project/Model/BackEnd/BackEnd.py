@@ -43,7 +43,6 @@ class BackEnd:
                 self.data.loc[index, ["Left Lung Health"]] = result
             else:
                 self.data.loc[index, ["Right Lung Health"]] = result
-            self.data = self.data.fillna("")
         else:
             if leftOrRight == 'L':
                 df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})

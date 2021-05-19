@@ -15,7 +15,7 @@ def openNewAction(mainWindow, qtw):
         msgBox.setText("The document has been modified.")
         msgBox.setInformativeText("Do you want to save your changes?")
         msgBox.setWindowTitle("Save")
-        msgBox.setStandardButtons(qtw.QMessageBox.Yes | qtw.QMessageBox.Discard | qtw.QMessageBox.Cancel)
+        msgBox.setStandardButtons(qtw.QMessageBox.Yes | qtw.QMessageBox.No | qtw.QMessageBox.Cancel)
         saveOption = msgBox.exec_()
 
         if saveOption == qtw.QMessageBox.Yes:

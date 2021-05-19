@@ -44,9 +44,13 @@ class MainWindow(qtw.QMainWindow):
         if viewName == "table":
             self.AddColumnButton.setEnabled(True)
             self.mainWidget.layout().setCurrentIndex(0)
+            self.activateNavigateTableButton(False)
+            self.activateNavigateStatisticsButton(True)
         elif viewName == "statistics":
             self.AddColumnButton.setEnabled(False)
             self.mainWidget.layout().setCurrentIndex(1)
+            self.activateNavigateTableButton(True)
+            self.activateNavigateStatisticsButton(False)
 
 
     def menuBarSetup(self):
@@ -117,6 +121,12 @@ class MainWindow(qtw.QMainWindow):
 
     def activateDeleteColumnButton(self, boolean):
         self.DeleteColumnButton.setEnabled(boolean)
+
+    def activateNavigateTableButton(self, boolean):
+        self.NavigateTableButton.setEnabled(boolean)
+
+    def activateNavigateStatisticsButton(self, boolean):
+        self.NavigateStatisticsButton.setEnabled(boolean)
 
     def closeEvent(self, *args, **kwargs):
         super(qtw.QMainWindow, self).closeEvent(*args, **kwargs)

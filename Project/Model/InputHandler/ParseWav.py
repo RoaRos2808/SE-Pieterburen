@@ -15,6 +15,7 @@ def parseWavFiles(files, mainWindow):
     progressBar.setUpProgressDialog()
     progressPercentage = 0
 
+    mainWindow.setEnabled(False)
     for file in files:
         data = pd.DataFrame
         audio_path = file
@@ -45,3 +46,4 @@ def parseWavFiles(files, mainWindow):
             msg.setText("\""+fileName+"\" does not specify if it is a right or left lung!")
 
     progressBar.finalizeProgressDialog()
+    mainWindow.setEnabled(True)

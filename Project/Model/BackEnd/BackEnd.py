@@ -40,14 +40,14 @@ class BackEnd:
             #index = self.data[self.data["File Name"] == fileName].index
             index = self.data.index[self.data["File Name"] == fileName]
             if leftOrRight == 'L':
-                self.data.loc[index, ["Left Lung Health"]] = result
+                self.data.loc[index, ["Left Lung Health"]] = int(result)
             else:
-                self.data.loc[index, ["Right Lung Health"]] = result
+                self.data.loc[index, ["Right Lung Health"]] = int(result)
         else:
             if leftOrRight == 'L':
-                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})
+                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [int(result)]})
             else:
-                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Health": [result]})
+                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Health": [int(result)]})
             frames = [self.data, df]
             self.data = pd.concat(frames, ignore_index=True)
             self.data = self.data.fillna("")

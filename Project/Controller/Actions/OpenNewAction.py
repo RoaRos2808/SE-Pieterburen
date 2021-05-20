@@ -1,15 +1,23 @@
 from Project.Model.InputHandler.ParseCSV import parseCSVFiles
+import os
+from Project.Model.OutputHandler.ExportToCsv import exportCSV
 
 def uponActionPerformed(mainWindow, qtw):
     openNewAction(mainWindow, qtw)
 
+
 # opens a dialog with option to save, then clears the table window
 def openNewAction(mainWindow, qtw):
-
-    #check if data is empty before we give the option to save
+    # check if data is empty before we give the option to save
     data = mainWindow.tableView.backEnd.getData()
 
     if not data.empty:
+        be = mainWindow.getBackEnd()
+        if mainWindow.windowTitle() == "Untitled":
+            currentPath = "Untitled"
+        else:
+            currentPath = os.path.basename(mainWindow.windowTitle())
+
         msgBox = qtw.QMessageBox(mainWindow)
         msgBox.setText("The document has been modified.")
         msgBox.setInformativeText("Do you want to save your changes?")
@@ -19,17 +27,19 @@ def openNewAction(mainWindow, qtw):
 
         if saveOption == qtw.QMessageBox.Yes:
             options = qtw.QFileDialog.Options()
-            filePath, _ = qtw.QFileDialog.getOpenFileName(mainWindow, "QFileDialog.getOpenFileNames()",
-                                                          "", "Table files (*.csv)", options=options)
+            dialogFileName, ok = qtw.QFileDialog.getSaveFileName(mainWindow, "Select File Save Location",
+                                                                 currentPath, "CSV file (*.csv)", options=options)
 
             # If files are selected, send  these to the InputHandler
-            if filePath:
-                mainWindow.setWindowTitle(filePath)
-                parseCSVFiles(filePath, mainWindow)
-                mainWindow.tableView.backEnd.clear()
+            if ok:
+                mainWindow.setWindowTitle(dialogFileName)
+                exportCSV(mainWindow, dialogFileName)
+                be.setLastFileName(dialogFileName)
+                if dialogFileName not in be.getRecentFiles():
+                    be.updateRecentFiles(dialogFileName)
+                be.clear()
 
         elif saveOption == qtw.QMessageBox.No:
             mainWindow.setWindowTitle("Untitled")
-            be = mainWindow.getBackEnd()
             be.setLastFileName("Untitled")
             mainWindow.tableView.backEnd.clear()

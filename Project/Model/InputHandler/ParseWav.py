@@ -4,6 +4,7 @@ import math
 from Project.View.Miscellaneous.ProgressBar import ProgressBar
 from PyQt5.QtWidgets import QMessageBox
 import pandas as pd
+import time
 
 
 # save the audio path and get the CNN results
@@ -32,8 +33,11 @@ def parseWavFiles(files, mainWindow):
             type = ""
 
             be.update(type, fileName, leftOrRight, result)
-            progressPercentage = progressPercentage + math.floor((1 / len(files)) * 100)
-            progressBar.updateProgressDialog(progressPercentage)
+            bound = progressPercentage + math.floor((1 / len(files)) * 100)
+            while progressPercentage <= bound:
+                progressPercentage = progressPercentage + 1
+                progressBar.updateProgressDialog(progressPercentage)
+                time.sleep(0.005)
         else:
             print("wrong file name convention")
             msg = QMessageBox()

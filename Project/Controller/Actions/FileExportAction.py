@@ -11,6 +11,8 @@ def fileExportAction(mainWindow, qtw):
         mainWindow.setWindowTitle(dialogFileName)
         be = mainWindow.getBackEnd()
         be.setLastFileName(dialogFileName)
+        if dialogFileName not in be.getRecentFiles():
+            be.updateRecentFiles(dialogFileName)
         exportCSV(mainWindow, dialogFileName)
 
 

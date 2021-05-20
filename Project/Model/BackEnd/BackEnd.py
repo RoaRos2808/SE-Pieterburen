@@ -58,6 +58,7 @@ class BackEnd:
     # function for opening a previously saved table
     def openTable(self, newData):
         self.data = newData
+        self.data = self.data.fillna("")
         self.tableView.populateTable()
 
     def getData(self):

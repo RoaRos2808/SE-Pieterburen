@@ -28,7 +28,7 @@ def openNewAction(mainWindow, qtw):
                 parseCSVFiles(filePath, mainWindow)
                 mainWindow.tableView.backEnd.clear()
 
-        elif saveOption == qtw.QMessageBox.Discard:
+        elif saveOption == qtw.QMessageBox.No:
             mainWindow.setWindowTitle("Untitled")
             be = mainWindow.getBackEnd()
             be.setLastFileName("Untitled")

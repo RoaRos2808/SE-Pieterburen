@@ -15,7 +15,7 @@ splash.showSplashScreen()
 #get screen resolution of system used
 screenResolution = app.desktop().screenGeometry()
 #fractions of the screen dimensions to use as dimensions for app
-windowHeightToScreen, windowWidthToScreen = 0.6, 0.4
+windowHeightToScreen, windowWidthToScreen = 0.7, 0.6
 width, height = int(screenResolution.width()*windowWidthToScreen), int(screenResolution.height()*windowHeightToScreen)
 
 # add backend to tableview and tableview to backend

@@ -88,6 +88,10 @@ class BackEnd:
             with self._lock:
                 time.sleep(5)
                 self.data = self.tableView.getDataInTable()
+                #remove whitespace at start and end of every value
+                for column in self.data.columns:
+                    self.data[column] = self.data[column].apply(lambda x: x.strip())
+
                 self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
                 print("Performed autosave")
 

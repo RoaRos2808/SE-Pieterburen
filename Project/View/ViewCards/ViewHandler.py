@@ -47,6 +47,7 @@ class MainWindow(qtw.QMainWindow):
             self.activateNavigateTableButton(False)
             self.activateNavigateStatisticsButton(True)
         elif viewName == "statistics":
+            self.statisticsView.plot()
             self.AddColumnButton.setEnabled(False)
             self.mainWidget.layout().setCurrentIndex(1)
             self.activateNavigateTableButton(True)

@@ -6,3 +6,4 @@ versioned-hdf5
 keras
 tensorflow
 pandas
+matplotlib

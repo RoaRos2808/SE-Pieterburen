@@ -23,6 +23,15 @@ class MainWindow(qtw.QMainWindow):
         # layouts in pyqt have margins by default, so we turn these off
         self.mainWidget.layout().setContentsMargins(0, 0, 0, 0)
 
+        qtRectangle = self.frameGeometry()
+        centerPoint = qtw.QDesktopWidget().availableGeometry().center()
+        qtRectangle.moveCenter(centerPoint)
+        self.move(qtRectangle.topLeft())
+        qtRectangle = self.frameGeometry()
+        centerPoint = qtw.QDesktopWidget().availableGeometry().center()
+        qtRectangle.moveCenter(centerPoint)
+        self.move(qtRectangle.topLeft())
+
         self.tableView = tv.TableView(self, backEnd)
         self.statisticsView = sv.StatisticsView(self, backEnd)
 

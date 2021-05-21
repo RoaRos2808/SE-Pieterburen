@@ -45,7 +45,9 @@ class StatisticsView(qtw.QFrame):
         #with current method of plotting, it crashes when trying to plot empty pandas series
         #therefore, if a series is empty (i.e., the column is not present or is empty), we use another approach to draw
         #an empty plot that does have x and y axes
-        if not 'Left Lung Health' in data.columns or data.empty:
+        #the line below checks if column name is present, or dataframe is empty, or if there are only empty strings
+        #(note that the data kept in statistics view trims all whitespace value to empty strings)
+        if not 'Left Lung Health' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Left Lung Health'].unique()))) == 0:
             axLeftLung = self.figureLeftLung.add_subplot(111)
             axLeftLung.set_xlabel("Health Score")
             axLeftLung.set_ylabel("Frequency")
@@ -61,7 +63,7 @@ class StatisticsView(qtw.QFrame):
 
         #exact same is done for right lung
         self.figureRightLung.clear()
-        if not 'Right Lung Health' in data.columns:
+        if not 'Right Lung Health' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Right Lung Health'].unique()))) == 0:
             ax = self.figureRightLung.add_subplot(111)
             ax.set_xlabel("Health Score")
             ax.set_ylabel("Frequency")

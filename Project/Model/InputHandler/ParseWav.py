@@ -27,6 +27,10 @@ def parseWavFiles(files, mainWindow):
             fileName = fileName[:-5]
             # TODO apply model
             result = feature_extractor2.weight_results(file)
+            if result == 1:
+                result = "Good"
+            else:
+                result = "Bad"
             #give name without the 'L.wav' or 'R.wav' of string
             be = mainWindow.getBackEnd()
 
@@ -35,6 +39,7 @@ def parseWavFiles(files, mainWindow):
 
             be.update(type, fileName, leftOrRight, result)
             bound = progressPercentage + math.floor((1 / len(files)) * 100)
+            #allows progress to smoothly increments instead of jumping in large interval percentages
             while progressPercentage <= bound:
                 progressPercentage = progressPercentage + 1
                 progressBar.updateProgressDialog(progressPercentage)

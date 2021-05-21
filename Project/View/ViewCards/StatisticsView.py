@@ -57,7 +57,12 @@ class StatisticsView(qtw.QFrame):
             axLeftLung.plot()
         else:
             axLeftLung = self.figureLeftLung.add_subplot(111)
-            data['Left Lung Health'].value_counts().plot.bar(ax=axLeftLung, xlabel="Health Score",
+            #this part removes empty strings from being counted in the graph
+            leftLungHealth = data['Left Lung Health']
+            leftLungHealth.replace("", float("NaN"), inplace=True)
+            leftLungHealth.dropna()
+
+            leftLungHealth.value_counts().plot.bar(ax=axLeftLung, xlabel="Health Score",
                                                              ylabel="Frequency", title="Left Lung Health", legend=False,
                                                              rot=0)
 
@@ -73,6 +78,10 @@ class StatisticsView(qtw.QFrame):
             ax.plot()
         else:
             ax = self.figureRightLung.add_subplot(111)
+            #this part removes empty strings from being counted in the graph
+            rightLungHealth = data['Right Lung Health']
+            rightLungHealth.replace("", float("NaN"), inplace=True)
+            rightLungHealth.dropna()
             data['Right Lung Health'].value_counts().plot.bar(ax=ax, xlabel="Health Score",
                                                               ylabel="Frequency", title="Right Lung Health",
                                                               legend=False,

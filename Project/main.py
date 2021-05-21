@@ -23,6 +23,7 @@ backEnd = be.BackEnd()
 mw = ViewHandler.MainWindow(width, height, backEnd)
 tableView = mw.getTableView()
 backEnd.addTableView(tableView)
+tableView.activateItemChangedSignal()
 
 #Thread is not working fully properly yet. When program is closed while writing to session file, can cause problems
 thread = threading.Thread(target=backEnd.autosave, daemon=False)

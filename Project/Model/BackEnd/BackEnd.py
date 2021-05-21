@@ -61,6 +61,13 @@ class BackEnd:
         self.data = self.data.fillna("")
         self.tableView.populateTable()
 
+    #refresh backend data with current data in table
+    def refresh(self):
+        #print('refresh')
+        self.data = self.tableView.getDataInTable()
+        for column in self.data.columns:
+            self.data[column] = self.data[column].apply(lambda x: x.strip())
+
     def getData(self):
         return self.data
 
@@ -86,11 +93,11 @@ class BackEnd:
     def autosave(self):
         while self.isRunning:
             with self._lock:
-                time.sleep(5)
-                self.data = self.tableView.getDataInTable()
+                time.sleep(20)
+                #self.data = self.tableView.getDataInTable()
                 #remove whitespace at start and end of every value
-                for column in self.data.columns:
-                    self.data[column] = self.data[column].apply(lambda x: x.strip())
+                #for column in self.data.columns:
+                #    self.data[column] = self.data[column].apply(lambda x: x.strip())
 
                 self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
                 print("Performed autosave")

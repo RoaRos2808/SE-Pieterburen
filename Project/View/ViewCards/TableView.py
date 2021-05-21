@@ -92,3 +92,6 @@ class TableView(qtw.QFrame):
             self.parent.activateDeleteColumnButton(False)
         else:
             self.parent.activateDeleteColumnButton(True)
+
+    def activateItemChangedSignal(self):
+        self.table.itemChanged.connect(self.backEnd.refresh)

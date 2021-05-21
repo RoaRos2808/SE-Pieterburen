@@ -7,3 +7,6 @@ def deleteColumn(tableWindow):
         idx = index.column()
     tableWindow.table.removeColumn(idx)
     del tableWindow.columnHeaders[idx]
+    #if indexes is not empty, a deletion has taken place, so refresh backend
+    if indexes:
+        tableWindow.getBackEnd().refresh()

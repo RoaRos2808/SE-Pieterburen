@@ -62,7 +62,7 @@ class StatisticsView(qtw.QFrame):
             leftLungHealth.replace("", float("NaN"), inplace=True)
             leftLungHealth.dropna()
 
-            leftLungHealth.value_counts().plot.bar(ax=axLeftLung, xlabel="Health Score",
+            leftLungHealth.value_counts().sort_values(ascending=True).plot.bar(ax=axLeftLung, xlabel="Health Score",
                                                              ylabel="Frequency", title="Left Lung Health", legend=False,
                                                              rot=0)
 
@@ -82,7 +82,7 @@ class StatisticsView(qtw.QFrame):
             rightLungHealth = data['Right Lung Health']
             rightLungHealth.replace("", float("NaN"), inplace=True)
             rightLungHealth.dropna()
-            data['Right Lung Health'].value_counts().plot.bar(ax=ax, xlabel="Health Score",
+            data['Right Lung Health'].value_counts().sort_values(ascending=True).plot.bar(ax=ax, xlabel="Health Score",
                                                               ylabel="Frequency", title="Right Lung Health",
                                                               legend=False,
                                                               rot=0)

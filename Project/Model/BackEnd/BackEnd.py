@@ -91,14 +91,23 @@ class BackEnd:
         self.isRunning = isRunning
 
     def autosave(self):
+        saveInterval = 20
         while self.isRunning:
+            #check if isRunning is active every second
+            for i in range(saveInterval):
+                if self.isRunning:
+                    time.sleep(1)
+                #if isRunning is false, perform an autosave and end function
+                else:
+                    with self._lock:
+                        self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
+                        print("Performed autosave")
+                    return
+            #if 20 seconds have passed, perform autosave
             with self._lock:
-                time.sleep(20)
-                #self.data = self.tableView.getDataInTable()
                 #remove whitespace at start and end of every value
                 #for column in self.data.columns:
                 #    self.data[column] = self.data[column].apply(lambda x: x.strip())
-
                 self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
                 print("Performed autosave")
 

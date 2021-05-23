@@ -6,10 +6,10 @@ import pandas as pd
 class BackEnd:
     def __init__(self):
         #print(os.stat('Model/BackEnd/LastSession.csv').st_size)
-        if os.stat('Model/BackEnd/LastSession.csv').st_size == 0:
+        if os.stat('../Project/Model/BackEnd/LastSession.csv').st_size == 0:
             data = self.makeEmptyDataFrame()
         else:
-            data = pd.read_csv('Model/BackEnd/LastSession.csv')
+            data = pd.read_csv('../Project/Model/BackEnd/LastSession.csv')
 
         self.data = data
         self.recentFiles = self.readRecentFiles()

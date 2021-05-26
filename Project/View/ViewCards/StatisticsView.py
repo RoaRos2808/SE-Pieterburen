@@ -24,11 +24,32 @@ class StatisticsView(qtw.QFrame):
 
         self.figureLeftLung = plt.figure()
         self.canvasLeftLung = FigureCanvas(self.figureLeftLung)
-        self.layout().addWidget(self.canvasLeftLung, 1, 0, 1, 1)
+        self.layout().addWidget(self.canvasLeftLung, 0, 0, 1, 3)
 
         self.figureRightLung = plt.figure()
         self.canvasRightLung = FigureCanvas(self.figureRightLung)
-        self.layout().addWidget(self.canvasRightLung, 1, 1, 1, 1)
+        self.layout().addWidget(self.canvasRightLung, 0, 3, 1, 3)
+
+        self.radioButtonNames = ['file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2']
+        #self.radioButtonNames = []
+        self.radioButtonFrame = qtw.QFrame()
+        self.scrollArea = qtw.QScrollArea()
+        #self.scrollArea.setSizeAdjustPolicy(AdjustToContents)
+        self.scrollArea.setSizePolicy(qtw.QSizePolicy.Preferred, qtw.QSizePolicy.Preferred)
+        self.scrollArea.setWidget(self.radioButtonFrame)
+        self.scrollArea.setWidgetResizable(True)
+        self.radioButtonFrame.setStyleSheet("background-color:white")
+        self.radioButtonFrame.setLayout(qtw.QVBoxLayout())
+        self.radioButtonFrame.layout().setContentsMargins(20, 10, 20, 10)
+        for buttonName in self.radioButtonNames:
+            button = qtw.QRadioButton(buttonName)
+            self.radioButtonFrame.layout().addWidget(button)
+        #self.layout().addWidget(self.radioButtonFrame, 1, 0, 1, 1)
+        self.layout().addWidget(self.scrollArea, 1, 0, 1, 1)
+
+        self.tempFrame = qtw.QFrame()
+        self.tempFrame.setStyleSheet("background-color:white")
+        self.layout().addWidget(self.tempFrame, 1, 1, 1, 5)
 
         #plot is function that handles drawing of graphs
         self.plot()

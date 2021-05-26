@@ -41,9 +41,6 @@ class StatisticsView(qtw.QFrame):
         self.radioButtonFrame.setStyleSheet("background-color:white")
         self.radioButtonFrame.setLayout(qtw.QVBoxLayout())
         self.radioButtonFrame.layout().setContentsMargins(20, 10, 20, 10)
-        for buttonName in self.radioButtonNames:
-            button = qtw.QRadioButton(buttonName)
-            self.radioButtonFrame.layout().addWidget(button)
         #self.layout().addWidget(self.radioButtonFrame, 1, 0, 1, 1)
         self.layout().addWidget(self.scrollArea, 1, 0, 1, 1)
 
@@ -53,6 +50,11 @@ class StatisticsView(qtw.QFrame):
 
         #plot is function that handles drawing of graphs
         self.plot()
+
+    def refreshStatisticPage(self):
+        self.plot()
+        self.refreshRadioButtons()
+
 
     def plot(self):
         data = self.backEnd.getData()
@@ -111,3 +113,8 @@ class StatisticsView(qtw.QFrame):
 
         self.canvasLeftLung.draw()
         self.canvasRightLung.draw()
+
+    def refreshRadioButtons(self):
+        for buttonName in self.radioButtonNames:
+            button = qtw.QRadioButton(buttonName)
+            self.radioButtonFrame.layout().addWidget(button)

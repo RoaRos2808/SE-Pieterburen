@@ -1,5 +1,6 @@
 from Project.Model.CNN import feature_extractor2
 import os
+import librosa
 import math
 from Project.View.Miscellaneous.ProgressBar import ProgressBar
 from PyQt5.QtWidgets import QMessageBox
@@ -38,6 +39,11 @@ def parseWavFiles(files, mainWindow):
             type = ""
 
             be.update(type, fileName, leftOrRight, result)
+
+            #audio, sampleRate = librosa.load(file_path, sr=sampling_rate, res_type='kaiser_fast')
+            audio, sampleRate = librosa.load(file, sr=None, res_type='kaiser_fast')
+            be.insertSpectogramInfo(fileName+leftOrRight, audio, sampleRate)
+
             bound = progressPercentage + math.floor((1 / len(files)) * 100)
             #allows progress to smoothly increments instead of jumping in large interval percentages
             while progressPercentage <= bound:

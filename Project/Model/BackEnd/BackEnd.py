@@ -12,6 +12,7 @@ class BackEnd:
             data = pd.read_csv('../Project/Model/BackEnd/LastSession.csv')
 
         self.data = data
+        self.spectogramInfo = {}
         self.recentFiles = self.readRecentFiles()
         self.lastFileName = self.readLastFileName()
         self.data = self.data.fillna("")
@@ -27,6 +28,7 @@ class BackEnd:
 
     def clear(self):
         self.data = self.makeEmptyDataFrame()
+        self.spectogramInfo = {}
         self.tableView.populateTable()
 
     def update(self, type, fileName, leftOrRight, result):
@@ -52,6 +54,8 @@ class BackEnd:
             self.data = pd.concat(frames, ignore_index=True)
             self.data = self.data.fillna("")
 
+        self.data = self.data.fillna("")
+
         # auto update table view after updating backend
         self.tableView.populateTable()
 
@@ -67,6 +71,12 @@ class BackEnd:
         self.data = self.tableView.getDataInTable()
         for column in self.data.columns:
             self.data[column] = self.data[column].apply(lambda x: x.strip())
+
+    def insertSpectogramInfo(self, fileName, audio, sample_rate):
+        self.spectogramInfo[fileName] = [audio, sample_rate]
+
+    def getSpectogramInfo(self):
+        return self.spectogramInfo
 
     def getData(self):
         return self.data

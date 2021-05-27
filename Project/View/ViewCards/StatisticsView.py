@@ -38,6 +38,7 @@ class StatisticsView(qtw.QFrame):
         self.scrollArea.setSizePolicy(qtw.QSizePolicy.Preferred, qtw.QSizePolicy.Preferred)
         self.scrollArea.setWidget(self.radioButtonFrame)
         self.scrollArea.setWidgetResizable(True)
+        self.scrollArea.setStyleSheet("QScrollBar{background-color: none}")
         self.radioButtonFrame.setStyleSheet("background-color:white")
         self.radioButtonFrame.setLayout(qtw.QVBoxLayout())
         self.radioButtonFrame.layout().setContentsMargins(10, 10, 20, 10)
@@ -134,8 +135,6 @@ class StatisticsView(qtw.QFrame):
             spectogramInfo = self.backEnd.getSpectogramInfo()
             audio = spectogramInfo[fileName][0]
             sr = spectogramInfo[fileName][1]
-            print(fileName)
-            print(audio)
 
             #fig, ax = plt.subplots(nrows=2, ncols=1, sharex=True)
             #self.figureSpectogram = fig

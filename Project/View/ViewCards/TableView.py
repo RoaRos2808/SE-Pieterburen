@@ -24,8 +24,9 @@ class TableView(qtw.QFrame):
         self.backEnd = backEnd
         self.populateTable()
 
-        self.table.setStyleSheet("background-color:white")
-
+        self.table.setStyleSheet("QFrame{ background-color:white}"
+                                 "QScrollBar{ background-color: none } ")
+        #self.table.resizeColumnsToContents()
         self.layout().addWidget(self.table, 1, 0, 1, 1)
 
     # This function takes the table data in the form of a dictionary.

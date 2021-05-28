@@ -34,6 +34,7 @@ def parseWavFiles(files, mainWindow):
                 whistleResult = "No"
 
             result = feature_extractor3.weight_results(file)
+            print(result)
             if result == 1:
                 rhonchusResult = "Yes"
             else:

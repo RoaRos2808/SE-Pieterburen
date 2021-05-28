@@ -23,7 +23,8 @@ class BackEnd:
         self.standardColumns = self.makeEmptyDataFrame()
 
     def makeEmptyDataFrame(self):
-        df = pd.DataFrame(columns=['File Name', 'Type', 'Left Lung Health', 'Right Lung Health'])
+        df = pd.DataFrame(columns=['File Name', 'Type', 'Left Lung Whistle', 'Right Lung Whistle', 'Left Lung Rhonchus',
+                                   'Right Lung Rhonchus'])
         return df
 
     def clear(self):
@@ -31,7 +32,7 @@ class BackEnd:
         self.spectogramInfo = {}
         self.tableView.populateTable()
 
-    def update(self, type, fileName, leftOrRight, result):
+    def update(self, type, fileName, leftOrRight, whistleResult, rhonchusResult):
         #when you update, check if the standard column headers are present in data. If not, add them at correct position
         standard = self.standardColumns.keys()
         for i in range(0, len(standard)):
@@ -42,14 +43,18 @@ class BackEnd:
             #index = self.data[self.data["File Name"] == fileName].index
             index = self.data.index[self.data["File Name"] == fileName]
             if leftOrRight == 'L':
-                self.data.loc[index, ["Left Lung Health"]] = result
+                self.data.loc[index, ["Left Lung Whistle"]] = whistleResult
+                self.data.loc[index, ["Left Lung Rhonchus"]] = rhonchusResult
             else:
-                self.data.loc[index, ["Right Lung Health"]] = result
+                self.data.loc[index, ["Right Lung Whistle"]] = whistleResult
+                self.data.loc[index, ["Right Lung Rhonchus"]] = rhonchusResult
         else:
             if leftOrRight == 'L':
-                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Health": [result]})
+                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Whistle": [whistleResult],
+                                   "Left Lung Rhonchus": [rhonchusResult]})
             else:
-                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Health": [result]})
+                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Whistle": [whistleResult],
+                                   "Right Lung Rhonchus": [rhonchusResult]})
             frames = [self.data, df]
             self.data = pd.concat(frames, ignore_index=True)
             self.data = self.data.fillna("")

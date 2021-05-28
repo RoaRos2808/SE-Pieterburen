@@ -87,7 +87,7 @@ def get_prediction(file_path, model, n_mfcc, sampling_rate=None):
 
 def weight_results(file):
     # Load model using weights
-    model = load_model("Model/CNN/weights.best.basic_whistling.hdf5")
+    model = load_model("Model/CNN/weights.best.basic_rhonchus.hdf5")
     # TODO: load_model crashes the program, fix this
 
     # Uncomment this only if you are interested in the in-depth info about the model

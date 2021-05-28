@@ -5,7 +5,7 @@ def uponActionPerformed(tableWindow, qtw):
 
 def addColumn(tableWindow, qtw):
     dialogColumnName = qtw.QInputDialog()
-    dialogColumnName.setStyleSheet("QDialog{background-color:none}")
+    dialogColumnName.setStyleSheet("QDialog {background-color:none}")
     columnName, ok = dialogColumnName.getText(tableWindow, "Enter column name", "Enter a column header:")
     if ok:
         tableWindow.columnHeaders.append(columnName)

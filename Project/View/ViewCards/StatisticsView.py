@@ -29,6 +29,14 @@ class StatisticsView(qtw.QFrame):
         self.canvasRightLung = FigureCanvas(self.figureRightLung)
         self.layout().addWidget(self.canvasRightLung, 0, 3, 1, 3)
 
+        self.figureLeftLungRhonchus = plt.figure()
+        self.canvasLeftLungRhonchus = FigureCanvas(self.figureLeftLungRhonchus)
+        self.layout().addWidget(self.canvasLeftLungRhonchus, 0, 6, 1, 3)
+
+        self.figureRightLungRhonchus = plt.figure()
+        self.canvasRightLungRhonchus = FigureCanvas(self.figureRightLungRhonchus)
+        self.layout().addWidget(self.canvasRightLungRhonchus, 0, 9, 1, 3)
+
         #self.radioButtonNames = ['file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2', 'file 1', 'file 2']
         #self.radioButtonNames = []
         self.radioButtons = {}
@@ -43,11 +51,11 @@ class StatisticsView(qtw.QFrame):
         self.radioButtonFrame.setLayout(qtw.QVBoxLayout())
         self.radioButtonFrame.layout().setContentsMargins(10, 10, 20, 10)
         #self.layout().addWidget(self.radioButtonFrame, 1, 0, 1, 1)
-        self.layout().addWidget(self.scrollArea, 1, 0, 1, 1)
+        self.layout().addWidget(self.scrollArea, 1, 0, 1, 2)
 
         self.figureSpectogram = plt.figure()
         self.canvasSpectogram = FigureCanvas(self.figureSpectogram)
-        self.layout().addWidget(self.canvasSpectogram, 1, 1, 1, 5)
+        self.layout().addWidget(self.canvasSpectogram, 1, 2, 1, 10)
         #self.spectogramFrame = qtw.QFrame()
         #self.spectogramFrame.setStyleSheet("background-color:white")
         #self.layout().addWidget(self.spectogramFrame, 1, 1, 1, 5)
@@ -78,49 +86,95 @@ class StatisticsView(qtw.QFrame):
         #an empty plot that does have x and y axes
         #the line below checks if column name is present, or dataframe is empty, or if there are only empty strings
         #(note that the data kept in statistics view trims all whitespace value to empty strings)
-        if not 'Left Lung Health' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Left Lung Health'].unique()))) == 0:
+        if not 'Left Lung Whistle' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Left Lung Whistle'].unique()))) == 0:
             axLeftLung = self.figureLeftLung.add_subplot(111)
-            axLeftLung.set_xlabel("Health Score")
+            axLeftLung.set_xlabel("Assessment")
             axLeftLung.set_ylabel("Frequency")
-            axLeftLung.set_title("Left Lung Health")
+            axLeftLung.set_title("Left Lung Whistle")
             axLeftLung.axes.xaxis.set_ticks([])
             axLeftLung.axes.yaxis.set_ticks([])
             axLeftLung.plot()
         else:
             axLeftLung = self.figureLeftLung.add_subplot(111)
             #this part removes empty strings from being counted in the graph
-            leftLungHealth = data['Left Lung Health']
+            leftLungHealth = data['Left Lung Whistle']
             leftLungHealth.replace("", float("NaN"), inplace=True)
             leftLungHealth.dropna()
 
-            leftLungHealth.value_counts().sort_values(ascending=True).plot.bar(ax=axLeftLung, xlabel="Health Score",
-                                                             ylabel="Frequency", title="Left Lung Health", legend=False,
+            leftLungHealth.value_counts().sort_values(ascending=True).plot.bar(ax=axLeftLung, xlabel="Assessment",
+                                                             ylabel="Frequency", title="Left Lung Whistle", legend=False,
                                                              rot=0)
 
         #exact same is done for right lung
         self.figureRightLung.clear()
-        if not 'Right Lung Health' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Right Lung Health'].unique()))) == 0:
+        if not 'Right Lung Whistle' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Right Lung Whistle'].unique()))) == 0:
             ax = self.figureRightLung.add_subplot(111)
-            ax.set_xlabel("Health Score")
+            ax.set_xlabel("Assessment")
             ax.set_ylabel("Frequency")
-            ax.set_title("Right Lung Health")
+            ax.set_title("Right Lung Whistle")
             ax.axes.xaxis.set_ticks([])
             ax.axes.yaxis.set_ticks([])
             ax.plot()
         else:
             ax = self.figureRightLung.add_subplot(111)
             #this part removes empty strings from being counted in the graph
-            rightLungHealth = data['Right Lung Health']
+            rightLungHealth = data['Right Lung Whistle']
             rightLungHealth.replace("", float("NaN"), inplace=True)
             rightLungHealth.dropna()
-            data['Right Lung Health'].value_counts().sort_values(ascending=True).plot.bar(ax=ax, xlabel="Health Score",
-                                                              ylabel="Frequency", title="Right Lung Health",
+            data['Right Lung Whistle'].value_counts().sort_values(ascending=True).plot.bar(ax=ax, xlabel="Assessment",
+                                                              ylabel="Frequency", title="Right Lung Whistle",
                                                               legend=False,
                                                               rot=0)
 
+        # same for leftlungrhonchus
+        self.figureLeftLungRhonchus.clear()
+        if not 'Left Lung Rhonchus' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Left Lung Rhonchus'].unique()))) == 0:
+            axLeftLungRhonchus = self.figureLeftLungRhonchus.add_subplot(111)
+            axLeftLungRhonchus.set_xlabel("Assessment")
+            axLeftLungRhonchus.set_ylabel("Frequency")
+            axLeftLungRhonchus.set_title("Left Lung Rhonchus")
+            axLeftLungRhonchus.axes.xaxis.set_ticks([])
+            axLeftLungRhonchus.axes.yaxis.set_ticks([])
+            axLeftLungRhonchus.plot()
+        else:
+            axLeftLungRhonchus = self.figureLeftLungRhonchus.add_subplot(111)
+            # this part removes empty strings from being counted in the graph
+            leftLungHealthRhonchus = data['Left Lung Rhonchus']
+            leftLungHealthRhonchus.replace("", float("NaN"), inplace=True)
+            leftLungHealthRhonchus.dropna()
+
+            leftLungHealthRhonchus.value_counts().sort_values(ascending=True).plot.bar(ax=axLeftLungRhonchus, xlabel="Assessment",
+                                                                               ylabel="Frequency",
+                                                                               title="Left Lung Rhonchus",
+                                                                               legend=False,
+                                                                               rot=0)
+
+        #exact same is done for right lung rhonchus
+        self.figureRightLungRhonchus.clear()
+        if not 'Right Lung Rhonchus' in data.columns or data.empty or len(list(filter(lambda a: a != "", data['Right Lung Rhonchus'].unique()))) == 0:
+            #print(len(list(filter(lambda a: a != "", data['Right Lung Rhonchus'].unique()))) == 0)
+            axRhonchus = self.figureRightLungRhonchus.add_subplot(111)
+            axRhonchus.set_xlabel("Assessment")
+            axRhonchus.set_ylabel("Frequency")
+            axRhonchus.set_title("Right Lung Rhonchus")
+            axRhonchus.axes.xaxis.set_ticks([])
+            axRhonchus.axes.yaxis.set_ticks([])
+            axRhonchus.plot()
+        else:
+            axRhonchus = self.figureRightLungRhonchus.add_subplot(111)
+            #this part removes empty strings from being counted in the graph
+            rightLungHealthRhonchus = data['Right Lung Rhonchus']
+            rightLungHealthRhonchus.replace("", float("NaN"), inplace=True)
+            rightLungHealthRhonchus.dropna()
+            data['Right Lung Rhonchus'].value_counts().sort_values(ascending=True).plot.bar(ax=axRhonchus, xlabel="Assessment",
+                                                              ylabel="Frequency", title="Right Lung Rhonchus",
+                                                              legend=False,
+                                                              rot=0)
 
         self.canvasLeftLung.draw()
         self.canvasRightLung.draw()
+        self.canvasLeftLungRhonchus.draw()
+        self.canvasRightLungRhonchus.draw()
 
 
     def plotSpectogram(self):

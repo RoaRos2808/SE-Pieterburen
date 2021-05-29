@@ -10,7 +10,7 @@ class TableView(qtw.QFrame):
         super().__init__(parent)
         self.parent = parent
         self.setLayout(qtw.QGridLayout())
-        self.setStyleSheet("background-color:lightblue")
+        self.setStyleSheet("TableView{ background-color:lightblue}")
         #self.setStyleSheet("background-color: #053045;")
         self.layout().setContentsMargins(20, 20, 20, 20)
         self.table = qtw.QTableWidget(self)

@@ -28,17 +28,25 @@ def parseWavFiles(files, mainWindow):
             fileName = fileName[:-5]
             # TODO apply model
             result = feature_extractor2.weight_results(file)
-            if result == 1:
+            if result == 0:
+                whistleResult = "No"
+            elif result == 1:
                 whistleResult = "Yes"
             else:
-                whistleResult = "No"
+                whistleResult = "Unknown"
 
             result = feature_extractor3.weight_results(file)
             print(result)
-            if result == 1:
-                rhonchusResult = "Yes"
+            if result == 0:
+                rhonchusResult = "Oke"
+            elif result == 1:
+                rhonchusResult = "Mild"
+            elif result == 2:
+                rhonchusResult = "Moderate"
+            elif result == 3:
+                rhonchusResult = "Severe"
             else:
-                rhonchusResult = "No"
+                rhonchusResult = "Unknown"
             #give name without the 'L.wav' or 'R.wav' of string
             be = mainWindow.getBackEnd()
 

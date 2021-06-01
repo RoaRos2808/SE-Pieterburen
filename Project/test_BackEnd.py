@@ -21,11 +21,11 @@ class TestBackEnd(unittest.TestCase):
         # Test if dataframe is empty
         self.assertTrue(actual.empty)
 
-        expected = pd.DataFrame(columns=['File Name', 'Type', 'Left Lung Health', 'Right Lung Health'])
+        expected = pd.DataFrame(columns=['File Name', 'Left Lung Health', 'Right Lung Health'])
         # Test if dataframes have the same columns (in order) with no indexes
         self.assertTrue(expected.equals(actual))
 
-        notExpected = pd.DataFrame(columns=['File Name', 'Type', 'Right Lung Health', 'Left Lung Health'])
+        notExpected = pd.DataFrame(columns=['File Name', 'Right Lung Health', 'Left Lung Health'])
         # Test when dataframes don't have the same columns (in order)
         self.assertFalse(notExpected.equals(actual))
 

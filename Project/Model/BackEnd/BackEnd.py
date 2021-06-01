@@ -23,7 +23,7 @@ class BackEnd:
         self.standardColumns = self.makeEmptyDataFrame()
 
     def makeEmptyDataFrame(self):
-        df = pd.DataFrame(columns=['File Name', 'Type', 'Left Lung Whistle', 'Right Lung Whistle', 'Left Lung Rhonchus',
+        df = pd.DataFrame(columns=['File Name', 'Left Lung Whistle', 'Right Lung Whistle', 'Left Lung Rhonchus',
                                    'Right Lung Rhonchus'])
         return df
 
@@ -32,7 +32,7 @@ class BackEnd:
         self.spectogramInfo = {}
         self.tableView.populateTable()
 
-    def update(self, type, fileName, leftOrRight, whistleResult, rhonchusResult):
+    def update(self, fileName, leftOrRight, whistleResult, rhonchusResult):
         #when you update, check if the standard column headers are present in data. If not, add them at correct position
         standard = self.standardColumns.keys()
         for i in range(0, len(standard)):
@@ -50,10 +50,10 @@ class BackEnd:
                 self.data.loc[index, ["Right Lung Rhonchus"]] = rhonchusResult
         else:
             if leftOrRight == 'L':
-                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Left Lung Whistle": [whistleResult],
+                df = pd.DataFrame({"File Name": [fileName], "Left Lung Whistle": [whistleResult],
                                    "Left Lung Rhonchus": [rhonchusResult]})
             else:
-                df = pd.DataFrame({"Type": [type], "File Name": [fileName], "Right Lung Whistle": [whistleResult],
+                df = pd.DataFrame({"File Name": [fileName], "Right Lung Whistle": [whistleResult],
                                    "Right Lung Rhonchus": [rhonchusResult]})
             frames = [self.data, df]
             self.data = pd.concat(frames, ignore_index=True)

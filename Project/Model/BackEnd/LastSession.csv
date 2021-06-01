@@ -1,28 +1,8 @@
-File Name,Type,Left Lung Whistle,Right Lung Whistle,Left Lung Rhonchus,Right Lung Rhonchus
-PV18212_061118_,,Yes,Yes,Mild,Severe
-PV18212_061218_,,No,No,Severe,Severe
-PV18212_081118_,,No,No,Severe,Severe
-PV18212_131118_,,No,No,Severe,Severe
-PV18212_201118_,,No,No,Severe,Severe
-PV18212_211118_,,No,No,Severe,Severe
-PV18212_310119_,,No,Yes,Severe,Mild
-PV18214_121118_,,No,No,Severe,Severe
-PV18214_121218_,,No,No,Severe,Mild
-PV18214_141118_,,Yes,No,Severe,Severe
-PV18214_151118_,,No,No,Severe,Severe
-PV18214_191118_,,No,No,Severe,Severe
-PV18214_271118_,,No,No,Severe,Severe
-PV18214_271218_,,No,No,Severe,Severe
-PV18217_021218_,,No,No,Severe,Severe
-PV18217_080119_,,No,No,Severe,Severe
-PV18217_171118_,,No,No,Severe,Severe
-PV18217_171218_,,No,No,Severe,Severe
-PV18217_201118_,,No,No,Severe,Severe
-PV18217_241118_,,No,Yes,Severe,Severe
-PV18249_020119_,,No,No,Severe,Severe
-PV18249_040119_,,No,No,Severe,Severe
-PV18249_070219_,,No,Yes,Mild,Mild
-PV18249_170119_,,No,No,Severe,Severe
-PV18249_181218_,,No,Yes,Mild,Severe
-PV18249_211218_,,Yes,Yes,Oke,Severe
-PV18249_251218_,,No,Yes,Severe,Severe
+File Name,Left Lung Whistle,Right Lung Whistle,Left Lung Rhonchus,Right Lung Rhonchus
+PV18212_061118_,Yes,Yes,Mild,Severe
+PV18212_061218_,No,No,Severe,Severe
+PV18212_081118_,No,No,Severe,Severe
+PV18212_131118_,No,No,Severe,Severe
+PV18212_201118_,No,No,Severe,Severe
+PV18212_211118_,No,No,Severe,Severe
+PV18212_310119_,No,Yes,Severe,Mild

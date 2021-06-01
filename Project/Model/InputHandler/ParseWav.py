@@ -53,7 +53,7 @@ def parseWavFiles(files, mainWindow):
             #not yet implemented, need Cristians model
             type = ""
 
-            be.update(type, fileName, leftOrRight, whistleResult, rhonchusResult)
+            be.update(fileName, leftOrRight, whistleResult, rhonchusResult)
 
             #audio, sampleRate = librosa.load(file_path, sr=sampling_rate, res_type='kaiser_fast')
             audio, sampleRate = librosa.load(file, sr=None, res_type='kaiser_fast')

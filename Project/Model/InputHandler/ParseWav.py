@@ -38,7 +38,7 @@ def parseWavFiles(files, mainWindow):
             result = feature_extractor3.weight_results(file)
             print(result)
             if result == 0:
-                rhonchusResult = "Oke"
+                rhonchusResult = "Okay"
             elif result == 1:
                 rhonchusResult = "Mild"
             elif result == 2:

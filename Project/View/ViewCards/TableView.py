@@ -14,6 +14,7 @@ class TableView(qtw.QFrame):
         #self.setStyleSheet("background-color: #053045;")
         self.layout().setContentsMargins(20, 20, 20, 20)
         self.table = qtw.QTableWidget(self)
+        self.table.horizontalHeader().setDefaultSectionSize(150)
 
         # self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
         self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteRowButton())

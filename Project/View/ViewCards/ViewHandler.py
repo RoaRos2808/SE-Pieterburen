@@ -3,6 +3,7 @@ import PyQt5.QtGui as qtg
 import Project.View.ViewCards.TableView as tv
 import Project.View.ViewCards.StatisticsView as sv
 import os
+import Project.img.resources
 from Project.Controller.Actions.OpenAction import openAction
 from Project.Controller.Buttons import FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, OpenNewButton, \
@@ -14,7 +15,7 @@ class MainWindow(qtw.QMainWindow):
         super().__init__()
 
         self.recentFiles = []
-        self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
+        self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/Brian_Zeehond2.png')))
 
         self.setGeometry(0, 0, width, height)
         self.mainWidget = qtw.QWidget(self)

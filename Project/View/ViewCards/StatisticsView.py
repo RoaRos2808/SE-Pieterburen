@@ -245,6 +245,6 @@ class StatisticsView(qtw.QFrame):
                                                                      "default", "PNG file (*.png)", options=options)
                 if ok:
                     # print(dialogFileName)
-                    self.figureSpectogram.savefig('spec.png')
+                    self.figureSpectogram.savefig(dialogFileName)
 
                 break

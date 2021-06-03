@@ -15,7 +15,7 @@ class MainWindow(qtw.QMainWindow):
         super().__init__()
 
         self.recentFiles = []
-        self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/Brian_Zeehond2.png')))
+        self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/Zeehond_head.png')))
 
         self.setGeometry(0, 0, width, height)
         self.mainWidget = qtw.QWidget(self)

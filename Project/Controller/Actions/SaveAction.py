@@ -6,7 +6,7 @@ def uponActionPerformed(mainWindow, qtw):
 
 def saveAction(mainWindow, qtw):
     path = mainWindow.windowTitle()
-    if path != "Untitled":
+    if path != "Wavealyze":
         exportCSV(mainWindow, path)
         mainWindow.tableView.populateTable()
         print("saved")

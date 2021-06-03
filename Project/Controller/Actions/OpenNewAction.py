@@ -13,8 +13,8 @@ def openNewAction(mainWindow, qtw):
 
     if not data.empty:
         be = mainWindow.getBackEnd()
-        if mainWindow.windowTitle() == "Untitled":
-            currentPath = "Untitled"
+        if mainWindow.windowTitle() == "Wavealyze":
+            currentPath = "Wavealyze"
         else:
             currentPath = os.path.basename(mainWindow.windowTitle())
 
@@ -40,6 +40,6 @@ def openNewAction(mainWindow, qtw):
                 be.clear()
 
         elif saveOption == qtw.QMessageBox.No:
-            mainWindow.setWindowTitle("Untitled")
-            be.setLastFileName("Untitled")
+            mainWindow.setWindowTitle("Wavealyze")
+            be.setLastFileName("Wavealyze")
             mainWindow.tableView.backEnd.clear()

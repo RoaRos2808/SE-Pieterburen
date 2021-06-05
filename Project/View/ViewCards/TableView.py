@@ -13,27 +13,35 @@ class TableView(qtw.QFrame):
         self.setStyleSheet("TableView{ background-color:lightblue}")
         #self.setStyleSheet("background-color: #053045;")
         self.layout().setContentsMargins(20, 20, 20, 20)
+        self.makeTable()
+
+        self.columnHeaders = []
+        self.backEnd = backEnd
+        self.populateTable()
+
+    def makeTable(self):
         self.table = qtw.QTableWidget(self)
+        #self.activateItemChangedSignal()
         self.table.horizontalHeader().setDefaultSectionSize(150)
 
         # self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
         self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteRowButton())
         self.table.horizontalHeader().selectionModel().selectionChanged.connect(
             lambda: self.activateDeleteColumnButton())
-
-        self.columnHeaders = []
-        self.backEnd = backEnd
-        self.populateTable()
-
         self.table.setStyleSheet("QFrame{ background-color:white}"
                                  "QScrollBar{ background-color: none } ")
-        #self.table.resizeColumnsToContents()
+        # self.table.resizeColumnsToContents()
         self.layout().addWidget(self.table, 1, 0, 1, 1)
 
     # This function takes the table data in the form of a dictionary.
     # Keys act as column headers, the values are lists of strings which populate all rows under that column
     def populateTable(self):
+        item = self.layout().takeAt(0)
+        item.widget().deleteLater()
+        self.makeTable()
+
         self.columnHeaders.clear()
+        #self.table.clear()
         tableData = self.backEnd.getData()
         for col in tableData.columns:
             self.columnHeaders.append(col)
@@ -43,8 +51,10 @@ class TableView(qtw.QFrame):
         self.table.setRowCount(rowCount)
         self.table.setColumnCount(columnCount)
 
+        increment = 0
         for columnIndex, column in enumerate(tableData.keys()):
             for rowIndex in range(rowCount):
+                increment += 1
                 cellValue = tableData[column][rowIndex]
                 cell = qtw.QTableWidgetItem(str(cellValue))
                 #print(cellValue)
@@ -54,10 +64,13 @@ class TableView(qtw.QFrame):
                 #if columnIndex == 0 or columnIndex == 1:
                 #    cell.setFlags(qtc.Qt.ItemIsSelectable | qtc.Qt.ItemIsEnabled)
 
+                #item = self.table.itemAt(rowIndex, columnIndex)
+                #self.table.removeItemWidget(item)
                 self.table.setItem(rowIndex, columnIndex, cell)
 
         self.table.setHorizontalHeaderLabels(self.columnHeaders)
         self.table.show()
+        self.activateItemChangedSignal()
 
     # function returns a dictionary with the data currently in table
     def getDataInTable(self):
@@ -97,4 +110,4 @@ class TableView(qtw.QFrame):
             self.parent.activateDeleteColumnButton(True)
 
     def activateItemChangedSignal(self):
-        self.table.itemChanged.connect(self.backEnd.refresh)
+        self.table.itemChanged.connect(lambda: self.backEnd.refresh())

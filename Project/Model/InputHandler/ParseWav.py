@@ -17,6 +17,7 @@ def parseWavFiles(files, mainWindow):
     progressPercentage = 0
 
     mainWindow.setEnabled(False)
+    be = mainWindow.getBackEnd()
     for file in files:
         data = pd.DataFrame
         audio_path = file
@@ -48,7 +49,7 @@ def parseWavFiles(files, mainWindow):
             else:
                 rhonchusResult = "Unknown"
             #give name without the 'L.wav' or 'R.wav' of string
-            be = mainWindow.getBackEnd()
+
 
             #not yet implemented, need Cristians model
             type = ""
@@ -70,6 +71,8 @@ def parseWavFiles(files, mainWindow):
             msg = QMessageBox()
             msg.setWindowTitle("Wrong File Name Convention")
             msg.setText("\""+fileName+"\" does not specify if it is a right or left lung!")
+
+    be.getTable().populateTable()
 
     progressBar.finalizeProgressDialog()
     mainWindow.setEnabled(True)

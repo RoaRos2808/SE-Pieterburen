@@ -62,7 +62,7 @@ class BackEnd:
         self.data = self.data.fillna("")
 
         # auto update table view after updating backend
-        self.tableView.populateTable()
+        #self.tableView.populateTable()
 
     # function for opening a previously saved table
     def openTable(self, newData):
@@ -72,7 +72,7 @@ class BackEnd:
 
     #refresh backend data with current data in table
     def refresh(self):
-        #print('refresh')
+        print('refresh')
         self.data = self.tableView.getDataInTable()
         for column in self.data.columns:
             self.data[column] = self.data[column].apply(lambda x: x.strip())
@@ -144,3 +144,9 @@ class BackEnd:
         with open('Model/BackEnd/LastFileName.txt', 'r') as f:
             lastFileName = f.read()
         return lastFileName
+
+    def getStandardColumns(self):
+        return self.standardColumns
+
+    def getTable(self):
+        return self.tableView

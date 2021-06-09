@@ -111,3 +111,8 @@ class TableView(qtw.QFrame):
 
     def activateItemChangedSignal(self):
         self.table.itemChanged.connect(lambda: self.backEnd.refresh())
+
+    def getColumns(self):
+        print("hello2")
+        print(self.columnHeaders)
+        return self.columnHeaders

@@ -190,10 +190,5 @@ class TestBackEnd(unittest.TestCase):
         result = "Severe"
         self.assertTrue(actual == result)
 
-        # see if the new data overrides the old data
-        self.assertTrue(index1.equals(index2))
-
-
-
 if __name__ == '__main__':
     unittest.main()

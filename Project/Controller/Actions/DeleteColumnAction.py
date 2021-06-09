@@ -10,3 +10,8 @@ def deleteColumn(tableWindow):
     #if indexes is not empty, a deletion has taken place, so refresh backend
     if indexes:
         tableWindow.getBackEnd().refresh()
+
+def deleteColumn_test(tableWindow, idx):
+    tableWindow.table.removeColumn(idx)
+    del tableWindow.columnHeaders[idx]
+    tableWindow.getBackEnd().refresh()

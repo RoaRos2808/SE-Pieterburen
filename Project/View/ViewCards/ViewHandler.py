@@ -11,7 +11,7 @@ from Project.Controller.Buttons import FileUploadButton, InfoButton, AddColumnBu
 # represents main app window and acts as canvas on which the different views are painted
 
 class MainWindow(qtw.QMainWindow):
-    def __init__(self, width, height, backEnd):
+    def __init__(self, width, height, backEnd, flag):
         super().__init__()
 
         self.recentFiles = []
@@ -47,7 +47,8 @@ class MainWindow(qtw.QMainWindow):
 
         self.setMenuBar(self.menuBar)
         self.switchViews("table")
-        self.show()
+        if flag == 1:
+            self.show()
 
     # switch views based on viewname
     def switchViews(self, viewName):

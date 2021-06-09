@@ -27,7 +27,6 @@ def parseWavFiles(files, mainWindow):
         #check if filename has convention of ending in either L or R (have to discuss this), otherwise show error
         if leftOrRight in ['L', 'R']:
             fileName = fileName[:-5]
-            # TODO apply model
             result = feature_extractor2.weight_results(file)
             if result == 0:
                 whistleResult = "No"

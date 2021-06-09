@@ -36,7 +36,6 @@ class TestBackEnd(unittest.TestCase):
         # Test when dataframes don't have the same columns (in order)
         self.assertFalse(notExpected.equals(actual))
 
-
     def test_clear(self):
         # Fill the data and make sure it is not empty
         self.backend.data.loc[1, ["Left Lung Whistle"]] = 'Yes'
@@ -147,51 +146,7 @@ class TestBackEnd(unittest.TestCase):
         # reset everything
         self.backend.clear()
 
-    def test_openTable(self):
-        self.backend.update('PV12345_678901_L.wav', 'L', 'Yes', 'Moderate')
 
-        # check if the update for a left lung was good
-        index1 = self.backend.data.index[self.backend.data["File Name"] == "PV12345_678901_L.wav"]
-        actual = self.backend.data.loc[index1, ["Left Lung Whistle"]].values[0]
-        result = "Yes"
-        self.assertTrue(actual == result)
-
-        actual = self.backend.data.loc[index1, ["Left Lung Whistle"]].values[0]
-        result = "No"
-        self.assertFalse(actual == result)
-
-        actual = self.backend.data.loc[index1, ["Left Lung Rhonchus"]].values[0]
-        result = "Moderate"
-        self.assertTrue(actual == result)
-
-        actual = self.backend.data.loc[index1, ["Left Lung Rhonchus"]].values[0]
-        result = "Severe"
-        self.assertFalse(actual == result)
-
-        data = pd.DataFrame({"File Name": ['PV12345_123456_L.wav'], "Left Lung Whistle": ['Yes'],
-                                   "Left Lung Rhonchus": ['Severe']})
-
-        self.backend.openTable(data)
-        # check if the new data is in the program
-        index2 = self.backend.data.index[self.backend.data["File Name"] == "PV12345_123456_L.wav"]
-        actual = self.backend.data.loc[index2, ["Left Lung Whistle"]].values[0]
-        result = "Yes"
-        self.assertTrue(actual == result)
-
-        actual = self.backend.data.loc[index2, ["Left Lung Whistle"]].values[0]
-        result = "No"
-        self.assertFalse(actual == result)
-
-        actual = self.backend.data.loc[index2, ["Left Lung Rhonchus"]].values[0]
-        result = "Moderate"
-        self.assertFalse(actual == result)
-
-        actual = self.backend.data.loc[index2, ["Left Lung Rhonchus"]].values[0]
-        result = "Severe"
-        self.assertTrue(actual == result)
-
-        # see if the new data overrides the old data
-        self.assertTrue(index1.equals(index2))
 
 
 

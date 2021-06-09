@@ -8,17 +8,17 @@ from Project.View.ViewCards import ViewHandler
 from Project.main import backEnd as be
 
 
-class TestViewHandler(unittest.TestCase):
+class MyTestCase(unittest.TestCase):
     def setUp(self):
-        self.app = qtw.QApplication([])
-        screenResolution = self.app.desktop().screenGeometry()
-        windowHeightToScreen, windowWidthToScreen = 0.7, 0.6
+        app = qtw.QApplication([])
+        # get screen resolution of system used
+        screenResolution = app.desktop().screenGeometry()
+        # fractions of the screen dimensions to use as dimensions for app
+        windowHeightToScreen, windowWidthToScreen = 0.8, 0.7
         width, height = int(screenResolution.width() * windowWidthToScreen), int(
             screenResolution.height() * windowHeightToScreen)
-        self.backend = be.BackEnd()
-        self.mw = ViewHandler.MainWindow(width, height, self.backend, 0)
-        self.tableView = self.mw.getTableView()
-        self.backend.addTableView(self.tableView)
+        self.backEnd = be.BackEnd()
+        self.mw = ViewHandler.MainWindow(width, height, self.backEnd, 0)
 
     def test_switchViews(self):
         # check if starts at table view
@@ -32,6 +32,7 @@ class TestViewHandler(unittest.TestCase):
         self.mw.switchViews("table")
         self.assertEqual(self.mw.mainWidget.layout().getCurrentIndex(), 0)
 
+        self.backEnd.setRunningFlag(False)
 
 if __name__ == '__main__':
     unittest.main()

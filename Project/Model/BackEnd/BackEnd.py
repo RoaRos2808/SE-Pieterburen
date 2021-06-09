@@ -148,5 +148,8 @@ class BackEnd:
     def getStandardColumns(self):
         return self.standardColumns
 
+    def getColumns(self):
+        return self.data.columns
+
     def getTable(self):
         return self.tableView

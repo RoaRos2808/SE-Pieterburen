@@ -62,10 +62,5 @@ class TestGetFilesWav(unittest.TestCase):
         self.assertTrue(actual in [result, result2, result3, result4, result5, result6])
 
 
-
-
-
-
-
 if __name__ == '__main__':
     unittest.main()

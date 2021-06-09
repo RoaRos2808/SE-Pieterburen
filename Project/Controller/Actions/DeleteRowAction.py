@@ -9,3 +9,7 @@ def deleteRow(tableWindow):
         # if indexes is not empty, a deletion has taken place, so refresh backend
         if indexes:
                 tableWindow.getBackEnd().refresh()
+
+def deleteRow(tableWindow, idx):
+        tableWindow.table.removeRow(idx)
+        tableWindow.getBackEnd().refresh()

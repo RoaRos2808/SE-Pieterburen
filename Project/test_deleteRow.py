@@ -3,11 +3,12 @@ import pandas as pd
 import Project.Model.BackEnd.BackEnd as be
 from Project.Controller.Actions.AddColumnAction import addColumn
 from Project.Controller.Actions.DeleteColumnAction import deleteColumn
+from Project.Controller.Actions.DeleteRowAction import deleteRow
 from Project.View.ViewCards import ViewHandler
 import PyQt5.QtWidgets as qtw
 from Project.Controller.Actions import FileUploadAction
 
-class TestDeleteColumn(unittest.TestCase):
+class TestDeleteRow(unittest.TestCase):
     def setUp(self):
         self.app = qtw.QApplication([])
         screenResolution = self.app.desktop().screenGeometry()
@@ -19,26 +20,21 @@ class TestDeleteColumn(unittest.TestCase):
         self.tableView = self.mw.getTableView()
         self.backend.addTableView(self.tableView)
 
-    def test_deleteColumn(self):
+    def test_deleteRow(self):
         # clear and add two columns for testing
         self.backend.clear()
-        addColumn(self.tableView, qtw)
-        addColumn(self.tableView, qtw)
+        self.assertTrue(self.backend.data.empty)
 
-        # check if fifth index is present
-        columns = self.tableView.getColumns()
-        self.assertTrue(columns[5])
-        oldFifthIndex = columns[5]
+        # fill with data and confirm this
+        self.backend.update('PV12345_678901_L.wav', 'L', 'Yes', 'Moderate')
+        self.assertFalse(self.backend.data.empty)
 
-        # delete 5th index and check if column name has been changed
-        deleteColumn_test(self.tableView, 5)
-        self.assertNotEquals(columns[5], oldFifthIndex)
+        # delete the just added row and check if this is correct
+        deleteRow(self.tableView, 0)
+        self.assertTrue(self.backend.data.empty)
 
-        # check if first 5 columns remain the same by trying to remove index 3
-        # these first 5 columns should always be in the program
-        thirdIndex = columns[3]
-        deleteColumn(self.tableView, 3)
-        self.assertNotEquals(columns[3], thirdIndex)
+
 
 if __name__ == '__main__':
     unittest.main()
+

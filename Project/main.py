@@ -21,7 +21,7 @@ width, height = int(screenResolution.width()*windowWidthToScreen), int(screenRes
 
 # add backend to tableview and tableview to backend
 backEnd = be.BackEnd()
-mw = ViewHandler.MainWindow(width, height, backEnd)
+mw = ViewHandler.MainWindow(width, height, backEnd, 1)
 tableView = mw.getTableView()
 backEnd.addTableView(tableView)
 tableView.activateItemChangedSignal()

@@ -18,7 +18,7 @@ class MyTestCase(unittest.TestCase):
         width, height = int(screenResolution.width() * windowWidthToScreen), int(
             screenResolution.height() * windowHeightToScreen)
         self.backEnd = be.BackEnd()
-        self.mw = ViewHandler.MainWindow(width, height, self.backEnd)
+        self.mw = ViewHandler.MainWindow(width, height, self.backEnd, 0)
 
     def test_switchViews(self):
         # check if starts at table view

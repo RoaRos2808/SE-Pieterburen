@@ -10,6 +10,6 @@ def deleteRow(tableWindow):
         if indexes:
                 tableWindow.getBackEnd().refresh()
 
-def deleteRow(tableWindow, idx):
+def deleteRow_test(tableWindow, idx):
         tableWindow.table.removeRow(idx)
         tableWindow.getBackEnd().refresh()

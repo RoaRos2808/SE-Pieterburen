@@ -11,7 +11,7 @@ def deleteColumn(tableWindow):
     if indexes:
         tableWindow.getBackEnd().refresh()
 
-def deleteColumn(tableWindow, idx):
+def deleteColumn_test(tableWindow, idx):
     tableWindow.table.removeColumn(idx)
     del tableWindow.columnHeaders[idx]
     tableWindow.getBackEnd().refresh()

@@ -57,7 +57,6 @@ class StatisticsView(qtw.QFrame):
         self.graphFiguresAndCanvases = {}
         standardColumns = list(self.backEnd.getStandardColumns().columns)
         standardColumns.remove('File Name')
-        print(standardColumns)
         for standardColumn in standardColumns:
             figure, canvas = self.createFigureAndCanvas()
             self.graphFiguresAndCanvases[standardColumn] = [figure, canvas]

@@ -66,7 +66,7 @@ def parseWavFiles(files, mainWindow):
                 progressBar.updateProgressDialog(progressPercentage)
                 time.sleep(0.005)
         else:
-            print("wrong file name convention")
+            #print("wrong file name convention")
             msg = QMessageBox()
             msg.setWindowTitle("Wrong File Name Convention")
             msg.setText("\""+fileName+"\" does not specify if it is a right or left lung!")

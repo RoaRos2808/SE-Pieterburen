@@ -36,9 +36,6 @@ class BackEnd:
         #when you update, check if the standard column headers are present in data. If not, add them at correct position
         standard = self.standardColumns.keys()
         for i in range(0, len(standard)):
-            print(standard[i])
-            print(self.data.keys())
-            print(" ")
             if not standard[i] in self.data.keys():
                 self.data.insert(i, standard[i], "")
 

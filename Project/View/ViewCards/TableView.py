@@ -23,6 +23,8 @@ class TableView(qtw.QFrame):
         self.table = qtw.QTableWidget(self)
         #self.activateItemChangedSignal()
         self.table.horizontalHeader().setDefaultSectionSize(150)
+        self.table.horizontalHeader().setStyleSheet("QHeaderView {font-size: 9pt;}")
+        self.table.verticalHeader().setStyleSheet("QHeaderView {font-size: 9pt;}")
 
         # self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
         self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteRowButton())

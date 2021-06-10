@@ -17,4 +17,4 @@ def getFilesCSV(mainWindow, qtw):
             mainWindow.recentFiles.append(filePath)
             mainWindow.recentFiles = mainWindow.recentFiles[-4:]
 
-        print(mainWindow.recentFiles)
+        #print(mainWindow.recentFiles)

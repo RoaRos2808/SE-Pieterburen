@@ -36,7 +36,7 @@ def parseWavFiles(files, mainWindow):
                 whistleResult = "Unknown"
 
             result = feature_extractor3.weight_results(file)
-            print(result)
+            #print(result)
             if result == 0:
                 rhonchusResult = "Okay"
             elif result == 1:

@@ -168,7 +168,10 @@ class StatisticsView(qtw.QFrame):
             columnSpecificData = columnSpecificData.apply(lambda x: '-\n'.join(x[i:i+(self.xAxisLabelLengthTreshold)] for i in range(0, len(x), (self.xAxisLabelLengthTreshold))))
             #columnSpecificData.apply(self.insertNewLineInteval)
 
-
+            #removes nans again from plot
+            columnSpecificData.replace("nan", float("NaN"), inplace=True)
+            columnSpecificData.dropna()
+            
             columnSpecificData.value_counts().sort_values(ascending=True).plot.bar(ax=ax,title=columnHeader, legend=False)
             #figure.bar(ax=ax, title=columnHeader, legend=False)
 

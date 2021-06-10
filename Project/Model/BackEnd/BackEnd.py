@@ -72,7 +72,7 @@ class BackEnd:
 
     #refresh backend data with current data in table
     def refresh(self):
-        print('refresh')
+        #print('refresh')
         self.data = self.tableView.getDataInTable()
         for column in self.data.columns:
             self.data[column] = self.data[column].apply(lambda x: x.strip())
@@ -116,7 +116,7 @@ class BackEnd:
                 else:
                     with self._lock:
                         self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
-                        print("Performed autosave")
+                        #print("Performed autosave")
                     return
             #if 20 seconds have passed, perform autosave
             with self._lock:
@@ -124,7 +124,7 @@ class BackEnd:
                 #for column in self.data.columns:
                 #    self.data[column] = self.data[column].apply(lambda x: x.strip())
                 self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
-                print("Performed autosave")
+                #print("Performed autosave")
 
     def writeRecentFiles(self):
         with open('Model/BackEnd/RecentFilesList.txt', 'w') as f:

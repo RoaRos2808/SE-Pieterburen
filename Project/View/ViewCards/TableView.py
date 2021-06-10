@@ -115,6 +115,6 @@ class TableView(qtw.QFrame):
         self.table.itemChanged.connect(lambda: self.backEnd.refresh())
 
     def getColumns(self):
-        print("hello2")
-        print(self.columnHeaders)
+        #print("hello2")
+        #print(self.columnHeaders)
         return self.columnHeaders

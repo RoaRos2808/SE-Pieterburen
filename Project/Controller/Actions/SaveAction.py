@@ -9,6 +9,6 @@ def saveAction(mainWindow, qtw):
     if path != "Wavealyze":
         exportCSV(mainWindow, path)
         #mainWindow.tableView.populateTable()
-        print("saved")
+        #print("saved")
     else:
         fileExportAction(mainWindow, qtw)  # show file dialog if no name yet

@@ -171,7 +171,7 @@ class StatisticsView(qtw.QFrame):
             #removes nans again from plot
             columnSpecificData.replace("nan", float("NaN"), inplace=True)
             columnSpecificData.dropna()
-            
+
             columnSpecificData.value_counts().sort_values(ascending=True).plot.bar(ax=ax,title=columnHeader, legend=False)
             #figure.bar(ax=ax, title=columnHeader, legend=False)
 

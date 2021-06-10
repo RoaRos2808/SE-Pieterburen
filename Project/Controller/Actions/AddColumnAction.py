@@ -24,6 +24,7 @@ def addColumn(tableWindow, qtw):
     dialogColumnName.setStyleSheet("QDialog {background-color:none}")
     columnName, ok = dialogColumnName.getText(tableWindow, "Enter column name", "Enter a column header:")
     if ok:
+        columnName = columnName.strip()
         #check if the column is unique, else add a number to it.
         headers = tableWindow.getColumns()
         columnName = checkColumns(columnName, headers)

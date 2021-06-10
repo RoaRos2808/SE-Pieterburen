@@ -16,6 +16,7 @@ class MainWindow(qtw.QMainWindow):
 
         self.recentFiles = []
         self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/Zeehond_head.png')))
+        self.setWindowTitle("Wavealyze")
 
         self.setGeometry(0, 0, width, height)
         self.mainWidget = qtw.QWidget(self)

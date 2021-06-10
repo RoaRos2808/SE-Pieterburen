@@ -9,7 +9,7 @@ def uponActionPerformed(mainWindow, qtw):
 #action for opening a .csv file in the table viewer
 def CSVUpload(mainWindow, qtw):
     options = qtw.QFileDialog.Options()
-    filePath, _ = qtw.QFileDialog.getOpenFileName(mainWindow, "QFileDialog.getOpenFileNames()",
+    filePath, _ = qtw.QFileDialog.getOpenFileName(mainWindow, "Select CSV File To Open",
                                                   "", "Table files (*.csv)", options=options)
     # If files are selected, send  these to the InputHandler
     if filePath:

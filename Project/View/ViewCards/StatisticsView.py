@@ -210,7 +210,6 @@ class StatisticsView(qtw.QFrame):
         axSpecto.label_outer()
 
         self.canvasSpectogram.draw()
-        self.figureSpectogram.savefig('oke.png')
 
     def refreshRadioButtons(self):
         self.radioButtons = {}

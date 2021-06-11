@@ -19,15 +19,16 @@ class TestCSVExport(unittest.TestCase):
         self.tableView = self.mw.getTableView()
         self.backend.addTableView(self.tableView)
 
-    #
-    def test_fileExportAction(self):
+    # This test is for both fileExportAction and exportCSV, as the former is needed
+    # to execute the latter
+    def test_CSVExport(self):
         # make empty table and check if it is indeed empty
         self.backend.clear()
         self.assertTrue(self.backend.data.empty)
 
         # add left and right lung of audio file info and confirm table is not empty
-        self.backend.update('PV12345_678901_L.wav', 'L', 'Yes', 'Moderate')
-        self.backend.update('PV12345_678901_L.wav', 'R', 'Yes', 'Moderate')
+        self.backend.update('PV12345_678901_', 'L', 'Yes', 'Moderate')
+        self.backend.update('PV12345_678901_', 'R', 'Yes', 'Moderate')
         self.assertFalse(self.backend.data.empty)
 
         # export the table to .csv file

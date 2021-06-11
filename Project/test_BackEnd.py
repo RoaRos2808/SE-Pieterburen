@@ -56,14 +56,14 @@ class TestBackEnd(unittest.TestCase):
         self.backend.clear()
         self.assertTrue(self.backend.data.empty)
 
-        self.backend.update('PV12345_678901_L.wav', 'L', 'Yes', 'Moderate')
+        self.backend.update('PV12345_678901_', 'L', 'Yes', 'Moderate')
 
         # check if data is now not empty
         data = self.backend.data
         self.assertFalse(data.empty)
 
         # check if the update for a left lung was good
-        index = self.backend.data.index[self.backend.data["File Name"] == "PV12345_678901_L.wav"]
+        index = self.backend.data.index[self.backend.data["File Name"] == "PV12345_678901_"]
         actual = self.backend.data.loc[index, ["Left Lung Whistle"]].values[0]
         result = "Yes"
         self.assertTrue(actual == result)
@@ -85,10 +85,13 @@ class TestBackEnd(unittest.TestCase):
         result = ""
         self.assertTrue(actual == result)
 
-        # update for a right lung
-        self.backend.update('PV12345_678901_R.wav', 'R', 'Yes', 'Moderate')
+        # check if the audio file is in index 0
+        self.assertTrue(index == 0)
 
-        index = index = self.backend.data.index[self.backend.data["File Name"] == "PV12345_678901_R.wav"]
+        # update for a right lung
+        self.backend.update('PV12345_678901_', 'R', 'Yes', 'Moderate')
+
+        index = self.backend.data.index[self.backend.data["File Name"] == "PV12345_678901_"]
         actual = self.backend.data.loc[index, ["Right Lung Whistle"]].values[0]
         result = "Yes"
         self.assertTrue(actual == result)
@@ -104,6 +107,9 @@ class TestBackEnd(unittest.TestCase):
         actual = self.backend.data.loc[index, ["Right Lung Rhonchus"]].values[0]
         result = "Severe"
         self.assertFalse(actual == result)
+
+        # check if the right lung for the same audio file is also in index 0
+        self.assertTrue(index == 0)
 
         # update the same file as previously done, with new values
         self.backend.update('PV12345_678901_L.wav', 'L', 'No', 'Severe')

@@ -26,7 +26,7 @@ class TestDeleteRow(unittest.TestCase):
         self.assertTrue(self.backend.data.empty)
 
         # fill with data and confirm this
-        self.backend.update('PV12345_678901_L.wav', 'L', 'Yes', 'Moderate')
+        self.backend.update('PV12345_678901_', 'L', 'Yes', 'Moderate')
         self.assertFalse(self.backend.data.empty)
 
         # delete the just added row and check if this is correct

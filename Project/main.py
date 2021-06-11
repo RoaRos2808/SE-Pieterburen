@@ -33,6 +33,7 @@ thread.start()
 #Running is set in backend to make sure that the thread for autosaving can finish when app is closed
 backEnd.setRunningFlag(True)
 app.exec_()
+mw.setWindowTitle("Wavealyze")
 
 
 #Running flag is checked by autosave thread

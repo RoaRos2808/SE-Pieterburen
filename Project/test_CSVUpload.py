@@ -6,7 +6,7 @@ from Project.View.ViewCards import ViewHandler
 import PyQt5.QtWidgets as qtw
 from Project.Controller.Actions import FileUploadAction
 
-class TestGetFilesWav(unittest.TestCase):
+class TestCSVUpload(unittest.TestCase):
     def setUp(self):
         self.app = qtw.QApplication([])
         screenResolution = self.app.desktop().screenGeometry()

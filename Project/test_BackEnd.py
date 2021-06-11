@@ -4,6 +4,7 @@ import Project.Model.BackEnd.BackEnd as be
 from Project.View.ViewCards import ViewHandler
 import PyQt5.QtWidgets as qtw
 
+# Test each method separately, when running this entire class it gives a weird access violation error
 class TestBackEnd(unittest.TestCase):
     def setUp(self):
         self.app = qtw.QApplication([])

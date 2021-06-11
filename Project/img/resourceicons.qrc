@@ -1,7 +1,6 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
-	<file>Brian_Zeehond_50px.png</file>
-	<file>Brian_Zeehond2.png</file>
+	<file>Brian_Zeehond_Border.png</file>
 	<file>Zeehond_head.png</file>
 </qresource>
 </RCC>

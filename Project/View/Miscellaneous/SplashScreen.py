@@ -5,7 +5,7 @@ import PyQt5.QtCore as qtc
 
 class SplashScreen(qtw.QSplashScreen):
     def __init__(self, app):
-        picture = qtg.QPixmap('../Project/img/Brian_Zeehond_Border.png')
+        picture = qtg.QPixmap(':/Brian_Zeehond_Border.png')
         super().__init__(picture, qtc.Qt.WindowStaysOnTopHint)
         self.setMask(picture.mask())
         self.app = app

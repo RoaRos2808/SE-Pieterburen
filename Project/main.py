@@ -8,7 +8,7 @@ import PyQt5.QtGui as qtg
 runningFlag = True
 
 app = qtw.QApplication([])
-app.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
+#app.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/windowiconsmall.png')))
 
 splash = SplashScreen.SplashScreen(app)
 splash.showSplashScreen()

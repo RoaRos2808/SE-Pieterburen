@@ -3,7 +3,7 @@ import pandas as pd
 import Project.Model.BackEnd.BackEnd as be
 from Project.Controller.Actions.AddColumnAction import addColumn
 from Project.Controller.Actions.DeleteColumnAction import deleteColumn
-from Project.Controller.Actions.DeleteRowAction import deleteRow
+from Project.Controller.Actions.DeleteRowAction import deleteRow, deleteRow_test
 from Project.View.ViewCards import ViewHandler
 import PyQt5.QtWidgets as qtw
 from Project.Controller.Actions import FileUploadAction
@@ -30,7 +30,7 @@ class TestDeleteRow(unittest.TestCase):
         self.assertFalse(self.backend.data.empty)
 
         # delete the just added row and check if this is correct
-        deleteRow(self.tableView, 0)
+        deleteRow_test(self.tableView, 0)
         self.assertTrue(self.backend.data.empty)
 
 

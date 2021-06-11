@@ -2,7 +2,7 @@ import unittest
 import pandas as pd
 import Project.Model.BackEnd.BackEnd as be
 from Project.Controller.Actions.AddColumnAction import addColumn
-from Project.Controller.Actions.DeleteColumnAction import deleteColumn
+from Project.Controller.Actions.DeleteColumnAction import deleteColumn, deleteColumn_test
 from Project.View.ViewCards import ViewHandler
 import PyQt5.QtWidgets as qtw
 from Project.Controller.Actions import FileUploadAction

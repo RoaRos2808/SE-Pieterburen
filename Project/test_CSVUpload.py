@@ -1,6 +1,7 @@
 import unittest
 import pandas as pd
 import Project.Model.BackEnd.BackEnd as be
+from Project.Controller.Actions.OpenAction import CSVUpload
 from Project.View.ViewCards import ViewHandler
 import PyQt5.QtWidgets as qtw
 from Project.Controller.Actions import FileUploadAction
@@ -17,20 +18,16 @@ class TestGetFilesWav(unittest.TestCase):
         self.tableView = self.mw.getTableView()
         self.backend.addTableView(self.tableView)
 
-    # This tests both the parseWavFiles and getFilesWav methods at once;
-    # getFilesWav is needed to get audio files to test parseWavFiles with
-    def test_getFilesWav(self):
-        # confirm data is empty
+    # This tests both the parseCSVFiles, openAction and CSVUpload methods at once;
+    # CSVUpload is needed to get .csv file to test parseCSVFiles with
+    def test_CSVUpload(self):
         self.backend.clear()
         self.assertTrue(self.backend.data.empty)
 
-        # Upload valid .wav files
-        FileUploadAction.getFilesWav(self.mw, qtw)
-        self.assertFalse(self.backend.data.empty)
-
-        # Confirm for every column there is a correct result
-        # Note: Only checking for first row in this test
+        # Upload valid .csv file
+        CSVUpload(self.mw, qtw)
         index = 0
+
         actual = self.backend.data.loc[index, ["Left Lung Whistle"]].values[0]
         result = "Yes"
         result2 = "No"

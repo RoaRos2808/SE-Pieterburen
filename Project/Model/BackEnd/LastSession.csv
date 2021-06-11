@@ -1,32 +1,5 @@
-File Name,Left Lung Whistle,Right Lung Whistle,Left Lung Rhonchus,Right Lung Rhonchus,Age,Gender,Species,Location,Date,Time,Notes,Special,Number
-PV18217_021218_,No,No,Okay,Okay,5,Male,Regular,Texel,29-05-2020,15:21,,Yes,1.0
-PV18217_080119_,No,No,Moderate,Okay,4,Female,Grey,Texel,29-05-2020,21:59,Unresponsive,,2.0
-PV18217_171118_,No,No,Okay,Okay,5,Female,Regular,Texel,07-05-2019,09:38,,Yes,3.0
-PV18217_171218_,No,No,Moderate,Moderate,3,Female,Grey,Texel,29-05-2020,09:38,,Yes,4.0
-PV18217_201118_,No,No,Moderate,Moderate,2,Male,Regular,Texel,07-05-2019,15:21,,Yes,5.0
-PV18217_241118_,No,Yes,Okay,Mild,7,Male,Grey,Texel,29-05-2020,21:59,,No,6.0
-PV18214_121118_,No,No,Okay,Okay,5,Female,Grey,Texel,07-05-2019,09:38,,No,7.0
-PV18214_121218_,No,No,Okay,Severe,3,Female,Grey,Texel,29-05-2020,21:59,,Yes,8.0
-PV18214_141118_,No,No,Mild,Okay,3,Male,Regular,Texel,29-05-2020,15:21,,No,9.0
-PV18214_151118_,No,No,Severe,Okay,4,Male,Grey,Texel,07-05-2019,09:38,,No,10.0
-PV18214_191118_,No,No,Okay,Okay,1,Female,Regular,Texel,29-05-2020,21:59,,No,
-PV18214_271118_,No,No,Moderate,Severe,2,Male,Regular,Texel,07-05-2019,15:21,Unresponsive,Yes,
-PV18214_271218_,No,No,Okay,Severe,3,Female,Grey,Texel,07-05-2019,21:59,,No,
-PV18262_070219_,No,No,Severe,Moderate,5,Male,Grey,Texel,29-05-2020,09:38,,No,
-PV18262_080119_,No,No,Moderate,Moderate,6,Male,Regular,Texel,29-05-2020,15:21,,No,
-PV18262_241218_,No,No,Severe,Severe,7,Male,Grey,Texel,07-05-2019,21:59,Keep an eye on this one,Yes,
-PV18262_250119_,No,Yes,Mild,Okay,4,Female,Regular,Texel,07-05-2019,15:21,,No,
-PV18262_271218_,No,Yes,Mild,Mild,3,Female,Grey,Texel,07-05-2019,21:59,,No,
-PV18262_311218_,No,No,Moderate,Moderate,2,Female,Grey,Texel,29-05-2020,21:59,Unresponsive,Yes,
-PV19112_010419_,No,No,Okay,Okay,6,Male,Regular,Texel,11-12-2021,09:38,,No,
-PV19112_030319_,No,No,Okay,Moderate,3,Female,Regular,Texel,11-12-2021,21:59,Interesting sounds,No,
-PV19112_070319_,No,No,Okay,Moderate,25,Male,Regular,Texel,29-05-2020,09:38,,No,
-PV19112_150319_,No,No,Okay,Okay,16,Female,Grey,Texel,11-12-2021,15:21,,Yes,
-PV19112_280219_,Yes,Yes,Okay,Okay,34,Male,Regular,Texel,29-05-2020,21:59,,Yes,
-PV19112_300319_,No,No,Moderate,Okay,20,Male,Grey,Texel,29-05-2020,21:59,,No,
-PV19053_030219_,No,No,Mild,Moderate,12,Female,Regular,Texel,11-12-2021,15:21,,No,
-PV19053_060319_,No,Yes,Moderate,Moderate,17,Female,Regular,Texel,11-12-2021,09:38,Unresponsive,Yes,
-PV19053_170219_,No,No,Moderate,Moderate,8,Female,Grey,Texel,11-12-2021,21:59,,No,
-PV19053_190119_,No,No,Okay,Okay,18,Male,Regular,Texel,29-05-2020,21:59,,Yes,
-PV19053_220119_,No,No,Okay,Moderate,30,Female,Grey,Texel,29-05-2020,15:21,,Yes,
-PV19053_260119_,No,Yes,Okay,Moderate,42,Male,Regular,Texel,11-12-2021,09:38,,No,
+File Name,Left Lung Whistle,Right Lung Whistle,Left Lung Rhonchus,Right Lung Rhonchus
+PV18214_151118_,,,,
+PV18214_191118_,,,,
+PV18214_271118_,,,,
+PV18214_121118_,No,,Okay,

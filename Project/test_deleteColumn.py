@@ -37,7 +37,7 @@ class TestDeleteColumn(unittest.TestCase):
         # check if first 5 columns remain the same by trying to remove index 3
         # these first 5 columns should always be in the program
         thirdIndex = columns[3]
-        deleteColumn(self.tableView, 3)
+        deleteColumn_test(self.tableView, 3)
         self.assertNotEquals(columns[3], thirdIndex)
 
 if __name__ == '__main__':

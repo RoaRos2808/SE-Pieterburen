@@ -1,8 +1,2 @@
 File Name,Left Lung Whistle,Right Lung Whistle,Left Lung Rhonchus,Right Lung Rhonchus
-PV18212_061118_,Yes,Yes,Mild,Severe
-PV18212_061218_,No,No,Severe,Severe
-PV18212_081118_,No,No,Severe,Severe
-PV18212_131118_,No,No,Severe,Severe
-PV18212_201118_,No,No,Severe,Severe
-PV18212_211118_,No,No,Severe,Severe
-PV18212_310119_,No,Yes,Severe,Mild
+PV12345_678901_,Yes,Yes,Moderate,Moderate

@@ -96,4 +96,4 @@ def weight_results(file):
     #audio_path = "Recordings/auscultation-recordings/PV18256/PV18256_291218_L.wav"
     audio_path = file
 
-    return get_prediction(audio_path, model, 20, 8000)
+    return get_prediction(audio_path, model, 40, 4000)

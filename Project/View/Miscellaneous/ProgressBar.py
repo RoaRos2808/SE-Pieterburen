@@ -1,5 +1,7 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtCore as qtc
+import PyQt5.QtGui as qtg
+import Project.img.resources
 
 class ProgressBar(qtw.QProgressDialog):
     def __init__(self):
@@ -15,6 +17,7 @@ class ProgressBar(qtw.QProgressDialog):
         dlg.setMinimum(0)
         dlg.setMaximum(100)
         self.setWindowTitle("Processing audio files")
+        self.setWindowIcon(qtg.QIcon(qtg.QPixmap(':/Zeehond_head.png')))
         self.setLabelText("Please wait while the audio files are being processed")
         self.setCancelButton(None)
 

@@ -11,7 +11,6 @@ import pandas as pd
 from matplotlib.backends.backend_qt5agg import FigureCanvasQTAgg as FigureCanvas
 import matplotlib.pyplot as plt
 
-
 class StatisticsView(qtw.QFrame):
     def __init__(self, parent, backEnd):
         super().__init__(parent)

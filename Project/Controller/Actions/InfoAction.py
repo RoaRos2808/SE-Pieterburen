@@ -1,5 +1,3 @@
-
-
 def uponActionPerformed(mainWindow, qtw):
     showInfoDialog(mainWindow, qtw)
 

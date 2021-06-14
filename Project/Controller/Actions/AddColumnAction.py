@@ -18,7 +18,6 @@ def checkColumns(columnName, list):
 
     return columnName
 
-
 def addColumn(tableWindow, qtw):
     dialogColumnName = qtw.QInputDialog()
     dialogColumnName.setStyleSheet("QDialog {background-color:none}")

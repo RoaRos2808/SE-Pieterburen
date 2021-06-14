@@ -5,7 +5,6 @@ import pandas as pd
 
 class BackEnd:
     def __init__(self):
-        #print(os.stat('Model/BackEnd/LastSession.csv').st_size)
         if os.stat('../Project/Model/BackEnd/LastSession.csv').st_size == 0:
             data = self.makeEmptyDataFrame()
         else:
@@ -61,9 +60,6 @@ class BackEnd:
 
         self.data = self.data.fillna("")
 
-        # auto update table view after updating backend
-        #self.tableView.populateTable()
-
     # function for opening a previously saved table
     def openTable(self, newData):
         self.data = newData
@@ -72,7 +68,6 @@ class BackEnd:
 
     #refresh backend data with current data in table
     def refresh(self):
-        #print('refresh')
         self.data = self.tableView.getDataInTable()
         for column in self.data.columns:
             self.data[column] = self.data[column].apply(lambda x: x.strip())
@@ -116,15 +111,11 @@ class BackEnd:
                 else:
                     with self._lock:
                         self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
-                        #print("Performed autosave")
                     return
             #if 20 seconds have passed, perform autosave
             with self._lock:
                 #remove whitespace at start and end of every value
-                #for column in self.data.columns:
-                #    self.data[column] = self.data[column].apply(lambda x: x.strip())
                 self.data.to_csv('Model/BackEnd/LastSession.csv', index=False)
-                #print("Performed autosave")
 
     def writeRecentFiles(self):
         with open('Model/BackEnd/RecentFilesList.txt', 'w') as f:

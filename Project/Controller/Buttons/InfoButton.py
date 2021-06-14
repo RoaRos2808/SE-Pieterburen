@@ -1,4 +1,3 @@
-
 from Project.Controller.Actions import InfoAction
 
 def infoButton(mainWindow, qtw):

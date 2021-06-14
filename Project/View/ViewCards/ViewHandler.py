@@ -8,8 +8,8 @@ from Project.Controller.Actions.OpenAction import openAction
 from Project.Controller.Buttons import FileUploadButton, InfoButton, AddColumnButton, \
     FileExportButton, NavigateTableButton, NavigateStatisticsButton, DeleteRowButton, DeleteColumnButton, OpenNewButton, \
     OpenButton, SaveButton
-# represents main app window and acts as canvas on which the different views are painted
 
+# represents main app window and acts as canvas on which the different views are painted
 class MainWindow(qtw.QMainWindow):
     def __init__(self, width, height, backEnd, flag):
         super().__init__()
@@ -73,7 +73,6 @@ class MainWindow(qtw.QMainWindow):
 
     # add actions to buttons
     def initializeActions(self):
-
         # initialize actions
         FileUploadButton.fileUploadButton(self, qtw)
         FileExportButton.fileExportButton(self, qtw)
@@ -97,7 +96,6 @@ class MainWindow(qtw.QMainWindow):
         fileMenu.addAction(self.OpenNewButton)
         fileMenu.addAction(self.OpenButton)
 
-        #TODO migrate to right place
         self.recentMenu = fileMenu.addMenu("Open Recent")
         self.recentMenu.aboutToShow.connect(self.updateRecentMenu)
         self.recentMenu.triggered.connect(self.openFileFromRecent)

@@ -5,7 +5,6 @@ from Project.Model.OutputHandler.ExportToCsv import exportCSV
 def uponActionPerformed(mainWindow, qtw):
     openNewAction(mainWindow, qtw)
 
-
 # opens a dialog with option to save, then clears the table window
 def openNewAction(mainWindow, qtw):
     be = mainWindow.getBackEnd()

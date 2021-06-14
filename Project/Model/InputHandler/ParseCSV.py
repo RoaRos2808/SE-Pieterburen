@@ -9,7 +9,5 @@ def parseCSVFiles(filePath, mainWindow):
         data = pd.read_csv(filePath)
     else:
         data = be.makeEmptyDataFrame()
-    #data.rename(columns=lambda x: x.strip(), inplace=True)
-    #print(data)
 
     be.openTable(data)

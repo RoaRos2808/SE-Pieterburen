@@ -26,7 +26,6 @@ class TableView(qtw.QFrame):
         self.table.horizontalHeader().setStyleSheet("QHeaderView {font-size: 9pt;}")
         self.table.verticalHeader().setStyleSheet("QHeaderView {font-size: 9pt;}")
 
-        # self.table.verticalHeader().sectionClicked.connect(lambda: print("hoi"))
         self.table.verticalHeader().selectionModel().selectionChanged.connect(lambda: self.activateDeleteRowButton())
         self.table.horizontalHeader().selectionModel().selectionChanged.connect(
             lambda: self.activateDeleteColumnButton())

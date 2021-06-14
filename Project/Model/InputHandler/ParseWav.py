@@ -7,7 +7,6 @@ from PyQt5.QtWidgets import QMessageBox
 import pandas as pd
 import time
 
-
 # save the audio path and get the CNN results
 def parseWavFiles(files, mainWindow):
     # added code for a progress dialog. We have to discuss whether we want this though. Maybe a progressbar embedded
@@ -36,7 +35,6 @@ def parseWavFiles(files, mainWindow):
                 whistleResult = "Unknown"
 
             result = feature_extractor3.weight_results(file)
-            #print(result)
             if result == 0:
                 rhonchusResult = "Okay"
             elif result == 1:
@@ -49,13 +47,8 @@ def parseWavFiles(files, mainWindow):
                 rhonchusResult = "Unknown"
             #give name without the 'L.wav' or 'R.wav' of string
 
-
-            #not yet implemented, need Cristians model
-            type = ""
-
             be.update(fileName, leftOrRight, whistleResult, rhonchusResult)
 
-            #audio, sampleRate = librosa.load(file_path, sr=sampling_rate, res_type='kaiser_fast')
             audio, sampleRate = librosa.load(file, sr=None, res_type='kaiser_fast')
             be.insertSpectogramInfo(fileName+leftOrRight, audio, sampleRate)
 
@@ -66,7 +59,6 @@ def parseWavFiles(files, mainWindow):
                 progressBar.updateProgressDialog(progressPercentage)
                 time.sleep(0.005)
         else:
-            #print("wrong file name convention")
             msg = QMessageBox()
             msg.setWindowTitle("Wrong File Name Convention")
             msg.setText("\""+fileName+"\" does not specify if it is a right or left lung!")

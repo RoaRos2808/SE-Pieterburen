@@ -1,6 +1,5 @@
 from Project.Controller.Actions import DeleteColumnAction
 
-
 def deleteColumnButton(mainWindow, tableWindow, qtw):
     mainWindow.DeleteColumnButton = qtw.QAction('Delete column', mainWindow, checkable=False)
     mainWindow.DeleteColumnButton.setShortcut('Ctrl+c')

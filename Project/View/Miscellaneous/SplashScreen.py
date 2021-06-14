@@ -1,6 +1,7 @@
 import PyQt5.QtWidgets as qtw
 import PyQt5.QtGui as qtg
 import PyQt5.QtCore as qtc
+import Project.img.resources
 
 
 class SplashScreen(qtw.QSplashScreen):
